@@ -16,6 +16,8 @@ app.use(express.static('public'));
 //lectura y parseo
 app.use(express.json());
 
+app.use('/api/auth', require('./routes/auth'));
+app.use('/Paciente', require('./routes/Paciente'));
 //Rutas
 
 //listen

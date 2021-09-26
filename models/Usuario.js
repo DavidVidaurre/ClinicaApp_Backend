@@ -15,7 +15,11 @@ const UsuarioSchema = new Schema({
 	},
 	password: {
 		type: String,
-		requires: true,
+		required: true,
 	},
+	rol:{
+		type: String,
+		required: true,
+	}
 });
 module.exports = model('Usuario', UsuarioSchema);
