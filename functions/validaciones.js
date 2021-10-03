@@ -42,8 +42,33 @@ const validarRol = (rol)=>{
 //     })
 // }
 
+
+const validarEnfermedadActual = (enfermedadActual)=>{
+    return new Promise((res)=>{
+      if(enfermedadActual.length>2 && enfermedadActual.length<50 ){
+        res(true);
+      }
+      else {
+        res(false)
+      }
+    })
+}
+
+  const validarDiagnostico = (diagnostico)=>{
+    return new Promise((res)=>{
+      if(diagnostico.length>2 && diagnostico.length<100 ){
+        res(true);
+      }
+      else {
+        res(false)
+      }
+    })
+  }
+
 module.exports = {
       validarDNI,
       validarNombre,
       validarRol,
+      validarEnfermedadActual,
+      validarDiagnostico
 }

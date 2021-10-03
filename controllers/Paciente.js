@@ -3,7 +3,7 @@ const {validarDNI} = require('../functions/validaciones.js');
 const {validarNombre} = require('../functions/validaciones.js');
 
 const CrearPaciente = async (req, res) => {
-        const {dni_paciente, nombres_paciente, aPaterno, aMaterno,fecha_nac, lugar_nac, estado } = req.body;
+        const {dni_paciente, nombres_paciente, aPaterno, aMaterno,fecha_nac, lugar_nac, estado, id_AntecedenteNatal } = req.body;
         try {
             let paciente = await Paciente.findOne({ dni_paciente });
             if (paciente) {
@@ -52,7 +52,6 @@ const CrearPaciente = async (req, res) => {
 
             paciente = new Paciente(req.body);
             
-    
             await paciente.save();
             
             res.status(201).json({
@@ -68,6 +67,42 @@ const CrearPaciente = async (req, res) => {
         }
  };
 
+const ActualizarPaciente = async (req, res = response) => {
+	const pacienteId = req.params.id;
+	try {
+		const paciente = await Vacuna.findById(pacienteId);
+		if (!paciente) {
+			res.status(404).json({
+				ok: false,
+				msg: 'Paciente no existe con ese id',
+			});
+		}
+
+		const nuevoPaciente= {
+			...req.body,
+		};
+
+		const paciente_Actualizado = await Paciente.findByIdAndUpdate(
+			pacienteId,
+			nuevoPaciente,
+			{
+				new: true,
+			}
+		);
+		res.json({
+			ok: true,
+			evento: paciente_Actualizado,
+		});
+	} catch (e) {
+		console.log(e);
+		res.status(500).json({
+			ok: false,
+			msg: 'Hable con el administrador',
+		});
+	}
+};
+
+
 const MostrarPaciente = async (req, res) => {
     const paciente = await Paciente.find();
     return res.json(paciente);
@@ -75,5 +110,6 @@ const MostrarPaciente = async (req, res) => {
     
 module.exports = {
 	CrearPaciente,
+  ActualizarPaciente,
 	MostrarPaciente
 }

@@ -18,6 +18,13 @@ app.use(express.json());
 
 app.use('/api/auth', require('./routes/auth'));
 app.use('/Paciente', require('./routes/Paciente'));
+app.use('/CitaConsulta', require('./routes/CitaConsulta'));
+app.use('/Vacuna', require('./routes/Vacuna'));
+app.use('/CitaVacuna', require('./routes/CitaVacuna'));
+app.use('/HistClinica', require('./routes/HistClinica'));
+app.use('/ExamenFisico', require('./routes/ExamenFisico'));
+app.use('/AntecedenteNatal', require('./routes/AntecedenteNatal'));
+app.use('/AntecedentePatologico', require('./routes/AntecedentePatologico'));
 //Rutas
 
 //listen
