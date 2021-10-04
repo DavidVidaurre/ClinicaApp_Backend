@@ -8,6 +8,10 @@ const CitaSchema = new Schema({
 		type: Date,
 		required: false,
 	},
+	telefono:{
+		type: String,
+		required: false,
+	},
 	//1. Masculino
 	//2. Femenino
 	sexo:{

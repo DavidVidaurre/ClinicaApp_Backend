@@ -1,8 +1,8 @@
 const Cita = require('../models/Cita');
-const Historia= require('../models/Historia')
+const Historia= require('../models/Historia');
 
 const CrearCita = async (req, res) => {
-        const { nombre_paciente, fecha_nac, sexo, edad, DNI, responsable, condicion, motivo, fecha } = req.body;
+        const { nombre_paciente, fecha_nac, telefono, sexo, edad, DNI, responsable, condicion, motivo, fecha } = req.body;
         // const CitaId = req.params.id;
 		// const idHistoria = req.id_Historia;
 		try {
@@ -13,6 +13,14 @@ const CrearCita = async (req, res) => {
                     msg: 'Ya existe una cita para consulta a esa hora',
                 });
             }
+			const DNIvalido = await Historia.findOne({dni_paciente: DNI});
+            if(DNIvalido){
+              return res.status(400).json({
+                ok: false,
+                msg: 'DNI incorrecto',
+              });
+            }
+
 
 			//1. Nuevo 
 			//2.Continuador
@@ -49,7 +57,7 @@ const CrearCita = async (req, res) => {
 
 
 
-			if(historia!=null && condicion==2){
+			if(historia !=null && condicion==2){
 				return res.status(400).json({
                     ok: false,
                     msg:'La historia no existe por lo tanto no puede ser un paciente continuador',
@@ -73,6 +81,7 @@ const CrearCita = async (req, res) => {
 					responsable,
 					nombre_paciente,
 					fecha_nac,
+					telefono,
 					sexo,
 					edad,
 					DNI,
