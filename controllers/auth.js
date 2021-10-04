@@ -64,6 +64,7 @@ const crearUsuario = async (req, res = response) => {
 			ok: true,
 			uid: usuario.id,
 			nombre: usuario.nombre,
+			rol:usuario.rol,
 			token,
 		});
 	} catch (error) {
@@ -103,6 +104,7 @@ const loginUsuario = async (req, res = response) => {
 			ok: true,
 			uid: usuario.id,
 			name: usuario.name,
+			rol:usuario.rol,
 			token,
 		});
 	} catch (error) {
