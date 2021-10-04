@@ -1,11 +1,12 @@
 const Cita = require('../models/Cita');
 const Historia= require('../models/Historia');
-
+const moment = require('moment')
 const CrearCita = async (req, res) => {
         const { nombre_paciente, fecha_nac, telefono, sexo, edad, DNI, responsable, condicion, motivo, fecha, hora} = req.body;
         // const CitaId = req.params.id;
 		// const idHistoria = req.id_Historia;
 		try {
+			//
             let fechaConsulta = await Cita.findOne({ fecha });
             if (fechaConsulta) {
                 return res.status(400).json({
@@ -76,7 +77,8 @@ const CrearCita = async (req, res) => {
 				await historia.save();
 
 				let cita = new Cita({
-					fecha,
+					fecha: new Date( fecha ),
+					
 					motivo,
 					responsable,
 					nombre_paciente,
