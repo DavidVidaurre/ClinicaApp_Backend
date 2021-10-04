@@ -1,15 +1,15 @@
-const Paciente = require('../models/Paciente');
+const Historia = require('../models/Historia');
 const {validarDNI} = require('../functions/validaciones.js');
 const {validarNombre} = require('../functions/validaciones.js');
 
-const CrearPaciente = async (req, res) => {
-        const {dni_paciente, nombres_paciente, aPaterno, aMaterno,fecha_nac, lugar_nac, estado, id_AntecedenteNatal } = req.body;
+const CrearHistoria= async (req, res) => {
+        const {dni_paciente, nombres_paciente,fecha_nac, lugar_nac, direccion,nombre_madre, ocupacion_madre, telefono_madre, nombre_padre, ocupacion_padre, telefono_padre, numero_hijo, referencia} = req.body;
         try {
-            let paciente = await Paciente.findOne({ dni_paciente });
-            if (paciente) {
+            let historia= await Historia.findOne({ dni_paciente});
+            if (historia) {
                 return res.status(400).json({
                     ok: false,
-                    msg: 'Ya existe un paciente con este DNI',
+                    msg: 'Ya existe un Historiacon este DNI',
                 });
             }
             
@@ -27,20 +27,7 @@ const CrearPaciente = async (req, res) => {
                 msg: 'Nombre incorrecto',
               });
             }
-            const APATERNOvalido = await validarNombre(aPaterno);
-            if(!APATERNOvalido){
-              return res.status(400).json({
-                ok: false,
-                msg: 'Apellido Paterno incorrecto',
-              });
-            }
-            const AMATERNOvalido = await validarNombre(aMaterno);
-            if(!AMATERNOvalido){
-              return res.status(400).json({
-                ok: false,
-                msg: 'Apellido Materno incorrecto',
-              });
-            }
+
 
             const LUGARNACvalido = await validarNombre(lugar_nac);
             if(!LUGARNACvalido){
@@ -49,14 +36,27 @@ const CrearPaciente = async (req, res) => {
                 msg: 'Apellido Materno incorrecto',
               });
             }
-
-            paciente = new Paciente(req.body);
+            const NOMBREMADREvalido = await validarNombre(nombre_madre);
+            if(!NOMBREMADREvalido){
+              return res.status(400).json({
+                ok: false,
+                msg: 'Nombre incorrecto',
+              });
+            }
+            const NOMBREPADREvalido = await validarNombre(nombre_padre);
+            if(!NOMBREPADREvalido){
+              return res.status(400).json({
+                ok: false,
+                msg: 'Nombre incorrecto',
+              });
+            }
+            historia= new Historia(req.body);
             
-            await paciente.save();
+            await historia.save();
             
             res.status(201).json({
                 ok: true,
-                paciente: paciente,
+                historia: historia,
             });
         } catch (error) {
             console.log('Error: ' + error.toString());
@@ -67,31 +67,31 @@ const CrearPaciente = async (req, res) => {
         }
  };
 
-const ActualizarPaciente = async (req, res = response) => {
-	const pacienteId = req.params.id;
+const ActualizarHistoria= async (req, res = response) => {
+	const HistoriaId = req.params.id;
 	try {
-		const paciente = await Vacuna.findById(pacienteId);
-		if (!paciente) {
+		const Historia= await Historia.findById(HistoriaId);
+		if (!Historia) {
 			res.status(404).json({
 				ok: false,
-				msg: 'Paciente no existe con ese id',
+				msg: 'Historiano existe con ese id',
 			});
 		}
 
-		const nuevoPaciente= {
+		const nuevoHistoria= {
 			...req.body,
 		};
 
-		const paciente_Actualizado = await Paciente.findByIdAndUpdate(
-			pacienteId,
-			nuevoPaciente,
+		const Historia_Actualizado = await Historia.findByIdAndUpdate(
+			HistoriaId,
+			nuevoHistoria,
 			{
 				new: true,
 			}
 		);
 		res.json({
 			ok: true,
-			evento: paciente_Actualizado,
+			evento: Historia_Actualizado,
 		});
 	} catch (e) {
 		console.log(e);
@@ -103,13 +103,13 @@ const ActualizarPaciente = async (req, res = response) => {
 };
 
 
-const MostrarPaciente = async (req, res) => {
-    const paciente = await Paciente.find();
-    return res.json(paciente);
+const MostrarHistoria= async (req, res) => {
+    const historia= await Historia.find();
+    return res.json(historia);
 }
     
 module.exports = {
-	CrearPaciente,
-  ActualizarPaciente,
-	MostrarPaciente
+	CrearHistoria,
+  ActualizarHistoria,
+	MostrarHistoria
 }
