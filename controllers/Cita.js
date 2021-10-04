@@ -2,7 +2,7 @@ const Cita = require('../models/Cita');
 const Historia= require('../models/Historia');
 
 const CrearCita = async (req, res) => {
-        const { nombre_paciente, fecha_nac, telefono, sexo, edad, DNI, responsable, condicion, motivo, fecha } = req.body;
+        const { nombre_paciente, fecha_nac, telefono, sexo, edad, DNI, responsable, condicion, motivo, fecha, hora} = req.body;
         // const CitaId = req.params.id;
 		// const idHistoria = req.id_Historia;
 		try {
@@ -86,7 +86,7 @@ const CrearCita = async (req, res) => {
 					edad,
 					DNI,
 					condicion,
-					fecha,
+					// fecha: fecha + hora,
 					historia: historia.id_Historia
 				})	
 				
