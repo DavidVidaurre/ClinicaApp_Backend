@@ -186,9 +186,24 @@ const MostrarCita = async (req, res) => {
     const cita = await Cita.find();
     return res.json(cita);
 }
-    
+
+const EliminarCita = async (req, res = response) =>{
+	const CitaId = req.params.id;
+	const cita= await Cita.findByIdAndDelete(CitaId)
+	if(cita){
+		console.log(cita)
+		return res.json({
+			ok: true,
+			msg: 'Cita eliminado'
+		})
+	}
+	
+	
+} 
+
 module.exports = {
 	CrearCita,
     ActualizarCita,
-    MostrarCita
+    MostrarCita,
+	EliminarCita
 }

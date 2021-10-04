@@ -10,9 +10,11 @@ const {
 	crearUsuario,
 	loginUsuario,
 	revalidarToken,
+	EliminarUsuario,
 } = require('../controllers/auth');
 
 const { validarJWT } = require('../middlewares/validar-jwt');
+const { EliminarCita } = require('../controllers/Cita');
 
 router.post(
 	'/new',
@@ -46,5 +48,6 @@ router.post(
 );
 
 router.get('/renew', validarJWT, revalidarToken);
+router.delete("/:id", EliminarUsuario)
 
 module.exports = router;

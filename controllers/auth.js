@@ -129,9 +129,22 @@ const revalidarToken = async (req, res = response) => {
 	});
 };
 
+const EliminarUsuario = async(req, res= response) =>{
+	const usuarioId = req.params.id;
+	const usuario= await Usuario.findByIdAndDelete(usuarioId)
+	if(usuario){
+		console.log(usuario)
+		return res.json({
+			ok: true,
+			msg: 'Usuario eliminado'
+		})
+	}
+}
+
 module.exports = {
 	crearUsuario,
 	loginUsuario,
 	revalidarToken,
+	EliminarUsuario,
 };
 
