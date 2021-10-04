@@ -46,7 +46,7 @@ const CitaSchema = new Schema({
     id_Historia:{
         type: Schema.Types.ObjectId,
         ref:'Historia',
-        required: false,
+        required: true,
     }
 });
 
