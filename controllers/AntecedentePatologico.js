@@ -1,14 +1,15 @@
 const AntecedentePatologico = require('../models/AntecedentePatologico');
+const Historia = require('../models/Historia');
 
 const CrearAntecedentePatologico = async (req, res) => {
-        const {nombre, descripcion, id_HistClinica} = req.body;
+        const {asmaBronquial, nebulizacion, intervencionQuirurgica,reaccionAdversaMed,enfAnteriores, id_Historia} = req.body;
         try {
             
-            const idHistClinica = await AntecedentePatologico.find(id_HistClinica);
-            if (!idHistClinica) {
-                res.status(404).json({
+            const idHistoria = await Historia.findOne({_id:id_Historia});
+            if (!idHistoria) {
+                return res.status(404).json({
                     ok: false,
-                    msg: 'Historis Clinica no existe con ese id',
+                    msg: 'Historia no existe con ese id',
                 });
             }
 
@@ -32,26 +33,26 @@ const CrearAntecedentePatologico = async (req, res) => {
 
  const ActualizarAntecedentePatologico = async (req, res = response) => {
 	const antecedentePatologicoId = req.params.id;
-	const idHistClinica = req.id_HistClinica;
+	const idHistoria = req.id_Historia;
 	try {
 		const antecedentePatologico = await AntecedentePatologico.findById(antecedentePatologicoId);
 		if (!antecedentePatologico) {
-			res.status(404).json({
+			return res.status(404).json({
 				ok: false,
 				msg: 'Antecedente Patologico no existe con ese id',
 			});
 		}
-		if (antecedentePatologico.id_HistClinica.toString() !== idHistClinica) {
+		if (antecedentePatologico.id_Historia.toString() != idHistoria) {
 			return res.status(401).json({
 				ok: false,
-				msg: 'No tiene privilegio de editar esta Historia Medica',
+				msg: 'No tiene privilegio de editar esta Historia',
 			});
 		}
 		const nuevoAntecedentePatologico= {
 			...req.body,
-			id_HistClinica: idHistClinica
+			id_Historia: idHistoria
 		};
-		const antecedentePatologico_Actualizado = await AntecedenteNatal.findByIdAndUpdate(
+		const antecedentePatologico_Actualizado = await AntecedentePatologico.findByIdAndUpdate(
 			antecedentePatologicoId,
 			nuevoAntecedentePatologico,
 			{

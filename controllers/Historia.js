@@ -87,7 +87,7 @@ const ActualizarHistoria = async (req, res = response) => {
 		if (!historia) {
 			res.status(404).json({
 				ok: false,
-				msg: 'Historiano existe con ese id',
+				msg: 'Historia no existe con ese id',
 			});
 		}
 

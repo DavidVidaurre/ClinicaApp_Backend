@@ -25,6 +25,7 @@ app.use('/HistClinica', require('./routes/HistClinica'));
 app.use('/ExamenFisico', require('./routes/ExamenFisico'));
 app.use('/AntecedenteNatal', require('./routes/AntecedenteNatal'));
 app.use('/AntecedentePatologico', require('./routes/AntecedentePatologico'));
+app.use('/AntecedenteFamiliar', require('./routes/AntecedenteFamiliar'));
 //Rutas
 
 //listen

@@ -1,22 +1,18 @@
 const { Schema, model } = require('mongoose');
-const AntecedentePatologicoSchema = new Schema({
+const AntecedenteFamiliarSchema = new Schema({
     asmaBronquial: {
 		type: Boolean,
 		required: false,
 	},
-    nebulizacion: {
+    diabetes: {
 		type: Boolean,
 		required: false,
 	},
-	intervencionQuirurgica:{
+	epilepsia:{
 		type:Boolean,
 		required: false
 	},
-	reaccionAdversaMed:{
-		type: String,
-		required: false
-	},
-	enfAnteriores:{
+	Otros:{
 		type: String,
 		required: false
 	},
@@ -27,4 +23,4 @@ const AntecedentePatologicoSchema = new Schema({
 	}
 });
 
-module.exports = model('AntecedentePatologico', AntecedentePatologicoSchema);
+module.exports = model('AntecedenteFamiliar', AntecedenteFamiliarSchema);

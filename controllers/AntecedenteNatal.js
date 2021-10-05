@@ -1,7 +1,8 @@
 const AntecedenteNatal = require('../models/AntecedenteNatal');
+const Historia = require('../models/Historia');
 
 const CrearAntecedenteNatal = async (req, res) => {
-        const {peso_al_macer, talla_al_nacer, tipoDeParto, lugarDeParto, apgar, perimetroCefalico} = req.body;
+        const {peso_al_macer, tipoDeParto, lugarDeParto, apgar1, apgar5, edadGestacional, complicaciones, id_Historia} = req.body;
         try {
             // let paciente = await Paciente.findOne({ dni_paciente });
             // if (paciente) {
@@ -11,8 +12,8 @@ const CrearAntecedenteNatal = async (req, res) => {
             //     });
             // }
             
-			const idPaciente = await AntecedenteNatal.find({id_Paciente});
-            if (!idPaciente) {
+			const idHistoria = await Historia.findOne({_id:id_Historia});
+            if (!idHistoria) {
               return res.status(400).json({
                 ok: false,
                 msg: 'Paciente no existe con ese id',
@@ -38,7 +39,7 @@ const CrearAntecedenteNatal = async (req, res) => {
 
  const ActualizarAntecedenteNatal = async (req, res = response) => {
 	const antecedenteNatalId = req.params.id;
-	const idPaciente = req.id_Paciente;
+	const idHistoria = req.id_Historia;
 	try {
 		const antecedenteNatal = await AntecedenteNatal.findById(antecedenteNatalId);
 		if (!antecedenteNatal) {
@@ -47,7 +48,7 @@ const CrearAntecedenteNatal = async (req, res) => {
 				msg: 'Antecedente Natal no existe con ese id',
 			});
 		}
-		if (antecedenteNatal.id_Paciente.toString() !== idPaciente) {
+		if (antecedenteNatal.id_Historia.toString() !== idHistoria) {
 			return res.status(401).json({
 				ok: false,
 				msg: 'No tiene privilegio de editar este Paciente',
@@ -56,7 +57,7 @@ const CrearAntecedenteNatal = async (req, res) => {
 
 		const nuevoAntecedenteNatal= {
 			...req.body,
-			id_Paciente: idPaciente,
+			id_Historia: idHistoria,
 		};
 		const antecedenteNatal_Actualizado = await AntecedenteNatal.findByIdAndUpdate(
 			antecedenteNatalId,
