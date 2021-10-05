@@ -120,8 +120,26 @@ const MostrarHistoria = async (req, res) => {
 	return res.json(historia);
 };
 
+const MostrarHistoria= async (req, res) => {
+    const historia= await Historia.find();
+    return res.json(historia);
+}
+    
+const EliminarHistoria = async (req, res = response) => {
+	const historiaId = req.params.id;
+	const historia = await Historia.findByIdAndDelete(historiaId);
+	if (historia) {
+		console.log(historia);
+		return res.json({
+			ok: true,
+			msg: 'Historia eliminado',
+		});
+	}
+};
+
 module.exports = {
 	CrearHistoria,
-	ActualizarHistoria,
+  ActualizarHistoria,
 	MostrarHistoria,
-};
+  EliminarHistoria
+}

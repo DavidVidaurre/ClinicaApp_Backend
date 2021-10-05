@@ -11,6 +11,7 @@ const {
 	loginUsuario,
 	revalidarToken,
 	EliminarUsuario,
+	MostrarResponsable,
 } = require('../controllers/auth');
 
 const { validarJWT } = require('../middlewares/validar-jwt');
@@ -49,5 +50,6 @@ router.post(
 
 router.get('/renew', validarJWT, revalidarToken);
 router.delete("/:id", EliminarUsuario)
+router.get('/', MostrarResponsable)
 
 module.exports = router;

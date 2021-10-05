@@ -141,10 +141,27 @@ const EliminarUsuario = async(req, res= response) =>{
 	}
 }
 
+// const MostrarUsuario = async (req, res) => {
+// 	const usuario = await Usuario.find();
+// 	return res.json(usuario);
+// };
+
+const MostrarResponsable = async(req, res) =>{
+	const responsable = await Usuario.find({rol: 'Apoderado'})
+	if(responsable){
+		return res.json({
+			ok: true,
+			listado:responsable,
+		})
+	}
+}
+
+
 module.exports = {
 	crearUsuario,
 	loginUsuario,
 	revalidarToken,
 	EliminarUsuario,
+	MostrarResponsable
 };
 
