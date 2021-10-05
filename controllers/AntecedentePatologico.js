@@ -33,7 +33,9 @@ const CrearAntecedentePatologico = async (req, res) => {
 
  const ActualizarAntecedentePatologico = async (req, res = response) => {
 	const antecedentePatologicoId = req.params.id;
-	const idHistoria = req.id_Historia;
+	const {id_Historia} = req.body;
+	const idHistoria = id_Historia;
+	
 	try {
 		const antecedentePatologico = await AntecedentePatologico.findById(antecedentePatologicoId);
 		if (!antecedentePatologico) {

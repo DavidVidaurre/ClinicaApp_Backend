@@ -34,11 +34,12 @@ const CrearAntecedenteFamiliar = async (req, res) => {
 
  const ActualizarAntecedenteFamiliar = async (req, res = response) => {
 	const antecedenteFamiliarId = req.params.id;
-	const idHistoria = req.id_Historia;
+	const {id_Historia} = req.body;
+	const idHistoria = id_Historia;
 	try {
 		const antecedenteFamiliar = await AntecedenteFamiliar.findById(antecedenteFamiliarId);
 		if (!antecedenteFamiliar) {
-			res.status(404).json({
+			return res.status(404).json({
 				ok: false,
 				msg: 'Antecedente Patologico no existe con ese id',
 			});

@@ -39,11 +39,12 @@ const CrearAntecedenteNatal = async (req, res) => {
 
  const ActualizarAntecedenteNatal = async (req, res = response) => {
 	const antecedenteNatalId = req.params.id;
-	const idHistoria = req.id_Historia;
+	const {id_Historia} = req.body;
+	const idHistoria = id_Historia;
 	try {
 		const antecedenteNatal = await AntecedenteNatal.findById(antecedenteNatalId);
 		if (!antecedenteNatal) {
-			res.status(404).json({
+			return res.status(404).json({
 				ok: false,
 				msg: 'Antecedente Natal no existe con ese id',
 			});
