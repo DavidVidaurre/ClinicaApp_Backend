@@ -1,6 +1,7 @@
 const { response } = require('express');
 /*Importando modelo */
 const Usuario = require('../models/Usuario');
+const Historia = require('../models/Historia');
 /*bcryptjs*/
 const bcrypt = require('bcryptjs');
 /**JWT */
@@ -13,7 +14,7 @@ const { validarNombre } = require('../functions/validaciones.js');
 const { validarRol } = require('../functions/validaciones.js');
 
 const crearUsuario = async (req, res = response) => {
-	const { nombre, dni, email, password, rol } = req.body;
+	const { nombre, dni, email, password, rol, telefono, foto_perfil, dni_paciente, id_Historia} = req.body;
 	try {
 		let usuario = await Usuario.findOne({ dni });
 		if (usuario) {
@@ -22,6 +23,13 @@ const crearUsuario = async (req, res = response) => {
 				msg: 'Ya existe un usuario con este DNI',
 			});
 		}
+
+		let dniPaciente= await Historia.findOne({dni_paciente: dni_paciente})
+		
+		if(rol=='Apoderado'){
+			console.log(dniPaciente)
+		}
+
 		const ROLvalido = await validarRol(rol);
 		if (!ROLvalido) {
 			return res.status(400).json({

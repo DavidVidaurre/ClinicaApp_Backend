@@ -20,6 +20,25 @@ const UsuarioSchema = new Schema({
 	rol:{
 		type: String,
 		required: true,
+	},
+	//´PARA USUARIO APODERADO 
+	telefono:{
+		type: String,
+		required: false,
+	},
+	foto_perfil:{
+		type: String,
+		required: false
+	}, 
+	dni_paciente:{
+		type: String,
+		required: false
+	},
+	id_Historia:{
+		type: Schema.Types.ObjectId,
+		ref: 'Historia',
+		required: false
 	}
+	
 });
 module.exports = model('Usuario', UsuarioSchema);
