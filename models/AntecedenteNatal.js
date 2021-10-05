@@ -4,29 +4,33 @@ const AntecedenteNatalSchema = new Schema({
 		type: Number,
 		required: false,
 	},
-    talla_al_nacer:{
-        type: Number,
-        required: false,
-    },
 	tipoDeParto: {
-		type: String,
+		type: Number,
 		required: false,
 	},
     lugarDeParto: {
 		type: String,
 		required: false,
 	},
-    apgar: {
+    apgar1: {
 		type: Number,
 		required: false,
 	},
-    perimetroCefalico:{
+	apgar5: {
+		type: Number,
+		required: false,
+	},
+    edadGestacional:{
         type: Number,
         required: false
     },
-	id_Paciente:{
+	complicaciones:{
+        type: String,
+        required: false
+    },
+	id_Historia:{
 		type: Schema.Types.ObjectId,
-		ref:'Paciente',
+		ref:'Historia',
 		required: true
 	}
 });

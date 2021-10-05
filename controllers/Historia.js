@@ -83,8 +83,8 @@ const CrearHistoria = async (req, res) => {
 const ActualizarHistoria = async (req, res = response) => {
 	const HistoriaId = req.params.id;
 	try {
-		const Historia = await Historia.findById(HistoriaId);
-		if (!Historia) {
+		const historia = await Historia.findById(HistoriaId);
+		if (!historia) {
 			res.status(404).json({
 				ok: false,
 				msg: 'Historiano existe con ese id',
