@@ -6,14 +6,14 @@ const bcrypt = require('bcryptjs');
 /**JWT */
 const { generarJWT } = require('../helpers/jwt');
 
-const {validarDNI} = require('../functions/validaciones.js');
+const { validarDNI } = require('../functions/validaciones.js');
 
-const {validarNombre} = require('../functions/validaciones.js');
+const { validarNombre } = require('../functions/validaciones.js');
 
-const {validarRol} = require('../functions/validaciones.js');
+const { validarRol } = require('../functions/validaciones.js');
 
 const crearUsuario = async (req, res = response) => {
-	const { nombre, dni, email,  password, rol } = req.body;
+	const { nombre, dni, email, password, rol } = req.body;
 	try {
 		let usuario = await Usuario.findOne({ dni });
 		if (usuario) {
@@ -22,29 +22,29 @@ const crearUsuario = async (req, res = response) => {
 				msg: 'Ya existe un usuario con este DNI',
 			});
 		}
-        const ROLvalido = await validarRol(rol);
-        if(!ROLvalido){
-          return res.status(400).json({
-            ok: false,
-            msg: 'ROL incorrecto',
-          });
-        }
+		const ROLvalido = await validarRol(rol);
+		if (!ROLvalido) {
+			return res.status(400).json({
+				ok: false,
+				msg: 'ROL incorrecto',
+			});
+		}
 
-        const DNIvalido = await validarDNI(dni);
-        if(!DNIvalido){
-          return res.status(400).json({
-            ok: false,
-            msg: 'DNI incorrecto',
-          });
-        }
-        const NOMBREvalido = await validarNombre(nombre);
-        if(!NOMBREvalido){
-          return res.status(400).json({
-            ok: false,
-            msg: 'Nombre incorrecto',
-          });
-        }
-        let usuario_email = await Usuario.findOne({ email });
+		const DNIvalido = await validarDNI(dni);
+		if (!DNIvalido) {
+			return res.status(400).json({
+				ok: false,
+				msg: 'DNI incorrecto',
+			});
+		}
+		const NOMBREvalido = await validarNombre(nombre);
+		if (!NOMBREvalido) {
+			return res.status(400).json({
+				ok: false,
+				msg: 'Nombre incorrecto',
+			});
+		}
+		let usuario_email = await Usuario.findOne({ email });
 		if (usuario_email) {
 			return res.status(400).json({
 				ok: false,
@@ -64,7 +64,7 @@ const crearUsuario = async (req, res = response) => {
 			ok: true,
 			uid: usuario.id,
 			nombre: usuario.nombre,
-			rol:usuario.rol,
+			rol: usuario.rol,
 			token,
 		});
 	} catch (error) {
@@ -104,7 +104,7 @@ const loginUsuario = async (req, res = response) => {
 			ok: true,
 			uid: usuario.id,
 			name: usuario.name,
-			rol:usuario.rol,
+			rol: usuario.rol,
 			token,
 		});
 	} catch (error) {
@@ -129,39 +129,34 @@ const revalidarToken = async (req, res = response) => {
 	});
 };
 
-const EliminarUsuario = async(req, res= response) =>{
+const EliminarUsuario = async (req, res = response) => {
 	const usuarioId = req.params.id;
-	const usuario= await Usuario.findByIdAndDelete(usuarioId)
-	if(usuario){
-		console.log(usuario)
+	const usuario = await Usuario.findByIdAndDelete(usuarioId);
+	if (usuario) {
+		console.log(usuario);
 		return res.json({
 			ok: true,
-			msg: 'Usuario eliminado'
-		})
+			msg: 'Usuario eliminado',
+		});
 	}
-}
+};
 
 // const MostrarUsuario = async (req, res) => {
 // 	const usuario = await Usuario.find();
 // 	return res.json(usuario);
 // };
 
-const MostrarResponsable = async(req, res) =>{
-	const responsable = await Usuario.find({rol: 'Apoderado'})
-	if(responsable){
-		return res.json({
-			ok: true,
-			listado:responsable,
-		})
+const MostrarResponsable = async (req, res) => {
+	const responsable = await Usuario.find({ rol: 'Apoderado' });
+	if (responsable) {
+		return res.json(responsable);
 	}
-}
-
+};
 
 module.exports = {
 	crearUsuario,
 	loginUsuario,
 	revalidarToken,
 	EliminarUsuario,
-	MostrarResponsable
+	MostrarResponsable,
 };
-
