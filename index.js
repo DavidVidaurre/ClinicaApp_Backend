@@ -23,9 +23,10 @@ app.use('/Vacuna', require('./routes/Vacuna'));
 app.use('/CitaVacuna', require('./routes/CitaVacuna'));
 app.use('/HistClinica', require('./routes/HistClinica'));
 app.use('/ExamenFisico', require('./routes/ExamenFisico'));
-app.use('/AntecedenteNatal', require('./routes/AntecedenteNatal'));
-app.use('/AntecedentePatologico', require('./routes/AntecedentePatologico'));
-app.use('/AntecedenteFamiliar', require('./routes/AntecedenteFamiliar'));
+// app.use('/AntecedenteNatal', require('./routes/AntecedenteNatal'));
+// app.use('/AntecedentePatologico', require('./routes/AntecedentePatologico'));
+// app.use('/AntecedenteFamiliar', require('./routes/AntecedenteFamiliar'));
+app.use('/Antecedentes', require('./routes/Antecedentes'));
 //Rutas
 
 //listen
