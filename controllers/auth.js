@@ -14,7 +14,8 @@ const { validarNombre } = require('../functions/validaciones.js');
 const { validarRol } = require('../functions/validaciones.js');
 
 const crearUsuario = async (req, res = response) => {
-	const { nombre, dni, email, password, rol, telefono, foto_perfil, dni_paciente, id_Historia} = req.body;
+	const { nombre, dni, email, password, rol, telefono, foto_perfil, dni_paciente} = req.body;
+	
 	try {
 		let usuario = await Usuario.findOne({ dni });
 		if (usuario) {
@@ -24,10 +25,15 @@ const crearUsuario = async (req, res = response) => {
 			});
 		}
 
-		let dniPaciente= await Historia.findOne({dni_paciente: dni_paciente})
+		let historia= await Historia.findOne({dni_paciente: dni_paciente})
 		
 		if(rol=='Apoderado'){
-			console.log(dniPaciente)
+			if(historia.dni_paciente===dni_paciente){
+				return console.log('creado');
+			}
+			else{
+				console.log('no existe DNI ')
+			}
 		}
 
 		const ROLvalido = await validarRol(rol);

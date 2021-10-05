@@ -34,11 +34,11 @@ const UsuarioSchema = new Schema({
 		type: String,
 		required: false
 	},
-	id_Historia:{
-		type: Schema.Types.ObjectId,
-		ref: 'Historia',
-		required: false
-	}
+	// id_Historia:{
+	// 	type: Schema.Types.ObjectId,
+	// 	ref: 'Historia',
+	// 	required: false
+	// }
 	
 });
 module.exports = model('Usuario', UsuarioSchema);
