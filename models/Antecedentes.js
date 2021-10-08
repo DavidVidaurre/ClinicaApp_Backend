@@ -1,25 +1,25 @@
 const { Schema, model } = require('mongoose');
 const AntecedentesSchema = new Schema({
-    //FAMILIARES
-    asmaBronquialFam: {
+	//FAMILIARES
+	asmaBronquialFam: {
 		type: Boolean,
 		required: false,
 	},
-    diabetes: {
+	diabetes: {
 		type: Boolean,
 		required: false,
 	},
-	epilepsia:{
-		type:Boolean,
-		required: false
+	epilepsia: {
+		type: Boolean,
+		required: false,
 	},
-	Otros:{
+	Otros: {
 		type: String,
-		required: false
+		required: false,
 	},
 
-    //NATALES
-    peso_al_nacer:{
+	//NATALES
+	peso_al_nacer: {
 		type: Number,
 		required: false,
 	},
@@ -27,11 +27,7 @@ const AntecedentesSchema = new Schema({
 		type: Number,
 		required: false,
 	},
-    // lugarDeParto: {
-	// 	type: String,
-	// 	required: false,
-	// },
-    apgar1: {
+	apgar1: {
 		type: Number,
 		required: false,
 	},
@@ -39,42 +35,42 @@ const AntecedentesSchema = new Schema({
 		type: Number,
 		required: false,
 	},
-    edadGestacional:{
-        type: Number,
-        required: false
-    },
-	complicaciones:{
-        type: String,
-        required: false
-    },
+	edadGestacional: {
+		type: Number,
+		required: false,
+	},
+	complicaciones: {
+		type: String,
+		required: false,
+	},
 
-    //PATOLÓGICOS
-    asmaBronquialPat: {
+	//PATOLÓGICOS
+	asmaBronquialPat: {
 		type: Boolean,
 		required: false,
 	},
-    nebulizacion: {
+	nebulizacion: {
 		type: Boolean,
 		required: false,
 	},
-	intervencionQuirurgica:{
-		type:Boolean,
-		required: false
+	intervencionQuirurgica: {
+		type: Boolean,
+		required: false,
 	},
-	reaccionAdversaMed:{
+	reaccionAdversaMed: {
 		type: String,
-		required: false
+		required: false,
 	},
-	enfAnteriores:{
+	enfAnteriores: {
 		type: String,
-		required: false
+		required: false,
 	},
 
-    id_Historia:{
+	id_Historia: {
 		type: Schema.Types.ObjectId,
-		ref:'Historia',
-		required: true
-	}
+		ref: 'Historia',
+		required: true,
+	},
 });
 
 module.exports = model('Antecedentes', AntecedentesSchema);

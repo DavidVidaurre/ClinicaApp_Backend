@@ -1,40 +1,54 @@
 const Antecedentes = require('../models/Antecedentes');
-const Historia = require('../models/Historia')
+const Historia = require('../models/Historia');
 
 const CrearAntecedentes = async (req, res) => {
-        const {asmaBronquialFam, diabetes, epilepsia, otros, peso_al_macer, tipoDeParto, /*lugarDeParto,*/ apgar1, apgar5, edadGestacional, complicaciones, asmaBronquialPat, nebulizacion, intervencionQuirurgica,reaccionAdversaMed,enfAnteriores, id_Historia} = req.body;
-        try {
-            
-            const idHistoria = await Historia.findOne({_id:id_Historia});
-            if (!idHistoria) {
-                return res.status(404).json({
-                    ok: false,
-                    msg: 'Paciente no existe con ese id',
-                });
-            }
-			
+	const {
+		asmaBronquialFam,
+		diabetes,
+		epilepsia,
+		otros,
+		peso_al_macer,
+		tipoDeParto,
+		/*lugarDeParto,*/ apgar1,
+		apgar5,
+		edadGestacional,
+		complicaciones,
+		asmaBronquialPat,
+		nebulizacion,
+		intervencionQuirurgica,
+		reaccionAdversaMed,
+		enfAnteriores,
+		id_Historia,
+	} = req.body;
+	try {
+		const idHistoria = await Historia.findOne({ _id: id_Historia });
+		if (!idHistoria) {
+			return res.status(404).json({
+				ok: false,
+				msg: 'Paciente no existe con ese id',
+			});
+		}
 
-            antecedentes = new Antecedentes(req.body);
-            
-    
-            await antecedentes.save();
-            
-            res.status(201).json({
-                ok: true,
-                antecedentes: antecedentes
-            });
-        } catch (error) {
-            console.log('Error: ' + error.toString());
-            res.status(500).json({
-                ok: false,
-                msg: 'Por favor hable con el administrador',
-            });
-        }
- };
+		antecedentes = new Antecedentes(req.body);
 
- const ActualizarAntecedentes = async (req, res = response) => {
+		await antecedentes.save();
+
+		res.status(201).json({
+			ok: true,
+			antecedentes: antecedentes,
+		});
+	} catch (error) {
+		console.log('Error: ' + error.toString());
+		res.status(500).json({
+			ok: false,
+			msg: 'Por favor hable con el administrador',
+		});
+	}
+};
+
+const ActualizarAntecedentes = async (req, res = response) => {
 	const antecedentesId = req.params.id;
-	const {id_Historia} = req.body;
+	const { id_Historia } = req.body;
 	const idHistoria = id_Historia;
 	try {
 		const antecedentes = await Antecedentes.findById(antecedentesId);
@@ -50,17 +64,18 @@ const CrearAntecedentes = async (req, res) => {
 				msg: 'No tiene privilegio de editar esta Historia',
 			});
 		}
-		const nuevoAntecedentes= {
+		const nuevoAntecedentes = {
 			...req.body,
-			id_Historia: idHistoria
+			id_Historia: idHistoria,
 		};
-		const antecedentes_Actualizados = await Antecedentes.findByIdAndUpdate(
-			antecedentesId,
-			nuevoAntecedentes,
-			{
-				new: true,
-			}
-		);
+		const antecedentes_Actualizados =
+			await Antecedentes.findByIdAndUpdate(
+				antecedentesId,
+				nuevoAntecedentes,
+				{
+					new: true,
+				}
+			);
 		res.json({
 			ok: true,
 			antecedentes: antecedentes_Actualizados,
@@ -75,12 +90,12 @@ const CrearAntecedentes = async (req, res) => {
 };
 
 const MostrarAntecedentes = async (req, res) => {
-    const antecedentes = await Antecedentes.find();
-    return res.json(antecedentes);
-}
-    
+	const antecedentes = await Antecedentes.find();
+	return res.json(antecedentes);
+};
+
 module.exports = {
 	CrearAntecedentes,
-    ActualizarAntecedentes,
-    MostrarAntecedentes
-}
+	ActualizarAntecedentes,
+	MostrarAntecedentes,
+};
