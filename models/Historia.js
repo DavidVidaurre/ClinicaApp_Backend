@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, SchemaTypes } = require('mongoose');
 const HistoriaSchema = new Schema({
     dni_paciente: {
 		type: String,
@@ -51,6 +51,11 @@ const HistoriaSchema = new Schema({
 	},
 	referencia:{
 		type: String,
+		required: false
+	},
+	id_Usuario:{
+		type: Schema.Types.ObjectId,
+		ref:'Usuario',
 		required: false
 	}
 });

@@ -1,17 +1,10 @@
 const { Schema, model } = require('mongoose');
 const HistClinicaSchema = new Schema({
-    fecha: {
-		type: Date,
-		required: false,
-	},
-    hora: {
-		type: String,
-		required: false,
-	},
-    enfermedadActual: {
+	enfermedadActual: {
 		type: String,
 		required: true,
 	},
+	//EXAMEN FISICO
 	diagnostico:{
 		type: String,
 		required: true,
@@ -20,9 +13,9 @@ const HistClinicaSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	id_Paciente:{
+	id_Historia:{
 		type: Schema.Types.ObjectId,
-		ref: 'Paciente',
+		ref: 'Historia',
 		required: true
 	}
 });

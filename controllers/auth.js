@@ -15,7 +15,6 @@ const { validarRol } = require('../functions/validaciones.js');
 
 const crearUsuario = async (req, res = response) => {
 	const { nombre, dni, email, password, rol, telefono, foto_perfil, dni_paciente} = req.body;
-	
 	try {
 		let usuario = await Usuario.findOne({ dni });
 		if (usuario) {
@@ -25,15 +24,19 @@ const crearUsuario = async (req, res = response) => {
 			});
 		}
 
-		let historia= await Historia.findOne({dni_paciente: dni_paciente})
-		
-		if(rol=='Apoderado'){
-			if(historia.dni_paciente===dni_paciente){
-				return console.log('creado');
-			}
-			else{
-				console.log('no existe DNI ')
-			}
+		let historia= await Historia.findOne({dni_paciente})
+		console.log(historia)
+		if(historia !=null && rol=='Apoderado'){
+			return res.status(400).json({
+				ok: false,
+				msg: 'ERROR, La historia ya existe por lo tanto no puede registra',
+		});
+			// if(historia.dni_paciente===dni_paciente){
+			// 	return console.log('creado');
+			// }
+			// else{
+			// 	console.log(historia)
+			// }
 		}
 
 		const ROLvalido = await validarRol(rol);

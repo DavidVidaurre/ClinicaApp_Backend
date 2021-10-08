@@ -30,10 +30,10 @@ const UsuarioSchema = new Schema({
 		type: String,
 		required: false
 	}, 
-	dni_paciente:{
-		type: String,
-		required: false
-	},
+	// dni_paciente:{
+	// 	type: String,
+	// 	required: false
+	// },
 	// id_Historia:{
 	// 	type: Schema.Types.ObjectId,
 	// 	ref: 'Historia',

@@ -23,7 +23,7 @@ const CrearHistoria = async (req, res) => {
 		if (historia) {
 			return res.status(400).json({
 				ok: false,
-				msg: 'Ya existe un Historiacon este DNI',
+				msg: 'Ya existe un Historia con este DNI',
 			});
 		}
 
