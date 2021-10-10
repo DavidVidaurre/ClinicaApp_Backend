@@ -1,4 +1,5 @@
 const Historia = require('../models/Historia');
+// const Usuario = require('../models/Usuario')
 const { validarDNI } = require('../functions/validaciones.js');
 const { validarNombre } = require('../functions/validaciones.js');
 
@@ -63,14 +64,33 @@ const CrearHistoria = async (req, res) => {
 				msg: 'Nombre incorrecto',
 			});
 		}
+
+		// let usuario = await Usuario.findOne({ dni });
+		// console.log(usuario);
+		// if (usuario === null && rol == 'Apoderado') {
+		// 	return res.status(400).json({
+		// 		ok: false,
+		// 		msg: 'El usuario no existe por lo tanto no puede registrar un paciente',
+		// 	});
+		// }
+
+		// if (rol == 'Apoderado') {
+		// 	historia = new Historia(req.body);
+		// 	await historia.save();
+		// 	res.status(201).json({
+		// 		ok: true,
+		// 		historia: historia,
+		// 	});
+		// }
 		historia = new Historia(req.body);
-
 		await historia.save();
-
 		res.status(201).json({
-			ok: true,
+			ok: true,				
 			historia: historia,
 		});
+
+
+		
 	} catch (error) {
 		console.log('Error: ' + error.toString());
 		res.status(500).json({
@@ -90,6 +110,9 @@ const ActualizarHistoria = async (req, res = response) => {
 				msg: 'Historia no existe con ese id',
 			});
 		}
+		
+		
+
 
 		const nuevoHistoria = {
 			...req.body,

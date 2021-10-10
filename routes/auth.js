@@ -3,6 +3,7 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 /*Importar */
 const { validarCampos } = require('../middlewares/validar-campos');
+const multer = require('multer');
 
 const router = Router();
 
@@ -12,6 +13,7 @@ const {
 	revalidarToken,
 	EliminarUsuario,
 	MostrarResponsable,
+	CambiarFotoPerfil,
 } = require('../controllers/auth');
 
 const { validarJWT } = require('../middlewares/validar-jwt');
@@ -48,8 +50,28 @@ router.post(
 	loginUsuario
 );
 
+
+const storage = multer.diskStorage({
+	destination: 'uploads/',
+	filename: function (req, file, cb) {
+		console.log(file)
+		cb('',Date.now()+ '-' + file.originalname);
+		// + mimeTypes.extension(file.mimetype)
+	},
+});
+
+const upload = multer({
+	storage: storage,
+});
+
+router.post('/files', upload.single('avatar'), (req, res) => {
+	// console.log(req)
+	res.send('todo bien');
+});
+
 router.get('/renew', validarJWT, revalidarToken);
 router.delete("/:id", EliminarUsuario)
 router.get('/', MostrarResponsable)
+// router.post('/files', CambiarFotoPerfil)
 
 module.exports = router;

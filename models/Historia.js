@@ -53,6 +53,11 @@ const HistoriaSchema = new Schema({
 		type: String,
 		required: false
 	},
+	//DNI PARA EL APODERADO
+	dni:{
+		type: String,
+		required: false
+	},
 	id_Usuario:{
 		type: Schema.Types.ObjectId,
 		ref:'Usuario',

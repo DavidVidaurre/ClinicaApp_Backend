@@ -13,8 +13,10 @@ const { validarNombre } = require('../functions/validaciones.js');
 
 const { validarRol } = require('../functions/validaciones.js');
 
+const multer = require('multer');
+
 const crearUsuario = async (req, res = response) => {
-	const { nombre, dni, email, password, rol, telefono, foto_perfil, dni_paciente} = req.body;
+	const { nombre, dni, email, password, rol, telefono, foto_perfil} = req.body;
 	try {
 		let usuario = await Usuario.findOne({ dni });
 		if (usuario) {
@@ -24,20 +26,20 @@ const crearUsuario = async (req, res = response) => {
 			});
 		}
 
-		let historia= await Historia.findOne({dni_paciente})
-		console.log(historia)
-		if(historia !=null && rol=='Apoderado'){
-			return res.status(400).json({
-				ok: false,
-				msg: 'ERROR, La historia ya existe por lo tanto no puede registra',
-		});
+		// let historia= await Historia.findOne({dni_paciente})
+		// console.log(historia)
+		// if(historia !=null && rol=='Apoderado'){
+		// 	return res.status(400).json({
+		// 		ok: false,
+		// 		msg: 'ERROR, La historia ya existe por lo tanto no puede registra',
+		// });
 			// if(historia.dni_paciente===dni_paciente){
 			// 	return console.log('creado');
 			// }
 			// else{
 			// 	console.log(historia)
 			// }
-		}
+		// }
 
 		const ROLvalido = await validarRol(rol);
 		if (!ROLvalido) {
@@ -170,10 +172,32 @@ const MostrarResponsable = async (req, res) => {
 	}
 };
 
+// const CambiarFotoPerfil= async (req, res) =>{
+// 	const storage = multer.diskStorage({
+// 		destination: 'uploads/',
+// 		filename: function (req, file, cb) {
+// 			console.log(file)
+// 			cb('',Date.now()+ '-' + file.originalname);
+// 			// + mimeTypes.extension(file.mimetype)
+// 		},
+// 	});
+
+// 	const upload = multer({
+// 		storage: storage,
+// 	});
+
+// 	upload.single('avatar'), (req, res) => {
+// 		console.log(req)
+// 		res.send('todo bien');
+// 	}
+	
+// }
+
 module.exports = {
 	crearUsuario,
 	loginUsuario,
 	revalidarToken,
 	EliminarUsuario,
 	MostrarResponsable,
+	// CambiarFotoPerfil
 };
