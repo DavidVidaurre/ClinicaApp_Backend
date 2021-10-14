@@ -75,7 +75,22 @@ const crearUsuario = async (req, res = response) => {
 		const salt = bcrypt.genSaltSync();
 		usuario.password = bcrypt.hashSync(password, salt);
 
+		// const dni_historia = await Historia.findOne({dni_paciente:dni_paciente})
+		// console.log(dni_historia)
+		// if(usuario.rol === "Apoderado"){
+		// 	let usuario = new Usuario({
+		// 		dni_paciente: dni_historia
+		// 	});
+		// 	console.log(usuario)
+		// 	// await historia.save();
+		// 	await usuario.save();
+		// }
+		// else{
+		// 	// await usuario.save();
+		// }
+		
 		await usuario.save();
+		
 		//Generar JWT
 		const token = await generarJWT(usuario.id, usuario.nombre);
 

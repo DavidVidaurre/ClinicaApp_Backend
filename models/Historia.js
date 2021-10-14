@@ -54,14 +54,14 @@ const HistoriaSchema = new Schema({
 		required: false
 	},
 	//DNI PARA EL APODERADO
-	dni:{
-		type: String,
-		required: false
-	},
-	id_Usuario:{
-		type: Schema.Types.ObjectId,
-		ref:'Usuario',
-		required: false
-	}
+	// dni:{
+	// 	type: String,
+	// 	required: false
+	// },
+	// id_Usuario:{
+	// 	type: Schema.Types.ObjectId,
+	// 	ref:'Usuario',
+	// 	required: false
+	// }
 });
 module.exports = model('Historia', HistoriaSchema);
