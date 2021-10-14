@@ -55,7 +55,11 @@ const storage = multer.diskStorage({
 	destination: 'uploads/',
 	filename: function (req, file, cb) {
 		console.log(file)
+		// const filetypes= /jpeg|jpg|png/ 
+		// const mimeType= filetypes.test(file.mimetype)
+		// console.log(mimeType)
 		cb('',Date.now()+ '-' + file.originalname);
+		
 		// + mimeTypes.extension(file.mimetype)
 	},
 });
@@ -63,6 +67,8 @@ const storage = multer.diskStorage({
 const upload = multer({
 	storage: storage,
 });
+
+
 
 router.post('/files', upload.single('avatar'), (req, res) => {
 	// console.log(req)
