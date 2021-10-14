@@ -13,7 +13,8 @@ const {
 	revalidarToken,
 	EliminarUsuario,
 	MostrarResponsable,
-	CambiarFotoPerfil,
+	subirFotoPerfil
+	// CambiarFotoPerfil,
 } = require('../controllers/auth');
 
 const { validarJWT } = require('../middlewares/validar-jwt');
@@ -60,10 +61,7 @@ const storage = multer.diskStorage({
 const upload = multer({
 	storage: storage,
 });
-router.post('/files', upload.single('avatar'), (req, res) => {	
-	console.log(req.file.filename)
-	res.send('todo bien');
-});
+router.post('/files', upload.single('avatar'),subirFotoPerfil);
 
 router.get('/renew', validarJWT, revalidarToken);
 router.delete("/:id", EliminarUsuario)

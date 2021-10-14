@@ -16,7 +16,8 @@ const { validarRol } = require('../functions/validaciones.js');
 const multer = require('multer');
 
 const crearUsuario = async (req, res = response) => {
-	const { nombre, dni, email, password, rol, telefono, foto_perfil} = req.body;
+	const { nombre, dni, email, password, rol, telefono, foto_perfil } =
+		req.body;
 	try {
 		let usuario = await Usuario.findOne({ dni });
 		if (usuario) {
@@ -33,12 +34,12 @@ const crearUsuario = async (req, res = response) => {
 		// 		ok: false,
 		// 		msg: 'ERROR, La historia ya existe por lo tanto no puede registra',
 		// });
-			// if(historia.dni_paciente===dni_paciente){
-			// 	return console.log('creado');
-			// }
-			// else{
-			// 	console.log(historia)
-			// }
+		// if(historia.dni_paciente===dni_paciente){
+		// 	return console.log('creado');
+		// }
+		// else{
+		// 	console.log(historia)
+		// }
 		// }
 
 		const ROLvalido = await validarRol(rol);
@@ -88,9 +89,9 @@ const crearUsuario = async (req, res = response) => {
 		// else{
 		// 	// await usuario.save();
 		// }
-		
+
 		await usuario.save();
-		
+
 		//Generar JWT
 		const token = await generarJWT(usuario.id, usuario.nombre);
 
@@ -205,8 +206,13 @@ const MostrarResponsable = async (req, res) => {
 // 		console.log(req)
 // 		res.send('todo bien');
 // 	}
-	
+
 // }
+
+const subirFotoPerfil = async (req, res) => {
+	console.log(req.headers.id);
+	res.send('todo bien');
+};
 
 module.exports = {
 	crearUsuario,
@@ -214,5 +220,6 @@ module.exports = {
 	revalidarToken,
 	EliminarUsuario,
 	MostrarResponsable,
+	subirFotoPerfil
 	// CambiarFotoPerfil
 };
