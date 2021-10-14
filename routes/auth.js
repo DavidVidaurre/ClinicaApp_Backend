@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 /*Importar */
 const { validarCampos } = require('../middlewares/validar-campos');
 const multer = require('multer');
-
+const path = require('path')
 const router = Router();
 
 const {
@@ -72,6 +72,20 @@ router.post('/files', upload.single('avatar'), (req, res) => {
 router.get('/renew', validarJWT, revalidarToken);
 router.delete("/:id", EliminarUsuario)
 router.get('/', MostrarResponsable)
+router.get('/uploads/:name', function (req, res, next) {
+	var options = {
+	  root: path.join(path.dirname(require.main.filename) , 'uploads'),
+	}
+	var fileName = req.params.name
+	res.sendFile(fileName, options, function (err) {
+	  if (err) {
+		next(err)
+	  } else {
+		console.log('Sent:', fileName)
+	  }
+	})
+  })
+
 // router.post('/files', CambiarFotoPerfil)
 
 module.exports = router;

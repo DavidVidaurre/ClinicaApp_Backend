@@ -13,6 +13,7 @@ dbConnection()
 app.use(cors())
 
 app.use(express.static('public'));
+app.use(express.static('uploads'));
 //lectura y parseo
 app.use(express.json());
 
