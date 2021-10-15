@@ -72,6 +72,10 @@ const crearUsuario = async (req, res = response) => {
 			});
 		}
 		usuario = new Usuario(req.body);
+		console.log('------user-----');
+		console.log(usuario);
+		usuario.foto_perfil = 'user.jpg';
+		console.log('------user-----');
 		//Encriptar contraseña
 		const salt = bcrypt.genSaltSync();
 		usuario.password = bcrypt.hashSync(password, salt);
@@ -96,7 +100,6 @@ const crearUsuario = async (req, res = response) => {
 
 		// usuario.foto_perfil='/uploads'
 		// Usuario.foto_perfil = `/api/auth/uploads/${filename};
-
 
 		// if(req.file){
 		// 	const {filename} = req.file
@@ -225,17 +228,17 @@ const MostrarResponsable = async (req, res) => {
 
 const subirFotoPerfil = async (req, res) => {
 	console.log(req.headers.id);
-	const usuarioId=req.headers.id;
+	const usuarioId = req.headers.id;
 	const usuario = await Usuario.findById(usuarioId);
 	if (usuario) {
-		console.log("--------")
+		console.log('--------');
 		console.log(usuario);
-		const {filename} = req.file
-		console.log(filename)
+		const { filename } = req.file;
+		console.log(filename);
 		// const fotoPerfil = `http://localhost:5000/api/auth/uploads/${filename}`
-		const nuevoUsuario= {
+		const nuevoUsuario = {
 			...req.body,
-			foto_perfil: filename
+			foto_perfil: filename,
 		};
 
 		const usuarioActualizado = await Usuario.findByIdAndUpdate(
@@ -245,11 +248,11 @@ const subirFotoPerfil = async (req, res) => {
 				new: true,
 			}
 		);
-		console.log("*********")
-		console.log(usuarioActualizado)
+		console.log('*********');
+		console.log(usuarioActualizado);
 		return res.json({
 			ok: true,
-			usuario:usuarioActualizado
+			usuario: usuarioActualizado,
 		});
 	}
 	// const {filename} = req.file
@@ -268,7 +271,7 @@ const subirFotoPerfil = async (req, res) => {
 	// return res.json({
 	// 	ok:true,
 	// 	id: req.headers.id,
-	
+
 	// });
 	// res.send('todo bien');
 };
@@ -279,6 +282,6 @@ module.exports = {
 	revalidarToken,
 	EliminarUsuario,
 	MostrarResponsable,
-	subirFotoPerfil
+	subirFotoPerfil,
 	// CambiarFotoPerfil
 };
