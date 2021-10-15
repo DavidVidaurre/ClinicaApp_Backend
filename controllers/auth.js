@@ -89,7 +89,20 @@ const crearUsuario = async (req, res = response) => {
 		// else{
 		// 	// await usuario.save();
 		// }
+		// const fotoPefil= await Usuario.find(res.)
+		// res.render({
+		// 	usuario
+		// })
 
+		// usuario.foto_perfil='/uploads'
+		// Usuario.foto_perfil = `/api/auth/uploads/${filename};
+
+
+		// if(req.file){
+		// 	const {filename} = req.file
+		// 	usuario.setFotoPerfil(filename)
+		// }
+		// console.log(req.file)
 		await usuario.save();
 
 		//Generar JWT
@@ -140,6 +153,7 @@ const loginUsuario = async (req, res = response) => {
 			uid: usuario.id,
 			name: usuario.name,
 			rol: usuario.rol,
+
 			token,
 		});
 	} catch (error) {
@@ -211,7 +225,52 @@ const MostrarResponsable = async (req, res) => {
 
 const subirFotoPerfil = async (req, res) => {
 	console.log(req.headers.id);
-	res.send('todo bien');
+	const usuarioId=req.headers.id;
+	const usuario = await Usuario.findById(usuarioId);
+	if (usuario) {
+		console.log("--------")
+		console.log(usuario);
+		const {filename} = req.file
+		console.log(filename)
+		// const fotoPerfil = `http://localhost:5000/api/auth/uploads/${filename}`
+		const nuevoUsuario= {
+			...req.body,
+			foto_perfil: filename
+		};
+
+		const usuarioActualizado = await Usuario.findByIdAndUpdate(
+			usuarioId,
+			nuevoUsuario,
+			{
+				new: true,
+			}
+		);
+		console.log("*********")
+		console.log(usuarioActualizado)
+		return res.json({
+			ok: true,
+			usuario:usuarioActualizado
+		});
+	}
+	// const {filename} = req.file
+	// console.log(filename)
+	// const usuario = await Usuario.find(req.headers.id);
+	// if (usuario) {
+	// 	// return res.json(usuario);
+	// 	console.log(usuario)
+	// }
+
+	// if(req.file){
+	// 	const {filename} = req.file
+	// 	usuario.setFotoPerfil(filename)
+	// }
+
+	// return res.json({
+	// 	ok:true,
+	// 	id: req.headers.id,
+	
+	// });
+	// res.send('todo bien');
 };
 
 module.exports = {

@@ -41,4 +41,10 @@ const UsuarioSchema = new Schema({
 	// }
 	
 });
+
+
+// UsuarioSchema.method.setFotoPerfil = function setFotoPerfil(filename){
+// 	this.foto_perfil = `/api/auth/uploads/${filename}`
+// }
+
 module.exports = model('Usuario', UsuarioSchema);
