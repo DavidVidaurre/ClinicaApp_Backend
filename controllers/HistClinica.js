@@ -1,33 +1,28 @@
 const HistClinica = require('../models/HistClinica');
-const {validarEnfermedadActual} = require('../functions/validaciones.js');
+const Historia =  require('../models/Historia');
 const {validarDiagnostico} = require('../functions/validaciones.js');
 
 const CrearHistClinica = async (req, res) => {
-        const {fecha, hora, enfermedadActual, diagnostico, id_Paciente, id_ExamenFisico} = req.body;
+        const {fecha, diagnostico, tratamiento, examenesAuxiliares, id_Historia} = req.body;
 		try {
-            const ENFERMEDADACTUALvalido = await validarEnfermedadActual(enfermedadActual);
-            if(!ENFERMEDADACTUALvalido){
-              return res.status(400).json({
-                ok: false,
-                msg: 'Excedió el limite de caracteres en Enfermedad Actual',
-              });
-            }
-            const DIAGNOSTICOvalido = await validarDiagnostico(diagnostico);
-            if(!DIAGNOSTICOvalido){
-              return res.status(400).json({
-                ok: false,
-                msg: 'Excedió el limite de caracteres em Diagnostico incorrecto',
-              });
-            }
+            // const DIAGNOSTICOvalido = await validarDiagnostico(diagnostico);
+            // if(!DIAGNOSTICOvalido){
+            //   return res.status(400).json({
+            //     ok: false,
+            //     msg: 'Excedió el limite de caracteres em Diagnostico incorrecto',
+            //   });
+            // }
+			const idHistoria = await Historia.findOne({ _id: id_Historia });
+			if (!idHistoria) {
+				return res.status(404).json({
+					ok: false,
+					msg: 'Paciente no existe con ese id',
+				});
+			}
+
 			
 			histClinica = new HistClinica(req.body);
 
-			if (histClinica.id_Paciente.toString() !== id_Paciente) {
-				return res.status(401).json({
-					ok: false,
-					msg: 'No tiene privilegio de crear este Paciente',
-				});
-			}
     
             await histClinica.save();
              
@@ -46,16 +41,17 @@ const CrearHistClinica = async (req, res) => {
 
 const ActualizarHistClinica = async (req, res = response) => {
 	const histClinicaId = req.params.id;
-	const idPaciente = req.id_Paciente;
+	const {id_Historia} = req.body;
+	const idHistoria = id_Historia;
 	try {
-		const histClinica = await Evento.findById(histClinicaId);
+		const histClinica = await HistClinica.findById(histClinicaId);
 		if (!histClinica) {
 			res.status(404).json({
 				ok: false,
 				msg: 'Historia Clinica no existe con ese id',
 			});
 		}
-		if (histClinica.id_Paciente.toString() !== idPaciente) {
+		if (histClinica.id_Historia.toString() !== idHistoria) {
 			return res.status(401).json({
 				ok: false,
 				msg: 'No tiene privilegio de editar este Paciente',
@@ -63,7 +59,7 @@ const ActualizarHistClinica = async (req, res = response) => {
 		}
 		const nuevaHistClinica = {
 			...req.body,
-			id_Paciente: idPaciente
+			id_Historia: idHistoria
 		};
 
 		const histClinicaActualizado = await HistClinica.findByIdAndUpdate(

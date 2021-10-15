@@ -1,17 +1,5 @@
 const { Schema, model } = require('mongoose');
 const ExamenFisicoSchema = new Schema({
-    frecuenciaCardiaca: {
-		type: Number,
-		required: false,
-	},
-    temperatura: {
-		type: Number,
-		required: false,
-	},
-    presionArterial: {
-		type: Number,
-		required: false,
-	},
 	peso:{
 		type: Number,
 		required: false,
@@ -20,6 +8,60 @@ const ExamenFisicoSchema = new Schema({
         type: Number,
         required: false,
     },
+	temperatura: {
+		type: Number,
+		required: false,
+	},
+	apreciacionG:{
+		type: String,
+		required: false,
+	},
+	tcsc:{
+		type: String,
+		required: false,
+	},
+	orofaringe:{
+		type: String,
+		required: false,
+	},
+	aparatoResp:{
+		type: String,
+		required: false,
+	},
+	aparatoCV:{
+		type: String,
+		required: false,
+	},
+	abdomen:{
+		type: String,
+		required: false,
+	},
+	aparatoGU:{
+		type: String,
+		required: false,
+	},
+	neurologico:{
+		type: String,
+		required: false,
+	},
+	// diagnostico:{
+	// 	type: String,
+	// 	required: false,
+	// },
+	// tratamiento:{
+	// 	type: String,
+	// 	required: false,
+	// },
+
+    // frecuenciaCardiaca: {
+	// 	type: Number,
+	// 	required: false,
+	// },
+    // presionArterial: {
+	// 	type: Number,
+	// 	required: false,
+	// },
+	
 	id_HistClinica:{
 		type: Schema.Types.ObjectId,
 		ref:'HistClinica',

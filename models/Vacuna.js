@@ -11,6 +11,11 @@ const VacunaSchema = new Schema({
     dosis:{
         type: String,
         required: false
+    },
+    id_HistVacuna:{
+        type: Schema.Types.ObjectId,
+        ref:'HistVacuna',
+        required: true
     }
 });
 

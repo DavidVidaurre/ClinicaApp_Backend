@@ -1,16 +1,24 @@
 const Vacuna = require('../models/Vacuna');
+const HistVacuna = require('../models/HistVacuna');
 
 const CrearVacuna = async (req, res) => {
-        const { nombre_vacuna, previene, dosis } = req.body;
+        const { nombre_vacuna, previene, dosis, id_HistVacuna } = req.body;
         try {
-            let vacuna = await Vacuna.findOne({ nombre_vacuna });
-            if (vacuna) {
-                return res.status(400).json({
+            // let vacuna = await Vacuna.findOne({ nombre_vacuna });
+            // if (vacuna) {
+            //     return res.status(400).json({
+            //         ok: false,
+            //         msg: 'Ya existe una vacuna con este nombre',
+            //     });
+            // }
+
+            const idHistVacuna = await HistVacuna.findOne({id_HistVacuna});
+            if (!idHistVacuna) {
+                res.status(404).json({
                     ok: false,
-                    msg: 'Ya existe una vacuna con este nombre',
+                    msg: 'Historia Vacuna no existe con ese id',
                 });
             }
-            
             
             vacuna = new Vacuna(req.body);
             
@@ -32,6 +40,8 @@ const CrearVacuna = async (req, res) => {
 
 const ActualizarVacuna = async (req, res = response) => {
 	const vacunaId = req.params.id;
+	const {id_HistVacuna} = req.body;
+	const idHistVacuna = id_HistVacuna;
 	try {
 		const vacuna = await Vacuna.findById(vacunaId);
 		if (!vacuna) {
@@ -40,7 +50,12 @@ const ActualizarVacuna = async (req, res = response) => {
 				msg: 'Vacuna no existe con ese id',
 			});
 		}
-
+		if (vacuna.id_HistVacuna.toString() !== idHistVacuna) {
+			return res.status(401).json({
+				ok: false,
+				msg: 'No tiene privilegio de editar este Paciente',
+			});
+		}
 		const nuevaVacuna= {
 			...req.body,
 		};
@@ -54,7 +69,7 @@ const ActualizarVacuna = async (req, res = response) => {
 		);
 		res.json({
 			ok: true,
-			evento: vacuna_Actualizado,
+			vacuna: vacuna_Actualizado,
 		});
 	} catch (e) {
 		console.log(e);

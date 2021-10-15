@@ -1,9 +1,10 @@
 const ExamenFisico = require('../models/ExamenFisico');
+const HistClinica = require('../models/HistClinica');
 
 const CrearExamenFisico = async (req, res) => {
-        const { frecuenciaCardiaca, temperatura, presionArterial, peso, talla, id_HistClinica } = req.body;
+        const { peso, talla, temperatura, apreciacionG, tcsc, orofaringe, aparatoResp, aparatoCV, abdomen, aparatoGU, neurologico, id_HistClinica } = req.body;
         try {
-            const idHistClinica = await AntecedentePatologico.find(id_HistClinica);
+            const idHistClinica = await HistClinica.findOne({id_HistClinica});
             if (!idHistClinica) {
                 res.status(404).json({
                     ok: false,
@@ -31,7 +32,8 @@ const CrearExamenFisico = async (req, res) => {
 
  const ActualizarExamenFisico = async (req, res = response) => {
 	const examenFisicoId = req.params.id;
-    const idHistClinica = req.id_HistClinica;
+	const {id_HistClinica} = req.body;
+	const idHistClinica = id_HistClinica;
 	try {
 		const examenFisico = await ExamenFisico.findById(examenFisicoId);
 		if (!examenFisico) {
@@ -40,7 +42,7 @@ const CrearExamenFisico = async (req, res) => {
 				msg: 'Examen Fisico no existe con ese id',
 			});
 		}
-        if (antecedentePatologico.id_HistClinica.toString() !== idHistClinica) {
+        if (examenFisico.id_HistClinica.toString() !== idHistClinica) {
 			return res.status(401).json({
 				ok: false,
 				msg: 'No tiene privilegio de editar esta Historia Medica',
@@ -61,7 +63,7 @@ const CrearExamenFisico = async (req, res) => {
 		);
 		res.json({
 			ok: true,
-			evento: examenFisico_Actualizado,
+			examenFisico: examenFisico_Actualizado,
 		});
 	} catch (e) {
 		console.log(e);

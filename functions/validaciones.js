@@ -56,7 +56,7 @@ const validarEnfermedadActual = (enfermedadActual)=>{
 
   const validarDiagnostico = (diagnostico)=>{
     return new Promise((res)=>{
-      if(diagnostico.length>2 && diagnostico.length<100 ){
+      if(diagnostico.length>2 && diagnostico.length<500 ){
         res(true);
       }
       else {
