@@ -58,10 +58,10 @@ const HistoriaSchema = new Schema({
 	// 	type: String,
 	// 	required: false
 	// },
-	// id_Usuario:{
-	// 	type: Schema.Types.ObjectId,
-	// 	ref:'Usuario',
-	// 	required: false
-	// }
+	id_Usuario:{
+		type: Schema.Types.ObjectId,
+		ref:'Usuario',
+		required: true
+	}
 });
 module.exports = model('Historia', HistoriaSchema);

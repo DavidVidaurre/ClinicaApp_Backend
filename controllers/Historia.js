@@ -2,6 +2,7 @@ const Historia = require('../models/Historia');
 // const Usuario = require('../models/Usuario')
 const { validarDNI } = require('../functions/validaciones.js');
 const { validarNombre } = require('../functions/validaciones.js');
+const Usuario = require('../models/Usuario');
 
 const CrearHistoria = async (req, res) => {
 	const {
@@ -18,6 +19,7 @@ const CrearHistoria = async (req, res) => {
 		telefono_padre,
 		numero_hijo,
 		referencia,
+		id_Usuario,
 	} = req.body;
 	try {
 		let historia = await Historia.findOne({ dni_paciente });
@@ -62,6 +64,14 @@ const CrearHistoria = async (req, res) => {
 			return res.status(400).json({
 				ok: false,
 				msg: 'Nombre incorrecto',
+			});
+		}
+
+		const idUsuario = await Historia.find({id_Usuario});
+		if (!idUsuario) {
+			res.status(404).json({
+				ok: false,
+				msg: 'Usuario no esxite',
 			});
 		}
 
@@ -160,9 +170,23 @@ const EliminarHistoria = async (req, res = response) => {
 	}
 };
 
+const MostrarPacientePorUsuario = async(req, res = response)=>{
+	const idUsuario = req.params.id_Usuario;
+	const paciente = await Historia.findOne({ id_Usuario: idUsuario});
+	if (paciente) {
+		return res.json({
+			paciente
+		})
+		// console.log(usuario)
+	}
+	// const usuario = await Usuario.find();
+	// return res.json(usuario);
+}
+
 module.exports = {
 	CrearHistoria,
   ActualizarHistoria,
 	MostrarHistoria,
-  EliminarHistoria
+  EliminarHistoria,
+  MostrarPacientePorUsuario
 }

@@ -80,6 +80,8 @@ router.get('/uploads/:name', function (req, res, next) {
 	})
   })
 
+
+
 // router.post('/files', CambiarFotoPerfil)
 
 module.exports = router;
