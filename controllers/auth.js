@@ -204,7 +204,23 @@ const MostrarResponsable = async (req, res) => {
 		return res.json(responsable);
 	}
 };
+const MostrarResponsablePorId = async (req,res)=>{
+	const usuarioId = req.params.id;
+	const responsable = await Usuario.find({ rol: 'Apoderado' });
+	const h = await Historia.find({id_Usuario: usuarioId})
+	const responsableEncontrado =responsable.filter((item)=> item._id == usuarioId)[0]
 
+	if (responsableEncontrado) {
+		responsableEncontrado._doc.hijos= h
+		return res.json(responsableEncontrado);
+	}	
+	else{
+			return res.status(400).json({
+			ok: false,
+			msg: 'No se econtró al responsable',
+		});
+	}
+}
 // const CambiarFotoPerfil= async (req, res) =>{
 // 	const storage = multer.diskStorage({
 // 		destination: 'uploads/',
@@ -282,6 +298,7 @@ module.exports = {
 	revalidarToken,
 	EliminarUsuario,
 	MostrarResponsable,
+	MostrarResponsablePorId,
 	subirFotoPerfil,
 	// CambiarFotoPerfil
 };

@@ -67,7 +67,7 @@ const CrearHistoria = async (req, res) => {
 			});
 		}
 
-		const idUsuario = await Historia.find({id_Usuario});
+		const idUsuario = await Historia.find({ id_Usuario });
 		if (!idUsuario) {
 			res.status(404).json({
 				ok: false,
@@ -95,12 +95,9 @@ const CrearHistoria = async (req, res) => {
 		historia = new Historia(req.body);
 		await historia.save();
 		res.status(201).json({
-			ok: true,				
+			ok: true,
 			historia: historia,
 		});
-
-
-		
 	} catch (error) {
 		console.log('Error: ' + error.toString());
 		res.status(500).json({
@@ -120,9 +117,6 @@ const ActualizarHistoria = async (req, res = response) => {
 				msg: 'Historia no existe con ese id',
 			});
 		}
-		
-		
-
 
 		const nuevoHistoria = {
 			...req.body,
@@ -150,14 +144,24 @@ const ActualizarHistoria = async (req, res = response) => {
 
 const MostrarHistoria = async (req, res) => {
 	const historia = await Historia.find();
+
 	return res.json(historia);
 };
+const MostrarHistoriaPorDNI = async(req,res)=> {
+	const hist = await Historia.findOne({dni_paciente: req.params.dni_paciente})
+	if(hist){
+		return res.json(hist);
+	}
+	else{
+		return res.status(400).json(
+			{
+				ok:false
+				,msg: 'No se encontró esta historia'
+			}
+		)
+	}
+}
 
-// const MostrarHistoria= async (req, res) => {
-//     const historia= await Historia.find();
-//     return res.json(historia);
-// }
-    
 const EliminarHistoria = async (req, res = response) => {
 	const historiaId = req.params.id;
 	const historia = await Historia.findByIdAndDelete(historiaId);
@@ -170,23 +174,24 @@ const EliminarHistoria = async (req, res = response) => {
 	}
 };
 
-const MostrarPacientePorUsuario = async(req, res = response)=>{
+const MostrarPacientePorUsuario = async (req, res = response) => {
 	const idUsuario = req.params.id_Usuario;
-	const paciente = await Historia.findOne({ id_Usuario: idUsuario});
+	const paciente = await Historia.findOne({ id_Usuario: idUsuario });
 	if (paciente) {
 		return res.json({
-			paciente
-		})
+			paciente,
+		});
 		// console.log(usuario)
 	}
 	// const usuario = await Usuario.find();
 	// return res.json(usuario);
-}
+};
 
 module.exports = {
 	CrearHistoria,
-  ActualizarHistoria,
+	ActualizarHistoria,
 	MostrarHistoria,
-  EliminarHistoria,
-  MostrarPacientePorUsuario
-}
+	EliminarHistoria,
+	MostrarPacientePorUsuario,
+	MostrarHistoriaPorDNI
+};

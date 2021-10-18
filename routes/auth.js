@@ -13,6 +13,7 @@ const {
 	revalidarToken,
 	EliminarUsuario,
 	MostrarResponsable,
+	MostrarResponsablePorId,
 	subirFotoPerfil
 	// CambiarFotoPerfil,
 } = require('../controllers/auth');
@@ -66,6 +67,7 @@ router.post('/files', upload.single('avatar'),subirFotoPerfil);
 router.get('/renew', validarJWT, revalidarToken);
 router.delete("/:id", EliminarUsuario)
 router.get('/', MostrarResponsable)
+router.get('/:id', MostrarResponsablePorId)
 router.get('/uploads/:name', function (req, res, next) {
 	var options = {
 	  root: path.join(path.dirname(require.main.filename) , 'uploads'),
