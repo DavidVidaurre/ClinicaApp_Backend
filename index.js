@@ -1,16 +1,15 @@
-const express =  require('express')
-const {dbConnection} = 
-require('./database/config')
+const express = require('express');
+const { dbConnection } = require('./database/config');
 
-const cors= require('cors')
+const cors = require('cors');
 
-require('dotenv').config()
+require('dotenv').config();
 
-const app = express()
+const app = express();
 
-dbConnection()
+dbConnection();
 
-app.use(cors())
+app.use(cors());
 
 app.use(express.static('public'));
 app.use(express.static('uploads'));
@@ -25,16 +24,8 @@ app.use('/Receta', require('./routes/Receta'));
 app.use('/HistVacuna', require('./routes/HistVacuna'));
 app.use('/HistClinica', require('./routes/HistClinica'));
 app.use('/ExamenFisico', require('./routes/ExamenFisico'));
-// app.use('/AntecedenteNatal', require('./routes/AntecedenteNatal'));
-// app.use('/AntecedentePatologico', require('./routes/AntecedentePatologico'));
-// app.use('/AntecedenteFamiliar', require('./routes/AntecedenteFamiliar'));
 app.use('/Antecedentes', require('./routes/Antecedentes'));
-//Rutas
-
-//listen
-
-//Escuchar peticiones
+app.use('/Fotos', require('./routes/Foto'));
 app.listen(process.env.PORT, () => {
 	console.log(`Servidor corriendo en puerto ${process.env.PORT}`);
 });
-
