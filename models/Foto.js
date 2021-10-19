@@ -8,7 +8,7 @@ const FotoSchema = new Schema({
     id_Historia: {
         type: Schema.Types.ObjectId,
 		ref:'Historia',
-		required: true
+		// required: true
 	},
 })
 module.exports = model('Foto', FotoSchema);

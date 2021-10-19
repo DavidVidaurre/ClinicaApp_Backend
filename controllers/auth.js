@@ -251,7 +251,6 @@ const subirFotoPerfil = async (req, res) => {
 		console.log(usuario);
 		const { filename } = req.file;
 		console.log(filename);
-		// const fotoPerfil = `http://localhost:5000/api/auth/uploads/${filename}`
 		const nuevoUsuario = {
 			...req.body,
 			foto_perfil: filename,

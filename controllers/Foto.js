@@ -1,18 +1,17 @@
 const { response } = require('express');
 const Foto = require('../models/Foto');
-const Historia= require('../models/Historia');
+const Historia = require('../models/Historia');
 
 const crearFoto = async (req, res = response) => {
-	const { nombre, id_Historia } = req.body;
-	const idHistoria= await Historia.findOne({id_Historia});
-	if (!idHistoria) {
-		res.status(404).json({
-			ok: false,
-			msg: 'Historia no existe con ese id',
-		});
-	}
-
-	let foto = new Foto(req.body);
+	
+	const hId = req.headers.id;
+	const { filename } = req.file;
+	console.log(filename);
+	let foto = new Foto({
+		...req.body,
+		nombre: filename,
+		id_Historia: hId
+	});
 	await foto.save();
 	return res.json({
 		ok: true,
@@ -21,11 +20,17 @@ const crearFoto = async (req, res = response) => {
 };
 
 const MostrarFotos = async (req, res) => {
-	const foto = await Foto.find();
-	return res.json(foto);
+	const fotos = await Foto.find();
+	return res.json(fotos);
 };
-
+const MostrarFotosxHistoria = async(req,res)=>{
+	const hId = req.params.id;
+	const fotos = await Foto.find({id_Historia: hId});
+	// const fxh= fotos.filter((item)=> item.id_Historia === hId)
+	return res.json(fotos)
+}
 module.exports = {
 	crearFoto,
-	MostrarFotos
+	MostrarFotos,
+	MostrarFotosxHistoria
 };
