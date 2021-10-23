@@ -39,19 +39,22 @@ const CrearCita = async (req, res) => {
 		let historia = await Historia.findOne({ dni_paciente: DNI });
 
 		console.log(historia);
-		if (historia!==null && condicion === 1) {
-			// console.log(DNI);
-			return res.status(400).json({
-				ok: false,
-				msg: 'ERROR, La historia ya existe por lo tanto no puede ser un paciente nuevo',
-			});
+		if (historia !== null) {
+			if (condicion == 1) {
+				// console.log(DNI);
+				return res.status(400).json({
+					ok: false,
+					msg: 'ERROR, La historia ya existe por lo tanto no puede ser un paciente nuevo',
+				});
+			}
 		}
 
-		if (historia === null && condicion == 2) {
-			return res.status(400).json({
-				ok: false,
-				msg: 'La historia no existe por lo tanto no puede ser un paciente continuador',
-			});
+		if (historia === null) {
+			if (condicion == 2)
+				return res.status(400).json({
+					ok: false,
+					msg: 'La historia no existe por lo tanto no puede ser un paciente continuador',
+				});
 		}
 
 		if (condicion == 1) {
@@ -82,8 +85,8 @@ const CrearCita = async (req, res) => {
 			});
 		}
 		if (condicion == 2) {
-			let buscar =await  Historia.findOne({ dni_paciente:DNI });
-			console.log('Continuador: '+buscar);
+			let buscar = await Historia.findOne({ dni_paciente: DNI });
+			console.log('Continuador: ' + buscar);
 			let cita = new Cita({
 				fecha: new Date(fecha),
 				motivo,
@@ -93,10 +96,9 @@ const CrearCita = async (req, res) => {
 				fechaConsulta,
 				telefono,
 				sexo,
-				DNI ,				
+				DNI,
 				condicion,
 				id_Historia: buscar._id,
-
 			});
 
 			await cita.save();

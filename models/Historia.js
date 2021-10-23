@@ -61,7 +61,7 @@ const HistoriaSchema = new Schema({
 	id_Usuario:{
 		type: Schema.Types.ObjectId,
 		ref:'Usuario',
-		required: true
+		// required: true
 	}
 });
 module.exports = model('Historia', HistoriaSchema);
