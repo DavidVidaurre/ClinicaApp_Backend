@@ -66,7 +66,12 @@ const ExamenFisicoSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref:'HistClinica',
 		required: true
-	}
+	},
+	id_Historia: {
+		type: Schema.Types.ObjectId,
+		ref: 'Historia',
+		required: true,
+	},
 
 });
 
