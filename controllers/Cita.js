@@ -1,5 +1,6 @@
 const Cita = require('../models/Cita');
 const Historia = require('../models/Historia');
+const HistClinica = require('../models/HistClinica');
 const moment = require('moment');
 const CrearCita = async (req, res) => {
 	const {
@@ -26,16 +27,6 @@ const CrearCita = async (req, res) => {
 				msg: 'Ya existe una cita para consulta a esa hora',
 			});
 		}
-		// const DNIvalido = await Historia.findOne({ dni_paciente: DNI });
-		// if (DNIvalido) {
-		// 	return res.status(400).json({
-		// 		ok: false,
-		// 		msg: 'DNI incorrecto',
-		// 	});
-		// }
-
-		//1. Nuevo
-		//2.Continuador
 		let historia = await Historia.findOne({ dni_paciente: DNI });
 
 		console.log(historia);
@@ -78,6 +69,11 @@ const CrearCita = async (req, res) => {
 				condicion,
 				id_Historia: historia._id,
 			});
+			//generando automaticamente la hc
+			let hc = new HistClinica({
+				id_Historia: historia._id,
+			});
+			await hc.save();
 			await cita.save();
 			res.status(201).json({
 				ok: true,
@@ -102,6 +98,11 @@ const CrearCita = async (req, res) => {
 			});
 
 			await cita.save();
+			//generando automaticamente la hc
+			let hc = new HistClinica({
+				id_Historia: historia._id,
+			});
+			await hc.save();
 			res.status(201).json({
 				ok: true,
 				cita: cita,
