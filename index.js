@@ -24,7 +24,7 @@ app.use('/Vacuna', require('./routes/Vacuna'));
 app.use('/Receta', require('./routes/Receta'));
 app.use('/HistVacuna', require('./routes/HistVacuna'));
 app.use('/HistClinica', require('./routes/HistClinica'));
-app.use('/ExamenFisico', require('./routes/ExamenFisico'));
+
 app.use('/Antecedentes', require('./routes/Antecedentes'));
 app.use('/Fotos', require('./routes/Foto'));
 app.listen(process.env.PORT, () => {

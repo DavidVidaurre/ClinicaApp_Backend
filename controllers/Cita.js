@@ -76,9 +76,10 @@ const CrearCita = async (req, res) => {
 			});
 			await hc.save();
 			await cita.save();
+			console.log(hc._id);
 			res.status(201).json({
 				ok: true,
-				cita: cita,
+				cita: cita
 			});
 		}
 		if (condicion == 2) {

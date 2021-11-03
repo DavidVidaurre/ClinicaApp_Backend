@@ -87,10 +87,16 @@ const MostrarHistClinica = async (req, res) => {
     const histClinica = await HistClinica.find();
     return res.json(histClinica);
 }
+const MostrarHistClinicaPaciente = async (req,res)=>{
+	const hist = req.params.id;
+    const histClinica = await HistClinica.find({id_Historia:hist });
+    return res.json(histClinica);	
+}
 
 module.exports = {
 	CrearHistClinica,
 	ActualizarHistClinica,
-	MostrarHistClinica
+	MostrarHistClinica,
+	MostrarHistClinicaPaciente
  
 }
