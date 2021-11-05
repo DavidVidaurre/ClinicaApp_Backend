@@ -4,6 +4,10 @@ const HistClinicaSchema = new Schema({
 		type: Date,
 		required: false,
 	},
+	anamnesis:{
+		type:String,
+		required: false
+	},
 	diagnostico:{
 		type: String,
 		required: false,

@@ -40,8 +40,8 @@ const CrearVacuna = async (req, res) => {
 
 const ActualizarVacuna = async (req, res = response) => {
 	const vacunaId = req.params.id;
-	const {id_HistVacuna} = req.body;
-	const idHistVacuna = id_HistVacuna;
+	// const {id_HistVacuna} = req.body;
+	// const idHistVacuna = id_HistVacuna;
 	try {
 		const vacuna = await Vacuna.findById(vacunaId);
 		if (!vacuna) {
@@ -50,12 +50,12 @@ const ActualizarVacuna = async (req, res = response) => {
 				msg: 'Vacuna no existe con ese id',
 			});
 		}
-		if (vacuna.id_HistVacuna.toString() !== idHistVacuna) {
-			return res.status(401).json({
-				ok: false,
-				msg: 'No tiene privilegio de editar este Paciente',
-			});
-		}
+		// if (vacuna.id_HistVacuna.toString() !== idHistVacuna) {
+		// 	return res.status(401).json({
+		// 		ok: false,
+		// 		msg: 'No tiene privilegio de editar este Paciente',
+		// 	});
+		// }
 		const nuevaVacuna= {
 			...req.body,
 		};
@@ -84,9 +84,13 @@ const MostrarVacuna = async (req, res) => {
     const vacuna = await Vacuna.find();
     return res.json(vacuna);
 }
-    
+const VacunaId = async (req,res)=>{
+	const v = await Vacuna.find({ id_HistVacuna: req.params.id})
+	return res.json(v)
+}
 module.exports = {
 	CrearVacuna,
   ActualizarVacuna,
-  MostrarVacuna
+  MostrarVacuna,
+  VacunaId
 }

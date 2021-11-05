@@ -93,9 +93,13 @@ const MostrarAntecedentes = async (req, res) => {
 	const antecedentes = await Antecedentes.find();
 	return res.json(antecedentes);
 };
-
+const AntecedentesId = async (req,res) =>{
+	 const antecedentes = await Antecedentes.find({id_Historia: req.params.id});
+	 return res.json(antecedentes);
+}
 module.exports = {
 	CrearAntecedentes,
 	ActualizarAntecedentes,
 	MostrarAntecedentes,
+	AntecedentesId
 };

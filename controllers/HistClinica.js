@@ -2,7 +2,7 @@ const HistClinica = require('../models/HistClinica');
 const Historia =  require('../models/Historia');
 const {validarDiagnostico} = require('../functions/validaciones.js');
 const CrearHistClinica = async (req, res) => {
-        const {fecha, diagnostico, tratamiento, examenesAuxiliares, id_Historia} = req.body;
+        const {fecha, diagnostico, tratamiento, examenesAuxiliares, id_Historia,anamnesis} = req.body;
 		try {
             // const DIAGNOSTICOvalido = await validarDiagnostico(diagnostico);
             // if(!DIAGNOSTICOvalido){
@@ -50,12 +50,12 @@ const ActualizarHistClinica = async (req, res = response) => {
 				msg: 'Historia Clinica no existe con ese id',
 			});
 		}
-		if (histClinica.id_Historia.toString() !== idHistoria) {
-			return res.status(401).json({
-				ok: false,
-				msg: 'No tiene privilegio de editar este Paciente',
-			});
-		}
+		// if (histClinica.id_Historia.toString() !== idHistoria) {
+		// 	return res.status(401).json({
+		// 		ok: false,
+		// 		msg: 'No tiene privilegio de editar este Paciente',
+		// 	});
+		// }
 		const nuevaHistClinica = {
 			...req.body,
 			id_Historia: idHistoria
@@ -87,8 +87,13 @@ const MostrarHistClinica = async (req, res) => {
     const histClinica = await HistClinica.find();
     return res.json(histClinica);
 }
+const MostrarHistClinicaId = async (req,res) =>{
+	const h = await HistClinica.findOne({_id:req.params.id})
+	return res.json(h)
+}
 const MostrarHistClinicaPaciente = async (req,res)=>{
 	const hist = req.params.id;
+	// console.log(hist);
     const histClinica = await HistClinica.find({id_Historia:hist });
     return res.json(histClinica);	
 }
@@ -97,6 +102,7 @@ module.exports = {
 	CrearHistClinica,
 	ActualizarHistClinica,
 	MostrarHistClinica,
-	MostrarHistClinicaPaciente
+	MostrarHistClinicaPaciente,
+	MostrarHistClinicaId
  
 }

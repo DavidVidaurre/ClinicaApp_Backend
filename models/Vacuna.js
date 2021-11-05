@@ -12,11 +12,12 @@ const VacunaSchema = new Schema({
         type: String,
         required: false
     },
-    id_HistVacuna:{
+    id_Historia:{
         type: Schema.Types.ObjectId,
-        ref:'HistVacuna',
+        ref:'Historia',
         required: true
-    }
+    },
+
 });
 
 module.exports = model('Vacuna', VacunaSchema);
