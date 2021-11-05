@@ -13,132 +13,132 @@ const VacunaSchema = new Schema({
         required: false
     },*/
     bcg:{
-        type: Boolean,
+        type: Number,
         required: false
     },
     
     hepatb:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     dpt:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     neumococo:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     rotavirus:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     hepatb2:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     idem:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     idem2:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     influenza:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     influenza2:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     meningococo:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     spr:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     varicela:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     meningococo2:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     hepata:{
-        type: Boolean,
+        type: Number,
         required: false
     },
     
     famarilla:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     dpt2:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     spr2:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     varicela2:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     hepata2:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     neumococo2:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     influenza3:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     dpt3:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     spr3:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     papilomavirus:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
     papilomavirus2:{
-        type: Boolean,
+        type: Number,
         required: false
     },
 
