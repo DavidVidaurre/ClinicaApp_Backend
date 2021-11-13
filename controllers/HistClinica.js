@@ -20,11 +20,8 @@ const CrearHistClinica = async (req, res) => {
 			}
 
 			
-			histClinica = new HistClinica(req.body);
-
-    
+			let histClinica = new HistClinica(req.body);
             await histClinica.save();
-             
             res.status(201).json({
                 ok: true,
                 histClinica: histClinica,
