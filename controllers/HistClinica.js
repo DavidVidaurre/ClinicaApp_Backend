@@ -108,10 +108,12 @@ const MostrarPesoyEdad = async(req, res = response)=>{
 	console.log(pesoPaciente)
 	const fechaHistoria =histClinica.map((item) => {return item.fecha})
 	console.log(fechaHistoria)
+	const tallaPaciente = histClinica.map((item) => {return item.talla})
+	console.log(tallaPaciente)
 	const historia = await Historia.find({_id:req.params.id});
 	// console.log(historia)
 	const fechaNac =historia.map((item) => {return item.fecha_nac})
-	console.log('**',fechaNac)
+	console.log(fechaNac)
 	// console.log(resp._doc.fecha=histClinica)
 	// console.log(req.params.tratamiento)	
 
@@ -131,6 +133,7 @@ const MostrarPesoyEdad = async(req, res = response)=>{
 	if (histClinica) {
 		return res.json({
 			pesoPaciente,
+			tallaPaciente,
 			fechaHistoria,
 			fechaNac
 		});
