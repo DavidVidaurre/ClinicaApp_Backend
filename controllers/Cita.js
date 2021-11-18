@@ -53,7 +53,7 @@ const CrearCita = async (req, res) => {
 				nombres_paciente: nombre_paciente,
 				fecha_nac,
 				dni_paciente: DNI,
-				sexo,
+				sexo : sexo,
 				edad,
 			});
 			await historia.save();

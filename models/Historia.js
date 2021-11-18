@@ -53,6 +53,12 @@ const HistoriaSchema = new Schema({
 		type: String,
 		required: false
 	},
+	//1. Masculino
+	//2. Femenino
+	sexo:{
+		type: Number,
+		required: false,
+	},
 	//DNI PARA EL APODERADO
 	// dni:{
 	// 	type: String,

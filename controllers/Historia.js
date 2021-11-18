@@ -19,6 +19,7 @@ const CrearHistoria = async (req, res) => {
 		telefono_padre,
 		numero_hijo,
 		referencia,
+		sexo,
 		id_Usuario,
 	} = req.body;
 	try {
