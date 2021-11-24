@@ -13,6 +13,7 @@ const CrearAntecedentes = async (req, res) => {
 		apgar5,
 		edadGestacional,
 		complicaciones,
+		alergia,
 		asmaBronquialPat,
 		nebulizacion,
 		intervencionQuirurgica,

@@ -2,8 +2,7 @@ const Vacuna = require('../models/Vacuna');
 const Historia = require('../models/Historia');
 
 const CrearVacuna = async (req, res) => {
-        const { bcg, hepatb, dpt, neumococo, rotavirus, hepatb2, idem, idem2, influenza, influenza2, meningococo, spr, varicela, meningococo2,
-			hepata, famarilla, dpt2, spr2, varicela2, hepata2, neumococo2, influenza3, dpt3, spr3, papilomavirus, papilomavirus2, otros, 
+        const { bcg, hepatb, dpt, neumococo, rotavirus, hepatb2, dpt2, neumococo2, rotavirus2, hepatb3, dpt3, neumococo3, rotavirus3, 			hepatb4, influenza, influenza2, meningococo, spr, varicela, meningococo2, hepata, famarilla, dpt4, spr2, varicela2, hepata2, 		neumococo4, influenza3, dpt5, spr3, papilomavirus, papilomavirus2, otros, 
 			id_Historia } = req.body;
         try {
             // let vacuna = await Vacuna.findOne({ nombre_vacuna });
@@ -92,7 +91,7 @@ const VacunaId = async (req,res)=>{
 }
 module.exports = {
 	CrearVacuna,
-  ActualizarVacuna,
-  MostrarVacuna,
-  VacunaId
+  	ActualizarVacuna,
+  	MostrarVacuna,
+  	VacunaId
 }

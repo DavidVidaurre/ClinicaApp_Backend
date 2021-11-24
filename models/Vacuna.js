@@ -12,6 +12,8 @@ const VacunaSchema = new Schema({
         type: String,
         required: false
     },*/
+    
+    //RECIEN NACIDO
     bcg:{
         type: Number,
         required: false
@@ -22,6 +24,7 @@ const VacunaSchema = new Schema({
         required: false
     },
 
+    //2 MESES
     dpt:{
         type: Number,
         required: false
@@ -42,31 +45,67 @@ const VacunaSchema = new Schema({
         required: false
     },
 
-    idem:{
+    //4 MESES
+    dpt2:{
         type: Number,
         required: false
     },
 
-    idem2:{
+    neumococo2:{
         type: Number,
         required: false
     },
 
+    rotavirus2:{
+        type: Number,
+        required: false
+    },
+
+    hepatb3:{
+        type: Number,
+        required: false
+    },
+
+    //6 MESES
+    dpt3:{
+        type: Number,
+        required: false
+    },
+
+    neumococo3:{
+        type: Number,
+        required: false
+    },
+
+    rotavirus3:{
+        type: Number,
+        required: false
+    },
+
+    hepatb4:{
+        type: Number,
+        required: false
+    },
+
+    //7 MESES
     influenza:{
         type: Number,
         required: false
     },
 
+    //8 MESES
     influenza2:{
         type: Number,
         required: false
     },
 
+    //9 MESES
     meningococo:{
         type: Number,
         required: false
     },
 
+    //1 AÑO
     spr:{
         type: Number,
         required: false
@@ -82,17 +121,20 @@ const VacunaSchema = new Schema({
         required: false
     },
 
+    //1 AÑO 1 MES
     hepata:{
         type: Number,
         required: false
     },
-    
+
+    //1 AÑO 3 MESES
     famarilla:{
         type: Number,
         required: false
     },
 
-    dpt2:{
+    //1 AÑO 6 MESES
+    dpt4:{
         type: Number,
         required: false
     },
@@ -107,12 +149,14 @@ const VacunaSchema = new Schema({
         required: false
     },
 
+    //1 AÑO 7 MESES
     hepata2:{
         type: Number,
         required: false
     },
 
-    neumococo2:{
+    //2 AÑOS
+    neumococo4:{
         type: Number,
         required: false
     },
@@ -122,7 +166,8 @@ const VacunaSchema = new Schema({
         required: false
     },
 
-    dpt3:{
+    //4 AÑOS
+    dpt5:{
         type: Number,
         required: false
     },
@@ -132,16 +177,19 @@ const VacunaSchema = new Schema({
         required: false
     },
 
+    //9 AÑOS
     papilomavirus:{
         type: Number,
         required: false
     },
 
+    //9 AÑOS 6 MESES
     papilomavirus2:{
         type: Number,
         required: false
     },
 
+    //OTROS
     otros:{
         type: String,
         required: false

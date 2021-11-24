@@ -45,6 +45,10 @@ const AntecedentesSchema = new Schema({
 	},
 
 	//PATOLÓGICOS
+	alergia: {
+		type : String,
+		required : false,
+	},
 	asmaBronquialPat: {
 		type: Boolean,
 		required: false,
