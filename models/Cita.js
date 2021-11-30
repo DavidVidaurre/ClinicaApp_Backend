@@ -4,24 +4,24 @@ const CitaSchema = new Schema({
 		type: String,
 		required: false,
 	},
-	fecha_nac:{
+	/*fecha_nac:{
 		type: Date,
 		required: false,
-	},
+	},*/
 	telefono:{
 		type: String,
 		required: false,
 	},
 	//1. Masculino
 	//2. Femenino
-	sexo:{
+	/*sexo:{
 		type: Number,
 		required: false,
 	},
 	edad:{
 		type: String,
 		required: false,
-	},
+	},*/
 	DNI:{
 		type: Number,
 		required: false,

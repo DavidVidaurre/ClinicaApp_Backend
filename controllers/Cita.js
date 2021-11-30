@@ -5,10 +5,10 @@ const moment = require('moment');
 const CrearCita = async (req, res) => {
 	const {
 		nombre_paciente,
-		fecha_nac,
+		//fecha_nac,
 		telefono,
-		sexo,
-		edad,
+		//sexo,
+		//edad,
 		DNI,
 		responsable,
 		condicion,
@@ -51,10 +51,10 @@ const CrearCita = async (req, res) => {
 		if (condicion == 1) {
 			let historia = new Historia({
 				nombres_paciente: nombre_paciente,
-				fecha_nac,
+				//fecha_nac,
 				dni_paciente: DNI,
-				sexo : sexo,
-				edad,
+				/*sexo : sexo,
+				edad,*/
 			});
 			await historia.save();
 			let cita = new Cita({
@@ -62,9 +62,9 @@ const CrearCita = async (req, res) => {
 				motivo,
 				responsable,
 				nombre_paciente,
-				fecha_nac,
+				//fecha_nac,
 				telefono,
-				sexo,
+				//sexo,
 				DNI,
 				condicion,
 				id_Historia: historia._id,
@@ -89,11 +89,11 @@ const CrearCita = async (req, res) => {
 				fecha: new Date(fecha),
 				motivo,
 				responsable,
-				fecha_nac,
+				//fecha_nac,
 				nombre_paciente,
 				fechaConsulta,
 				telefono,
-				sexo,
+				//sexo,
 				DNI,
 				condicion,
 				id_Historia: buscar._id,

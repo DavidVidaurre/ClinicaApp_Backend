@@ -3,12 +3,14 @@ const Historia = require('../models/Historia');
 const { validarDNI } = require('../functions/validaciones.js');
 const { validarNombre } = require('../functions/validaciones.js');
 const Usuario = require('../models/Usuario');
+const { response } = require('express');
 
 const CrearHistoria = async (req, res) => {
 	const {
 		dni_paciente,
 		nombres_paciente,
 		fecha_nac,
+		//edad,
 		lugar_nac,
 		direccion,
 		nombre_madre,
@@ -145,7 +147,6 @@ const ActualizarHistoria = async (req, res = response) => {
 
 const MostrarHistoria = async (req, res) => {
 	const historia = await Historia.find();
-
 	return res.json(historia);
 };
 const MostrarHistoriaPorDNI = async(req,res)=> {
@@ -161,6 +162,12 @@ const MostrarHistoriaPorDNI = async(req,res)=> {
 			}
 		)
 	}
+}
+
+const MostrarHistoriaPorID = async (req, res) => {
+	const hist = req.params.id;
+    const histClinica = await Historia.find({_id:hist });
+    return res.json(histClinica);
 }
 
 const EliminarHistoria = async (req, res = response) => {
@@ -194,5 +201,6 @@ module.exports = {
 	MostrarHistoria,
 	EliminarHistoria,
 	MostrarPacientePorUsuario,
-	MostrarHistoriaPorDNI
+	MostrarHistoriaPorDNI,
+	MostrarHistoriaPorID
 };

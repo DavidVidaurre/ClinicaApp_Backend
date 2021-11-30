@@ -7,7 +7,8 @@ const {
 	MostrarHistoria,
 	EliminarHistoria,
 	MostrarPacientePorUsuario,
-	MostrarHistoriaPorDNI 
+	MostrarHistoriaPorDNI,
+	MostrarHistoriaPorID
 } = require('../controllers/Historia');
 
 // Create
@@ -16,6 +17,7 @@ router.post('/new', CrearHistoria);
 router.put('/:id', ActualizarHistoria);
 router.get('/', MostrarHistoria);
 router.get('/:dni_paciente', MostrarHistoriaPorDNI);
+router.get("/id/:id", MostrarHistoriaPorID);
 router.delete('/:id', EliminarHistoria);
 
 module.exports = router;

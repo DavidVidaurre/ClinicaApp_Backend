@@ -13,6 +13,10 @@ const HistoriaSchema = new Schema({
         type: Date,
         required: false,
     },
+	/*edad:{
+		type : String,
+		required : false,
+	},*/
     lugar_nac:{
         type: String,
         required: false,
