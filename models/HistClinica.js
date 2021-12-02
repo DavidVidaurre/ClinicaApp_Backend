@@ -29,6 +29,26 @@ const HistClinicaSchema = new Schema({
         type: Number,
         required: false,
     },
+	imc:{
+		type: Number,
+		required: false,
+	},
+	pc:{
+		type: Number,
+		required: false,
+	},
+	fr:{
+		type: Number,
+		required: false,
+	},
+	fc:{
+		type: Number,
+		required: false,
+	},
+	saturacion:{
+		type: Number,
+		required: false,
+	},
 	temperatura: {
 		type: Number,
 		required: false,

@@ -101,40 +101,19 @@ const MostrarHistClinicaPaciente = async (req,res)=>{
 
 const MostrarPesoyEdad = async(req, res = response)=>{
 
-	// const idPaciente= req.params.id
-	// const fecha= fecha;
 	const histClinica= await HistClinica.find({id_Historia:req.params.id});
-	//console.log(histClinica)
 	const pesoPaciente =histClinica.map((item) => {return item.peso})
-	console.log(pesoPaciente)
-	const fechaHistoria =histClinica.map((item) => {return item.fecha})
-	console.log(fechaHistoria)
 	const tallaPaciente = histClinica.map((item) => {return item.talla})
-	console.log(tallaPaciente)
+	const pcPaciente = histClinica.map((item) => {return item.pc})
+	const fechaHistoria =histClinica.map((item) => {return item.fecha})
 	const historia = await Historia.find({_id:req.params.id});
-	// console.log(historia)
 	const fechaNac =historia.map((item) => {return item.fecha_nac})
-	console.log(fechaNac)
-	// console.log(resp._doc.fecha=histClinica)
-	// console.log(req.params.tratamiento)	
-
-
-		const respuesta=moment(fechaHistoria).diff(moment(fechaNac).format(), 'months');
-		//console.log(respuesta)
-        let milisegundosDia= 24*60*60*1000;
-
-        let meses = 30*milisegundosDia
-
-        let milisegundosTranscurridos= Math.abs(fechaHistoria);
-		//console.log(milisegundosTranscurridos)
-        let diasTranscurridos= Math.round(milisegundosTranscurridos/meses);
-
-        //console.log(diasTranscurridos)
 
 	if (histClinica) {
 		return res.json({
 			pesoPaciente,
 			tallaPaciente,
+			pcPaciente,
 			fechaHistoria,
 			fechaNac
 		});
