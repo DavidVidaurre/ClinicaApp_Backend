@@ -93,8 +93,9 @@ const MostrarHistClinicaId = async (req,res) =>{
 }
 const MostrarHistClinicaPaciente = async (req,res)=>{
 	const hist = req.params.id;
-	// console.log(hist);
     const histClinica = await HistClinica.find({id_Historia:hist });
+	console.log(histClinica);
+	console.log("TU PATITA")
     return res.json(histClinica);	
 }
 
