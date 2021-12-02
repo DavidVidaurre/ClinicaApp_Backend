@@ -165,9 +165,8 @@ const MostrarHistoriaPorDNI = async(req,res)=> {
 }
 
 const MostrarHistoriaPorID = async (req, res) => {
-	const hist = req.params.id;
-    const histClinica = await Historia.find({_id:hist });
-    return res.json(histClinica);
+	const h = await Historia.findOne({_id:req.params.id})
+	return res.json(h)
 }
 
 const EliminarHistoria = async (req, res = response) => {
