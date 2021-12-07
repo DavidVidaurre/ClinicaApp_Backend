@@ -65,6 +65,10 @@ const HistClinicaSchema = new Schema({
 		type: String,
 		required: false,
 	},
+	oidos:{
+		type: String,
+		required: false,
+	},
 	aparatoResp:{
 		type: String,
 		required: false,
