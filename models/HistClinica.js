@@ -27,7 +27,7 @@ const HistClinicaSchema = new Schema({
 	},
     talla:{
         type: Number,
-        required: false,
+		required: false,
     },
 	imc:{
 		type: Number,

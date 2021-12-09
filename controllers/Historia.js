@@ -10,7 +10,7 @@ const CrearHistoria = async (req, res) => {
 		dni_paciente,
 		nombres_paciente,
 		fecha_nac,
-		//edad,
+		edad,
 		lugar_nac,
 		direccion,
 		nombre_madre,
