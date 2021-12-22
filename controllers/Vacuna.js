@@ -2,7 +2,7 @@ const Vacuna = require('../models/Vacuna');
 const Historia = require('../models/Historia');
 
 const CrearVacuna = async (req, res) => {
-        const { bcg, hepatb, dpt, neumococo, rotavirus, hepatb2, dpt2, neumococo2, rotavirus2, hepatb3, dpt3, neumococo3, rotavirus3, 			hepatb4, influenza, influenza2, meningococo, spr, varicela, meningococo2, hepata, famarilla, dpt4, spr2, varicela2, hepata2, 		neumococo4, influenza3, dpt5, spr3, papilomavirus, papilomavirus2, otros, 
+        const { bcg, hepatb, dpt, neumococo, rotavirus, hepatb2, dpt2, neumococo2, rotavirus2, hepatb3, dpt3, neumococo3, rotavirus3,hepatb4, influenza, influenza2, meningococo, spr, varicela, meningococo2, hepata, famarilla, dpt4, spr2, varicela2, hepata2,neumococo4, influenza3, dpt5, spr3, papilomavirus, papilomavirus2, otros, 
 			id_Historia } = req.body;
         try {
             // let vacuna = await Vacuna.findOne({ nombre_vacuna });
@@ -13,7 +13,7 @@ const CrearVacuna = async (req, res) => {
             //     });
             // }
 
-            const idHistoria = await Historia.findOne({id_Historia});
+            const idHistoria = await Historia.findOne({ _id: id_Historia });
             if (!idHistoria) {
                 res.status(404).json({
                     ok: false,
@@ -41,6 +41,8 @@ const CrearVacuna = async (req, res) => {
 
 const ActualizarVacuna = async (req, res = response) => {
 	const vacunaId = req.params.id;
+	const {id_Historia} = req.body;
+	const idHistoria = id_Historia;
 	// const {id_Historia} = req.body;
 	// const idHistoria = id_Historia;
 	try {
@@ -59,6 +61,7 @@ const ActualizarVacuna = async (req, res = response) => {
 		// }
 		const nuevaVacuna= {
 			...req.body,
+			id_Historia: idHistoria
 		};
 
 		const vacuna_Actualizado = await Vacuna.findByIdAndUpdate(
