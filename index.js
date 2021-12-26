@@ -28,6 +28,7 @@ app.use('/HistClinica', require('./routes/HistClinica'));
 app.use('/Antecedentes', require('./routes/Antecedentes'));
 app.use('/Fotos', require('./routes/Foto'));
 app.use('/Reserva', require('./routes/Reserva'));
+// app.use('/RecetaTotal', require('./routes/RecetaTotal'));
 app.listen(process.env.PORT, () => {
 	console.log(`Servidor corriendo en puerto ${process.env.PORT}`);
 });

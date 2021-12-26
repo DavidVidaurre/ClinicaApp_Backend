@@ -4,6 +4,7 @@ const moment = require('moment');
 const HistClinica = require('../models/HistClinica');
 const Historia =  require('../models/Historia');
 const {validarDiagnostico} = require('../functions/validaciones.js');
+const { response } = require('express');
 const CrearHistClinica = async (req, res) => {
         const {fecha, diagnostico, tratamiento, examenesAuxiliares, id_Historia,anamnesis} = req.body;
 		try {
@@ -94,13 +95,10 @@ const MostrarHistClinicaId = async (req,res) =>{
 const MostrarHistClinicaPaciente = async (req,res)=>{
 	const hist = req.params.id;
     const histClinica = await HistClinica.find({id_Historia:hist });
-	console.log(histClinica);
-	console.log("TU PATITA")
     return res.json(histClinica);	
 }
 
 const MostrarPesoyEdad = async(req, res = response)=>{
-
 	const histClinica= await HistClinica.find({id_Historia:req.params.id});
 	const pesoPaciente =histClinica.map((item) => {return item.peso})
 	const tallaPaciente = histClinica.map((item) => {return item.talla})
@@ -121,12 +119,26 @@ const MostrarPesoyEdad = async(req, res = response)=>{
 	}
 }
 
+const MostrarDatosHistoria = async(req, res=response)=>{
+	const h = await HistClinica.findById({_id:req.params.id})
+	const historia = await Historia.findOne({_id:h.id_Historia});
+	// const Nombre = historia.map((item)=>{return item.nombres_paciente})
+	// const fechaNac =historia.map((item) => {return item.fecha_nac})
+	// if(historia){
+	// 	return res.json({
+	// 		Nombre,
+	// 		fechaNac
+	// 	})
+	// }
+	return res.json(historia)
+}
+
 module.exports = {
 	CrearHistClinica,
 	ActualizarHistClinica,
 	MostrarHistClinica,
 	MostrarHistClinicaPaciente,
 	MostrarHistClinicaId,
-	MostrarPesoyEdad
- 
+	MostrarPesoyEdad,
+	MostrarDatosHistoria
 }

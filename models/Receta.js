@@ -1,22 +1,21 @@
 const { Schema, model } = require('mongoose');
 const RecetaSchema = new Schema({
+	cantidad: {
+		type: String,
+		required: false,
+	},
 	nombreMedicina: {
 		type: String,
-		required: true,
+		required: false,
 	},
-	dosis:{
+	indicaciones:{
 		type: String,
-		required: true,
-	},
-	horario: {
-		type: String,
-		required: true,
-		unique: true,
+		required: false,
 	},
     id_HistClinica:{
         type: Schema.Types.ObjectId,
         ref:'HistClinica',
-        required:true,
+        required:false,
     }
 });
 
