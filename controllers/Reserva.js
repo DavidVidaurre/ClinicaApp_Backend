@@ -87,6 +87,7 @@ const MostrarNombreYFecha = async (req, res) => {
             Fecha
         })
     }
+    return reserva
 }
 
 module.exports = {

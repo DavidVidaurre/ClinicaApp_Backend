@@ -109,13 +109,13 @@ const MostrarDatosParaReceta = async (req, res) => {
 	// const peso = histClinica.map((item) => {return item.peso})
 	// const talla = histClinica.map((item) => {return item.talla})
 	// const pc = histClinica.map((item) => {return item.pc})
-	const recetas = await Receta.find({id_HistClinica: req.params.id})
+	// const recetas = await Receta.find({id_HistClinica: req.params.id})
 	const historia = await Historia.findOne({_id:histClinica.id_Historia});
 	// const nombrePac = historia.map((item) => {return item.nombres_paciente})
 	// const fechaNacPac = historia.map((item) => {return item.fecha_nac})
 	return res.json({
 		histClinica,
-		recetas,
+		// recetas,
 		historia
 	})
 	// return res.json({
@@ -128,12 +128,23 @@ const MostrarDatosParaReceta = async (req, res) => {
 	// 	pc
 	// })
 }
-    
+
+const EliminarMedicamentoReceta = async(req, res) => {
+	const med = await Receta.findByIdAndDelete(req.params.id)
+	if(med){
+        return res.json({
+            ok: true,
+            msg: "Medicamento eliminado"
+        })
+    }
+}
+
 module.exports = {
 	CrearReceta,
 	ActualizarReceta,
 	MostrarReceta,
 	MostrarRecetaID,
 	MostrarRecetaIDHistClinica,
-	MostrarDatosParaReceta
+	MostrarDatosParaReceta,
+	EliminarMedicamentoReceta
 }
