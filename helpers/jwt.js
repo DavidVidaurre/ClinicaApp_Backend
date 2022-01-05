@@ -1,11 +1,13 @@
 const jwt = require('jsonwebtoken');
+const SECRET_JWT_SEED = "$$$$AhoraTengoMoney$$$$"
 
 const generarJWT = (uid, name) => {
 	return new Promise((res, rej) => {
 		const payload = { uid, name };
 		jwt.sign(
 			payload,
-			process.env.SECRET_JWT_SEED,
+			// process.env.SECRET_JWT_SEED,
+			SECRET_JWT_SEED,
 			{
 				expiresIn: '3h',
 			},
