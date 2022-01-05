@@ -13,7 +13,7 @@ const { validarNombre } = require('../functions/validaciones.js');
 
 const { validarRol } = require('../functions/validaciones.js');
 
-const multer = require('multer');
+// const multer = require('multer');
 
 const crearUsuario = async (req, res = response) => {
 	const { nombre, dni, email, password, rol, telefono, foto_perfil } =
@@ -109,15 +109,15 @@ const crearUsuario = async (req, res = response) => {
 		await usuario.save();
 
 		//Generar JWT
-		const token = await generarJWT(usuario.id, usuario.nombre);
+		// const token = await generarJWT(usuario.id, usuario.nombre);
 
-		res.status(201).json({
-			ok: true,
-			uid: usuario.id,
-			nombre: usuario.nombre,
-			rol: usuario.rol,
-			token,
-		});
+		// res.status(201).json({
+		// 	ok: true,
+		// 	uid: usuario._id,
+		// 	nombre: usuario.nombre,
+		// 	rol: usuario.rol,
+		// 	token,
+		// });
 	} catch (error) {
 		console.log('Error: ' + error.toString());
 		res.status(500).json({
@@ -150,15 +150,15 @@ const loginUsuario = async (req, res = response) => {
 			});
 		}
 
-		const token = await generarJWT(usuario.id, usuario.nombre);
-		res.status(201).json({
-			ok: true,
-			uid: usuario.id,
-			name: usuario.name,
-			rol: usuario.rol,
+		// const token = await generarJWT(usuario.id, usuario.nombre);
+		// res.status(201).json({
+		// 	ok: true,
+		// 	uid: usuario.id,
+		// 	name: usuario.name,
+		// 	rol: usuario.rol,
 
-			token,
-		});
+		// 	token,
+		// });
 	} catch (error) {
 		console.log('Error: ' + error.toString());
 		res.status(500).json({
