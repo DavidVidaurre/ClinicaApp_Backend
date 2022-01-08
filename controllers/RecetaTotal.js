@@ -111,11 +111,15 @@ const MostrarRecetaTotal = async (req, res) => {
 }
 
 const MostrarRecetaTotalIDHistClinica = async (req, res) => {
-    // const  idHist  = await HistClinica.find({_id})
 	const idHist = req.params.id
-	// console.log(idHist)
 	const recetasT = await RecetaTotal.find({id_HistClinica: idHist})
-	return res.json(recetasT)
+	// const fechaProx = recetasT.map((item) => {return item.fechaProx})
+	// if(fechaProx){
+	// 	return res.json(fechaProx)
+	// }
+	if(recetasT){
+		return res.json(recetasT)
+	}
 }
 
 const MostrarMedicamentosRecetaTotal = async (req, res) => {

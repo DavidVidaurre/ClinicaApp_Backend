@@ -90,6 +90,7 @@ const MostrarHistClinica = async (req, res) => {
 }
 const MostrarHistClinicaId = async (req,res) =>{
 	const h = await HistClinica.findOne({_id:req.params.id})
+	// console.log(h.fecha)
 	return res.json(h)
 }
 const MostrarHistClinicaPaciente = async (req,res)=>{
