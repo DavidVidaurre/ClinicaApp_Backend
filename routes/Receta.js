@@ -5,19 +5,17 @@ const {
     CrearReceta,
     ActualizarReceta,
     MostrarReceta,
-    MostrarRecetaID,
     MostrarRecetaIDHistClinica,
-    MostrarDatosParaReceta,
-    EliminarMedicamentoReceta
+    MostrarMedicamentosReceta,
+    MostradDatosParaReceta
 } = require('../controllers/Receta');
 
 // Create
 router.post("/new", CrearReceta);
 router.put("/:id", ActualizarReceta)
-router.get("/", MostrarReceta);
-router.get("/idHist/:id", MostrarRecetaID)
+router.get("/:id", MostrarReceta);
 router.get("/idHistClinica/:id", MostrarRecetaIDHistClinica)
-router.get("/datosRe/:id", MostrarDatosParaReceta)
-router.delete("/:id", EliminarMedicamentoReceta)
+router.get("/idHistClinica/receta/:id", MostrarMedicamentosReceta)
+router.get("/datos/:id", MostradDatosParaReceta)
 
 module.exports = router;

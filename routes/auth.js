@@ -14,7 +14,8 @@ const {
 	EliminarUsuario,
 	MostrarResponsable,
 	MostrarResponsablePorId,
-	subirFotoPerfil
+	subirFotoPerfil,
+	me
 	// CambiarFotoPerfil,
 } = require('../controllers/auth');
 
@@ -51,7 +52,7 @@ router.post(
 	],
 	loginUsuario
 );
-
+router.get('/me', validarJWT, me)
 const storage = multer.diskStorage({
 	destination: 'uploads/',
 	filename: function (req, file, cb) {

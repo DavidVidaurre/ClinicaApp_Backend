@@ -1,15 +1,11 @@
 const { Schema, model } = require('mongoose');
 const RecetaSchema = new Schema({
-	cantidad: {
-		type: String,
-		required: false,
-	},
-	nombreMedicina: {
-		type: String,
-		required: false,
-	},
-	indicaciones:{
-		type: String,
+    fecha:{
+        type: Date,
+        required: false
+    },
+    fechaProx:{
+		type: Date,
 		required: false,
 	},
     id_HistClinica:{
@@ -17,6 +13,6 @@ const RecetaSchema = new Schema({
         ref:'HistClinica',
         required:false,
     }
-});
+})
 
-module.exports = model('Receta', RecetaSchema);
+module.exports = model('Receta', RecetaSchema)

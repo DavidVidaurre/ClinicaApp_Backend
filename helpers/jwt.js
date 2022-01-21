@@ -9,7 +9,7 @@ const generarJWT = (uid, name) => {
 			// process.env.SECRET_JWT_SEED,
 			SECRET_JWT_SEED,
 			{
-				expiresIn: '3h',
+				expiresIn: 60*60*24,
 			},
 			(err, token) => {
 				if (err) {

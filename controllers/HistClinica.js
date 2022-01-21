@@ -5,6 +5,7 @@ const HistClinica = require('../models/HistClinica');
 const Historia =  require('../models/Historia');
 const {validarDiagnostico} = require('../functions/validaciones.js');
 const { response } = require('express');
+// const Usuario = require('../models/Usuario');
 const CrearHistClinica = async (req, res) => {
         const {fecha, diagnostico, tratamiento, examenesAuxiliares, id_Historia,anamnesis} = req.body;
 		try {

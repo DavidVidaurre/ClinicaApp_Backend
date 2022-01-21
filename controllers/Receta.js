@@ -1,45 +1,39 @@
-const Receta = require('../models/Receta');
-const HistClinica = require('../models/HistClinica');
-const Historia =  require('../models/Historia');
+const Receta = require('../models/Receta')
+const MedicamentoReceta = require('../models/MedicamentoReceta')
+const HistClinica = require('../models/HistClinica')
+const Historia = require('../models/Historia');
 
 const CrearReceta = async (req, res) => {
-        const { cantidad, nombreMedicina, indicaciones, id_HistClinica } = req.body;
-        try {
-            // let Receta = await Receta.findOne({ nombre_Receta });
-            // if (Receta) {
-            //     return res.status(400).json({
-            //         ok: false,
-            //         msg: 'Ya existe una Receta con este nombre',
-            //     });
-            // }
+    const { fecha, fechaProx, id_HistClinica } = req.body;
+    try {
+        const idHistClinica = await HistClinica.findById(id_HistClinica)
 
-            const idHistClinica = await HistClinica.findOne({id_HistClinica});
-            if (!idHistClinica) {
-                res.status(404).json({
-                    ok: false,
-                    msg: 'Historia Clinica no existe con ese id',
-                });
-            }
-            
-            receta = new Receta(req.body);
-            
+        if (!idHistClinica) {
+            res.status(404).json({
+                ok: false,
+                msg: 'Historia Clinica no existe con ese id',
+            });
+        } else{
+            let receta = new Receta(req.body)
     
-            await receta.save();
-            
+            await receta.save()
+    
             res.status(201).json({
                 ok: true,
-                receta: receta,
-            });
-        } catch (error) {
-            console.log('Error: ' + error.toString());
-            res.status(500).json({
-                ok: false,
-                msg: 'Por favor hable con el administrador',
-            });
+                receta: receta
+            })
         }
- };
+        
+    } catch (error) {
+        console.log('Error: ' + error.toString());
+        res.status(500).json({
+            ok: false,
+            msg: 'Por favor hable con el administrador',
+        });
+    }
+};
 
-const ActualizarReceta = async (req, res = response) => {
+const ActualizarReceta = async (req, res) => {
 	const recetaId = req.params.id;
 	const {id_HistClinica} = req.body;
 	const idHistClinica= id_HistClinica;
@@ -82,69 +76,41 @@ const ActualizarReceta = async (req, res = response) => {
 };
 
 const MostrarReceta = async (req, res) => {
-    const receta = await Receta.find();
+    const receta = await Receta.findById(req.params.id);
     return res.json(receta);
 }
 
-const MostrarRecetaID = async (req, res) => {
-	//const recetaId = req.params.id;
-	// const {id_HistClinica} = req.body;
-	// const idHistClinica= id_HistClinica;
-
-	const receta = await Receta.findOne({_id:req.params.id})
-	return res.json(receta)
+const MostrarMedicamentosReceta = async (req, res) => {
+    const IDReceta = req.params.id
+    const medicamentosReceta = await MedicamentoReceta.find({id_Receta:IDReceta})
+    
+    return res.json(medicamentosReceta)
 }
 
 const MostrarRecetaIDHistClinica = async (req, res) => {
-	// const  idHist  = await HistClinica.find({_id})
-	const idHist = req.params.id
-	// console.log(idHist)
-	const recetas = await Receta.find({id_HistClinica: idHist})
-	return res.json(recetas)
+	const idHistClinica = req.params.id
+    const receta = await Receta.find({id_HistClinica: idHistClinica})
+    
+    return res.json(receta)
 }
 
-const MostrarDatosParaReceta = async (req, res) => {
-	const histClinica = await HistClinica.findOne({_id: req.params.id});
-	// const fechaHistoria = histClinica.map((item) => {return item.fecha})
-	// const peso = histClinica.map((item) => {return item.peso})
-	// const talla = histClinica.map((item) => {return item.talla})
-	// const pc = histClinica.map((item) => {return item.pc})
-	// const recetas = await Receta.find({id_HistClinica: req.params.id})
-	const historia = await Historia.findOne({_id:histClinica.id_Historia});
-	// const nombrePac = historia.map((item) => {return item.nombres_paciente})
-	// const fechaNacPac = historia.map((item) => {return item.fecha_nac})
-	return res.json({
-		histClinica,
-		// recetas,
-		historia
-	})
-	// return res.json({
-	// 	recetas,
-	// 	nombrePac,
-	// 	fechaNacPac,
-	// 	fechaHistoria,
-	// 	peso,
-	// 	talla,
-	// 	pc
-	// })
-}
+const MostradDatosParaReceta = async(req, res) => {
+    const idReceta = req.params.id
 
-const EliminarMedicamentoReceta = async(req, res) => {
-	const med = await Receta.findByIdAndDelete(req.params.id)
-	if(med){
-        return res.json({
-            ok: true,
-            msg: "Medicamento eliminado"
-        })
-    }
+    const receta = await Receta.findById(idReceta)
+    const histClinica = await HistClinica.findOne({_id: receta.id_HistClinica})
+    const historia = await Historia.findOne({_id: histClinica.id_Historia})
+    return res.json({
+        histClinica,
+        historia
+    })
 }
 
 module.exports = {
-	CrearReceta,
-	ActualizarReceta,
-	MostrarReceta,
-	MostrarRecetaID,
-	MostrarRecetaIDHistClinica,
-	MostrarDatosParaReceta,
-	EliminarMedicamentoReceta
+    CrearReceta,
+    ActualizarReceta,
+    MostrarReceta,
+    MostrarRecetaIDHistClinica,
+    MostrarMedicamentosReceta,
+    MostradDatosParaReceta
 }

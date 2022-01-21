@@ -72,10 +72,8 @@ const crearUsuario = async (req, res = response) => {
 			});
 		}
 		usuario = new Usuario(req.body);
-		console.log('------user-----');
-		console.log(usuario);
 		usuario.foto_perfil = 'user.jpg';
-		console.log('------user-----');
+
 		//Encriptar contraseña
 		const salt = bcrypt.genSaltSync();
 		usuario.password = bcrypt.hashSync(password, salt);
@@ -107,13 +105,15 @@ const crearUsuario = async (req, res = response) => {
 		// }
 		// console.log(req.file)
 		await usuario.save();
+		console.log("USER ID: ", usuario.id)
+		console.log("USER _ID: ", usuario._id)
 
 		//Generar JWT
-		const token = await generarJWT(usuario.id, usuario.nombre);
+		const token = await generarJWT(usuario._id, usuario.nombre);
 
 		res.status(201).json({
 			ok: true,
-			uid: usuario.id,
+			uid: usuario._id,
 			nombre: usuario.nombre,
 			rol: usuario.rol,
 			token,
@@ -127,11 +127,34 @@ const crearUsuario = async (req, res = response) => {
 	}
 };
 
+// const MostrarDatosUsuario = async (req, res=response) => {
+// 	const { dni, password } = req.body
+// 	try {
+// 		let usuario = await Usuario.findOne({ dni });
+// 		if (!usuario) {
+// 			return res.status(200).json({
+// 				ok: false,
+// 				msg: 'El usuario no existe con ese DNI',
+// 			});
+// 		}
+// 		const validPassword = bcrypt.compareSync(
+// 			password,
+// 			usuario.password
+// 		);
+// 	}  catch(error){
+// 		console.log('Error: ' + error.toString());
+// 		res.status(500).json({
+// 			ok: false,
+// 			msg: 'Por favor hable con el administrador',
+// 		});
+// 	}
+// };
+
 const loginUsuario = async (req, res = response) => {
 	const { dni, password } = req.body;
 	try {
 		let usuario = await Usuario.findOne({ dni });
-		console.log(usuario);
+		// console.log(usuario);
 		if (!usuario) {
 			return res.status(200).json({
 				ok: false,
@@ -167,6 +190,16 @@ const loginUsuario = async (req, res = response) => {
 		});
 	}
 };
+
+const me = async (req, res, next) => {
+	const user = await Usuario.findById(req.uid, {password:0, dni:0, email:0, rol:0, foto_perfil:0})
+	if(!user){
+		return res.status(404).send('NO USER FOUND')
+	}
+
+	return res.json(user)
+}
+
 const revalidarToken = async (req, res = response) => {
 	/*Recibe req.uid y req.name del middleware*/
 	const uid = req.uid;
@@ -299,5 +332,6 @@ module.exports = {
 	MostrarResponsable,
 	MostrarResponsablePorId,
 	subirFotoPerfil,
+	me
 	// CambiarFotoPerfil
 };
