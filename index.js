@@ -23,15 +23,15 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/Historia', require('./routes/Historia'));
 app.use('/Cita', require('./routes/Cita'));
 app.use('/Vacuna', require('./routes/Vacuna'));
-app.use('/Receta', require('./routes/Receta'));
-// app.use('/HistVacuna', require('./routes/HistVacuna'));
 app.use('/HistClinica', require('./routes/HistClinica'));
 
 app.use('/Antecedentes', require('./routes/Antecedentes'));
 app.use('/Fotos', require('./routes/Foto'));
 app.use('/Reserva', require('./routes/Reserva'));
-// app.use('/RecetaTotal', require('./routes/RecetaTotal'))
-app.use('/RecetaTotal', require('./routes/RecetaTotal'));
+app.use('/Receta', require('./routes/Receta'));
+app.use('/MedicamentoReceta', require('./routes/MedicamentoReceta'))
+app.use('/Orden', require('./routes/Orden'))
+app.use('/IndicacionOrden', require('./routes/IndicacionOrden'))
 
 // app.listen(process.env.PORT, () => {
 	// 	console.log(`Servidor corriendo en puerto ${process.env.PORT}`);
