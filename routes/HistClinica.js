@@ -13,7 +13,7 @@ const {
 } = require('../controllers/HistClinica');
 
 // Create
-router.post("/new", validarJWT, CrearHistClinica);
+router.post("/new", CrearHistClinica);
 router.put("/:id", ActualizarHistClinica);
 router.get("/:id", MostrarHistClinicaPaciente);
 router.get("/", MostrarHistClinica);
