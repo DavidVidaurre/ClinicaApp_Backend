@@ -85,6 +85,10 @@ const HistClinicaSchema = new Schema({
 		type: String,
 		required: false,
 	},
+	locomotor: {
+		type: String,
+		required: false,
+	},
 	neurologico:{
 		type: String,
 		required: false,

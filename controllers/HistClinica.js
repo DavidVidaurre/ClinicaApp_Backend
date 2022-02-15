@@ -83,7 +83,17 @@ const ActualizarHistClinica = async (req, res = response) => {
 	}
 };
 
-
+const EliminarHistClinica = async (req, res = response) => {
+	const HCid = req.params.id;
+	const HC = await HistClinica.findByIdAndDelete(HCid);
+	if (HC) {
+		console.log(HC);
+		return res.json({
+			ok: true,
+			msg: 'Historia clínica eliminada',
+		});
+	}
+};
 
 const MostrarHistClinica = async (req, res) => {
     const histClinica = await HistClinica.find();
@@ -138,6 +148,7 @@ const MostrarDatosHistoria = async(req, res=response)=>{
 module.exports = {
 	CrearHistClinica,
 	ActualizarHistClinica,
+	EliminarHistClinica,
 	MostrarHistClinica,
 	MostrarHistClinicaPaciente,
 	MostrarHistClinicaId,
