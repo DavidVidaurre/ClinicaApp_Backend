@@ -6,6 +6,7 @@ const {
 	CrearHistClinica,
     MostrarHistClinica,
     ActualizarHistClinica,
+    EliminarHistClinica,
     MostrarHistClinicaPaciente,
     MostrarHistClinicaId,
     MostrarPesoyEdad,
@@ -13,8 +14,9 @@ const {
 } = require('../controllers/HistClinica');
 
 // Create
-router.post("/new", validarJWT, CrearHistClinica);
+router.post("/new", CrearHistClinica);
 router.put("/:id", ActualizarHistClinica);
+router.delete("/:id", EliminarHistClinica);
 router.get("/:id", MostrarHistClinicaPaciente);
 router.get("/", MostrarHistClinica);
 router.get("/id/:id", MostrarHistClinicaId);
