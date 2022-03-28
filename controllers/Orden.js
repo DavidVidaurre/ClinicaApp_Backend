@@ -54,7 +54,9 @@ const MostradDatosParaOrden = async(req, res) => {
     const histClinica = await HistClinica.findOne({_id: orden.id_HistClinica})
     const historia = await Historia.findOne({_id: histClinica.id_Historia})
     // return res.json(historia)
-    return res.json(historia)
+    return res.json({
+        histClinica,
+        historia})
 }
 
 module.exports = {
