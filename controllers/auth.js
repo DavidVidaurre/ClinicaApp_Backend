@@ -64,13 +64,13 @@ const crearUsuario = async (req, res = response) => {
 				msg: 'Nombre incorrecto',
 			});
 		}
-		let usuario_email = await Usuario.findOne({ email });
-		if (usuario_email) {
-			return res.status(400).json({
-				ok: false,
-				msg: 'Ya existe un usuario con este correo',
-			});
-		}
+		// let usuario_email = await Usuario.findOne({ email });
+		// if (usuario_email) {
+		// 	return res.status(400).json({
+		// 		ok: false,
+		// 		msg: 'Ya existe un usuario con este correo',
+		// 	});
+		// }
 		usuario = new Usuario(req.body);
 		usuario.foto_perfil = 'user.jpg';
 

@@ -10,8 +10,8 @@ const UsuarioSchema = new Schema({
 	},
 	email: {
 		type: String,
-		required: true,
-		unique: true,
+		required: false,
+		// unique: true,
 	},
 	password: {
 		type: String,
