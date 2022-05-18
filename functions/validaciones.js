@@ -13,7 +13,7 @@ const validarDNI = (dni)=>{
 
   const validarNombre = (nombre)=>{
     return new Promise((res)=>{
-      if(nombre.length>2 && nombre.length<20 ){
+      if(nombre.length>2 && nombre.length<100 ){
         res(true);
       }
       else {
