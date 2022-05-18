@@ -27,7 +27,7 @@ router.post(
 	[
 		//middlewares
 		check('nombre', 'el nombre es obligatorio').not().isEmpty(),
-		check('email', 'El email es obligatorio').isEmail(),
+		// check('email', 'El email es obligatorio').isEmail(),
 		check(
 			'password',
 			'El password debe ser de 6 caracteres en adelante'
