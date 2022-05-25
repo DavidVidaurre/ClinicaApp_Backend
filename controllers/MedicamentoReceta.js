@@ -1,3 +1,4 @@
+const { response } = require('express');
 const MedicamentoReceta = require('../models/MedicamentoReceta');
 const Receta = require('../models/Receta')
 
@@ -76,8 +77,23 @@ const EliminarMedicamentoReceta = async (req, res) => {
     }
 }
 
+const MostrarNombreMedicina = async(req, res)=>{
+	const medicinas = await MedicamentoReceta.find();
+	const cantidadMedic =medicinas.map((item) => {return item.cantidad})
+	const nombreMedic =medicinas.map((item) => {return item.nombreMedicina})
+	const indicacionesMedic =medicinas.map((item) => {return item.indicaciones})
+	if (MedicamentoReceta) {
+		return res.json({
+			cantidadMedic,
+			nombreMedic,
+			indicacionesMedic
+		});
+	}
+}
+
 module.exports = {
 	CrearMedicamentoReceta,
 	ActualizarMedicamentoReceta,
-	EliminarMedicamentoReceta
+	EliminarMedicamentoReceta,
+	MostrarNombreMedicina
 }
