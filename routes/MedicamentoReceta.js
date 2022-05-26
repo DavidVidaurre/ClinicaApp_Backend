@@ -8,7 +8,7 @@ const {
     MostrarNombreMedicina
 } = require('../controllers/MedicamentoReceta');
 
-// Create
+// Métodos HTTP
 router.post("/new", CrearMedicamentoReceta);
 router.put("/:id", ActualizarMedicamentoReceta)
 router.delete("/:id", EliminarMedicamentoReceta)
