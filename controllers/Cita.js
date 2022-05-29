@@ -72,7 +72,8 @@ const CrearCita = async (req, res) => {
 			//generando automaticamente la hc
 			let hc = new HistClinica({
 				id_Historia: historia._id,
-				fecha: cita.fecha
+				fecha: cita.fecha,
+				id_Cita: cita._id
 			});
 			await hc.save();
 			await cita.save();
@@ -103,7 +104,8 @@ const CrearCita = async (req, res) => {
 			//generando automaticamente la hc
 			let hc = new HistClinica({
 				id_Historia: historia._id,
-				fecha: cita.fecha
+				fecha: cita.fecha,
+				id_Cita: cita._id
 			});
 			await hc.save();
 			res.status(201).json({

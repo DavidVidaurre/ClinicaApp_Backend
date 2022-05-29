@@ -23,6 +23,14 @@ const AntecedentesSchema = new Schema({
 		type: Number,
 		required: false,
 	},
+	talla_al_nacer: {
+		type: Number,
+		required: false,
+	},
+	pc: {
+		type: Number,
+		required: false,
+	},
 	tipoDeParto: {
 		type: Number,
 		required: false,
@@ -62,6 +70,10 @@ const AntecedentesSchema = new Schema({
 		required: false,
 	},
 	reaccionAdversaMed: {
+		type: String,
+		required: false,
+	},
+	sob: {
 		type: String,
 		required: false,
 	},

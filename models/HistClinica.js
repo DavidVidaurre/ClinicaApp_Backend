@@ -98,6 +98,12 @@ const HistClinicaSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Historia',
 		required: true
+	},
+	//------------------
+	id_Cita:{
+		type: Schema.Types.ObjectId,
+		ref: 'Cita',
+		required: true
 	}
 });
 module.exports = model('HistClinica', HistClinicaSchema);
