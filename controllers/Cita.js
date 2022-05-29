@@ -57,6 +57,13 @@ const CrearCita = async (req, res) => {
 				edad,*/
 			});
 			await historia.save();
+			//generando automaticamente la hc
+			let hc = new HistClinica({
+				id_Historia: historia._id,
+				fecha: new Date(fecha),
+				// id_Cita: cita._id
+			});
+			await hc.save();
 			let cita = new Cita({
 				fecha: new Date(fecha),
 				motivo,
@@ -68,14 +75,8 @@ const CrearCita = async (req, res) => {
 				DNI,
 				condicion,
 				id_Historia: historia._id,
+				id_HistClinica: hc._id
 			});
-			//generando automaticamente la hc
-			let hc = new HistClinica({
-				id_Historia: historia._id,
-				fecha: cita.fecha,
-				id_Cita: cita._id
-			});
-			await hc.save();
 			await cita.save();
 			console.log(hc._id);
 			res.status(201).json({
@@ -86,6 +87,12 @@ const CrearCita = async (req, res) => {
 		if (condicion == 2) {
 			let buscar = await Historia.findOne({ dni_paciente: DNI });
 			console.log('Continuador: ' + buscar);
+			let hc = new HistClinica({
+				id_Historia: historia._id,
+				fecha: new Date(fecha),
+				// id_Cita: cita._id
+			});
+			await hc.save();
 			let cita = new Cita({
 				fecha: new Date(fecha),
 				motivo,
@@ -98,16 +105,11 @@ const CrearCita = async (req, res) => {
 				DNI,
 				condicion,
 				id_Historia: buscar._id,
+				id_HistClinica: hc._id
 			});
 
 			await cita.save();
 			//generando automaticamente la hc
-			let hc = new HistClinica({
-				id_Historia: historia._id,
-				fecha: cita.fecha,
-				id_Cita: cita._id
-			});
-			await hc.save();
 			res.status(201).json({
 				ok: true,
 				cita: cita,

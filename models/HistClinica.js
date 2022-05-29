@@ -100,10 +100,10 @@ const HistClinicaSchema = new Schema({
 		required: true
 	},
 	//------------------
-	id_Cita:{
-		type: Schema.Types.ObjectId,
-		ref: 'Cita',
-		required: true
-	}
+	// id_Cita:{
+	// 	type: Schema.Types.ObjectId,
+	// 	ref: 'Cita',
+	// 	required: true
+	// }
 });
 module.exports = model('HistClinica', HistClinicaSchema);
