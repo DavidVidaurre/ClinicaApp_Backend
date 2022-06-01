@@ -2,6 +2,7 @@ const Cita = require('../models/Cita');
 const Historia = require('../models/Historia');
 const HistClinica = require('../models/HistClinica');
 const moment = require('moment');
+const { response } = require('express');
 const CrearCita = async (req, res) => {
 	const {
 		nombre_paciente,
@@ -166,6 +167,32 @@ const ActualizarCita = async (req, res = response) => {
 	}
 };
 
+const ActualizarIDHistClinicaParaCita = async (req, res = response) => {
+	const fechaCita = req.params.fecha;
+	const histClinica = await HistClinica.findOne({fecha: fechaCita})
+	
+	if(histClinica){
+		Cita.findOneAndUpdate(
+			{fecha: histClinica.fecha}, 
+			{$set: {id_HistClinica: histClinica._id}},
+			{new: true},
+			function(err, doc){
+				if (err) { throw err; }
+			}
+		);
+
+		return res.json({
+			ok: true,
+			msg: "Actualizado"
+		})
+	}
+
+	return res.json({
+		ok: false,
+		msg: 'Operación no completada'
+	})
+}
+
 const MostrarCita = async (req, res) => {
 	const cita = await Cita.find();
 	return res.json(cita);
@@ -188,4 +215,5 @@ module.exports = {
 	ActualizarCita,
 	MostrarCita,
 	EliminarCita,
+	ActualizarIDHistClinicaParaCita
 };

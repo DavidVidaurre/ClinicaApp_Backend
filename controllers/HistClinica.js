@@ -3,6 +3,7 @@ const moment = require('moment');
 
 const HistClinica = require('../models/HistClinica');
 const Historia =  require('../models/Historia');
+const Cita = require('../models/Cita');
 const {validarDiagnostico} = require('../functions/validaciones.js');
 const { response } = require('express');
 // const Usuario = require('../models/Usuario');
@@ -85,9 +86,15 @@ const ActualizarHistClinica = async (req, res = response) => {
 
 const EliminarHistClinica = async (req, res = response) => {
 	const HCid = req.params.id;
+	const cita = await Cita.findOneAndDelete({id_HistClinica: HCid})
 	const HC = await HistClinica.findByIdAndDelete(HCid);
+	if (cita && HC) {
+		return res.json({
+			ok: true,
+			msg: 'Cita e historia clínica eliminada',
+		});
+	}
 	if (HC) {
-		console.log(HC);
 		return res.json({
 			ok: true,
 			msg: 'Historia clínica eliminada',
