@@ -9,7 +9,7 @@ const {
     ActualizarIDHistClinicaParaCita
 } = require('../controllers/Cita');
 
-// Create
+// Create routes
 router.post("/new", CrearCita);
 router.put("/:id", ActualizarCita)
 router.get("/", MostrarCita);
