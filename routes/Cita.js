@@ -5,7 +5,8 @@ const {
 	CrearCita,
     ActualizarCita,
     MostrarCita,
-    EliminarCita
+    EliminarCita,
+    ActualizarIDHistClinicaParaCita
 } = require('../controllers/Cita');
 
 // Create
@@ -13,5 +14,6 @@ router.post("/new", CrearCita);
 router.put("/:id", ActualizarCita)
 router.get("/", MostrarCita);
 router.delete("/:id", EliminarCita)
+router.get("/fechaCita/:fecha", ActualizarIDHistClinicaParaCita)
 
 module.exports = router;

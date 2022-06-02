@@ -2,6 +2,7 @@ const Cita = require('../models/Cita');
 const Historia = require('../models/Historia');
 const HistClinica = require('../models/HistClinica');
 const moment = require('moment');
+const { response } = require('express');
 const CrearCita = async (req, res) => {
 	const {
 		nombre_paciente,
@@ -57,6 +58,13 @@ const CrearCita = async (req, res) => {
 				edad,*/
 			});
 			await historia.save();
+			//generando automaticamente la hc
+			let hc = new HistClinica({
+				id_Historia: historia._id,
+				fecha: new Date(fecha),
+				// id_Cita: cita._id
+			});
+			await hc.save();
 			let cita = new Cita({
 				fecha: new Date(fecha),
 				motivo,
@@ -68,13 +76,8 @@ const CrearCita = async (req, res) => {
 				DNI,
 				condicion,
 				id_Historia: historia._id,
+				id_HistClinica: hc._id
 			});
-			//generando automaticamente la hc
-			let hc = new HistClinica({
-				id_Historia: historia._id,
-				fecha: cita.fecha
-			});
-			await hc.save();
 			await cita.save();
 			console.log(hc._id);
 			res.status(201).json({
@@ -85,6 +88,12 @@ const CrearCita = async (req, res) => {
 		if (condicion == 2) {
 			let buscar = await Historia.findOne({ dni_paciente: DNI });
 			console.log('Continuador: ' + buscar);
+			let hc = new HistClinica({
+				id_Historia: historia._id,
+				fecha: new Date(fecha),
+				// id_Cita: cita._id
+			});
+			await hc.save();
 			let cita = new Cita({
 				fecha: new Date(fecha),
 				motivo,
@@ -97,15 +106,11 @@ const CrearCita = async (req, res) => {
 				DNI,
 				condicion,
 				id_Historia: buscar._id,
+				id_HistClinica: hc._id
 			});
 
 			await cita.save();
 			//generando automaticamente la hc
-			let hc = new HistClinica({
-				id_Historia: historia._id,
-				fecha: cita.fecha
-			});
-			await hc.save();
 			res.status(201).json({
 				ok: true,
 				cita: cita,
@@ -122,24 +127,24 @@ const CrearCita = async (req, res) => {
 
 const ActualizarCita = async (req, res = response) => {
 	const CitaId = req.params.id;
-	const idPaciente = req.id_Paciente;
+	// const idPaciente = req.body.id_Paciente;
 	try {
-		const Cita = await Cita.findById(CitaId);
-		if (!Cita) {
-			res.status(404).json({
+		const cita = await Cita.findById(CitaId);
+		if (!cita) {
+			return res.status(404).json({
 				ok: false,
 				msg: 'Cita para Consulta no existe con ese id',
 			});
 		}
-		if (Cita.id_Paciente.toString() !== idPaciente) {
-			return res.status(401).json({
-				ok: false,
-				msg: 'No tiene privilegio de editar este Paciente',
-			});
-		}
+		// if (cita.id_Paciente.toString() !== idPaciente) {
+		// 	return res.status(401).json({
+		// 		ok: false,
+		// 		msg: 'No tiene privilegio de editar este Paciente',
+		// 	});
+		// }
 		const nuevaCita = {
 			...req.body,
-			id_Paciente: idPaciente,
+			// id_Paciente: idPaciente,
 		};
 
 		const CitaActualizado = await Cita.findByIdAndUpdate(
@@ -149,7 +154,20 @@ const ActualizarCita = async (req, res = response) => {
 				new: true,
 			}
 		);
-		res.json({
+
+		if(req.body.fecha){
+			HistClinica.findOneAndUpdate(
+				{_id: cita.id_HistClinica}, 
+				{$set: {fecha: req.body.fecha}},
+				{new: true},
+				function(err, doc){
+					if (err) { throw err; }
+				}
+			);
+		} 
+
+
+		return res.json({
 			ok: true,
 			Cita: CitaActualizado,
 		});
@@ -162,6 +180,32 @@ const ActualizarCita = async (req, res = response) => {
 	}
 };
 
+const ActualizarIDHistClinicaParaCita = async (req, res = response) => {
+	const fechaCita = req.params.fecha;
+	const histClinica = await HistClinica.findOne({fecha: fechaCita})
+	
+	if(histClinica){
+		Cita.findOneAndUpdate(
+			{fecha: histClinica.fecha}, 
+			{$set: {id_HistClinica: histClinica._id}},
+			{new: true},
+			function(err, doc){
+				if (err) { throw err; }
+			}
+		);
+
+		return res.json({
+			ok: true,
+			msg: "Actualizado"
+		})
+	}
+
+	return res.json({
+		ok: false,
+		msg: 'Operación no completada'
+	})
+}
+
 const MostrarCita = async (req, res) => {
 	const cita = await Cita.find();
 	return res.json(cita);
@@ -169,13 +213,16 @@ const MostrarCita = async (req, res) => {
 
 const EliminarCita = async (req, res = response) => {
 	const CitaId = req.params.id;
-	const cita = await Cita.findByIdAndDelete(CitaId);
+	const cita = await Cita.findById(CitaId);
 	if (cita) {
-		console.log(cita);
-		return res.json({
-			ok: true,
-			msg: 'Cita eliminado',
-		});
+		const citaElim = await Cita.findByIdAndDelete(cita._id);
+		const histClinicaElim = await HistClinica.findByIdAndDelete(cita.id_HistClinica)
+		if(citaElim && histClinicaElim){
+			return res.json({
+				ok: true,
+				msg: 'Cita e historia eliminada',
+			});
+		}
 	}
 };
 
@@ -184,4 +231,5 @@ module.exports = {
 	ActualizarCita,
 	MostrarCita,
 	EliminarCita,
+	ActualizarIDHistClinicaParaCita
 };
