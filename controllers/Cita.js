@@ -127,24 +127,24 @@ const CrearCita = async (req, res) => {
 
 const ActualizarCita = async (req, res = response) => {
 	const CitaId = req.params.id;
-	const idPaciente = req.id_Paciente;
+	// const idPaciente = req.body.id_Paciente;
 	try {
-		const Cita = await Cita.findById(CitaId);
-		if (!Cita) {
-			res.status(404).json({
+		const cita = await Cita.findById(CitaId);
+		if (!cita) {
+			return res.status(404).json({
 				ok: false,
 				msg: 'Cita para Consulta no existe con ese id',
 			});
 		}
-		if (Cita.id_Paciente.toString() !== idPaciente) {
-			return res.status(401).json({
-				ok: false,
-				msg: 'No tiene privilegio de editar este Paciente',
-			});
-		}
+		// if (cita.id_Paciente.toString() !== idPaciente) {
+		// 	return res.status(401).json({
+		// 		ok: false,
+		// 		msg: 'No tiene privilegio de editar este Paciente',
+		// 	});
+		// }
 		const nuevaCita = {
 			...req.body,
-			id_Paciente: idPaciente,
+			// id_Paciente: idPaciente,
 		};
 
 		const CitaActualizado = await Cita.findByIdAndUpdate(
@@ -154,7 +154,20 @@ const ActualizarCita = async (req, res = response) => {
 				new: true,
 			}
 		);
-		res.json({
+
+		if(req.body.fecha){
+			HistClinica.findOneAndUpdate(
+				{_id: cita.id_HistClinica}, 
+				{$set: {fecha: req.body.fecha}},
+				{new: true},
+				function(err, doc){
+					if (err) { throw err; }
+				}
+			);
+		} 
+
+
+		return res.json({
 			ok: true,
 			Cita: CitaActualizado,
 		});
@@ -200,13 +213,16 @@ const MostrarCita = async (req, res) => {
 
 const EliminarCita = async (req, res = response) => {
 	const CitaId = req.params.id;
-	const cita = await Cita.findByIdAndDelete(CitaId);
+	const cita = await Cita.findById(CitaId);
 	if (cita) {
-		console.log(cita);
-		return res.json({
-			ok: true,
-			msg: 'Cita eliminado',
-		});
+		const citaElim = await Cita.findByIdAndDelete(cita._id);
+		const histClinicaElim = await HistClinica.findByIdAndDelete(cita.id_HistClinica)
+		if(citaElim && histClinicaElim){
+			return res.json({
+				ok: true,
+				msg: 'Cita e historia eliminada',
+			});
+		}
 	}
 };
 
