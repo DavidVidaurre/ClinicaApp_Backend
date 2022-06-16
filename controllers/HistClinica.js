@@ -151,7 +151,7 @@ const MostrarDatosHistoria = async(req, res=response)=>{
 	// }
 	return res.json(historia)
 }
-
+//
 module.exports = {
 	CrearHistClinica,
 	ActualizarHistClinica,
