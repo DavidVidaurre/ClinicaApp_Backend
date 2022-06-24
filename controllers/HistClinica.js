@@ -6,6 +6,8 @@ const Historia =  require('../models/Historia');
 const Cita = require('../models/Cita');
 const {validarDiagnostico} = require('../functions/validaciones.js');
 const { response } = require('express');
+const Receta = require('../models/Receta');
+const MedicamentoReceta = require('../models/MedicamentoReceta');
 // const Usuario = require('../models/Usuario');
 const CrearHistClinica = async (req, res) => {
         const {fecha, diagnostico, tratamiento, examenesAuxiliares, id_Historia,anamnesis} = req.body;
@@ -152,6 +154,20 @@ const MostrarDatosHistoria = async(req, res=response)=>{
 	return res.json(historia)
 }
 
+
+const MostrarMedicamentoPorIDHistClinica = async(req, res=response) =>{
+	// const h = await HistClinica.find()
+	const histClinica = req.params.idHistClinica
+	// console.log('hisclinica', req.params.idHistClinica);
+	const recetaID = await Receta.find({id_HistClinica: histClinica})
+	const idReceta =recetaID.map((item) => {return item._id})
+	// console.log('Receta', idReceta);
+	const medicamentos = await MedicamentoReceta.find({id_Receta: idReceta})
+	const medicinas =medicamentos.map((item) => {return [item.nombreMedicina,item.indicaciones]})
+	console.log('medicamentos', medicinas);
+	return res.json(medicinas)
+}
+
 module.exports = {
 	CrearHistClinica,
 	ActualizarHistClinica,
@@ -160,5 +176,6 @@ module.exports = {
 	MostrarHistClinicaPaciente,
 	MostrarHistClinicaId,
 	MostrarPesoyEdad,
-	MostrarDatosHistoria
+	MostrarDatosHistoria,
+	MostrarMedicamentoPorIDHistClinica
 }
