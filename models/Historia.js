@@ -63,6 +63,10 @@ const HistoriaSchema = new Schema({
 		type: Number,
 		required: false,
 	},
+	procedencia:{
+		type: String,
+		required: false,
+	},
 	//DNI PARA EL APODERADO
 	// dni:{
 	// 	type: String,
