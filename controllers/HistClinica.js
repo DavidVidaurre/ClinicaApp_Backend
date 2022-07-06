@@ -156,15 +156,14 @@ const MostrarDatosHistoria = async(req, res=response)=>{
 
 
 const MostrarMedicamentoPorIDHistClinica = async(req, res=response) =>{
-	// const h = await HistClinica.find()
 	const histClinica = req.params.idHistClinica
-	// console.log('hisclinica', req.params.idHistClinica);
+	
 	const recetaID = await Receta.find({id_HistClinica: histClinica})
 	const idReceta =recetaID.map((item) => {return item._id})
-	// console.log('Receta', idReceta);
+	
 	const medicamentos = await MedicamentoReceta.find({id_Receta: idReceta})
-	const medicinas =medicamentos.map((item) => {return [item.nombreMedicina,item.indicaciones]})
-	console.log('medicamentos', medicinas);
+	const medicinas =medicamentos.map((item) => {return {nombreMedicina: item.nombreMedicina, indicaciones: item.indicaciones}})
+
 	return res.json(medicinas)
 }
 
