@@ -10,7 +10,8 @@ const {
     MostrarHistClinicaPaciente,
     MostrarHistClinicaId,
     MostrarPesoyEdad,
-    MostrarDatosHistoria
+    MostrarDatosHistoria,
+    MostrarMedicamentoPorIDHistClinica
 } = require('../controllers/HistClinica');
 
 // Create
@@ -22,5 +23,6 @@ router.get("/", MostrarHistClinica);
 router.get("/id/:id", MostrarHistClinicaId);
 router.get("/idPaciente/:id", MostrarPesoyEdad);
 router.get("/idPaciente/id/:id", MostrarDatosHistoria)
+router.get("/medicamentos/:idHistClinica", MostrarMedicamentoPorIDHistClinica)
 
 module.exports = router;
