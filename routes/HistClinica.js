@@ -14,7 +14,7 @@ const {
     MostrarMedicamentoPorIDHistClinica
 } = require('../controllers/HistClinica');
 
-// Create
+// Create routes
 router.post("/new", CrearHistClinica);
 router.put("/:id", ActualizarHistClinica);
 router.delete("/:id", EliminarHistClinica);
