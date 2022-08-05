@@ -317,7 +317,7 @@ const VacunaSchema = new Schema({
         required: false
     },
 
-    //OTROS
+    //OTROS 
     otros:{
         type: String,
         required: false
