@@ -15,7 +15,8 @@ const {
 	MostrarResponsable,
 	MostrarResponsablePorId,
 	subirFotoPerfil,
-	me
+	me,
+	ActualizarNombreResponsable
 	// CambiarFotoPerfil,
 } = require('../controllers/auth');
 
@@ -66,6 +67,7 @@ const upload = multer({
 router.post('/files', upload.single('avatar'),subirFotoPerfil);
 
 router.get('/renew', validarJWT, revalidarToken);
+router.put('/Responsable/:id', ActualizarNombreResponsable)
 router.delete("/:id", EliminarUsuario)
 router.get('/', MostrarResponsable)
 router.get('/:id', MostrarResponsablePorId)
