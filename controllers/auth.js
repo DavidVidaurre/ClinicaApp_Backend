@@ -237,6 +237,46 @@ const MostrarResponsable = async (req, res) => {
 		return res.json(responsable);
 	}
 };
+
+const ActualizarNombreResponsable = async (req, res = response) =>{
+	const resp= await Usuario.find ({rol: 'Apoderado'})
+	const respID = req.params.id
+	const responsable = resp.filter(item =>(item._id==respID))[0]
+	
+	try {
+		if (!responsable) {
+			res.status(400).json({
+				ok: false,
+				msg: 'Responsable no existe con ese id'
+			})
+		}else{
+			const nuevoResp = {
+				nombre:req.body.nombre,
+			}
+
+			if(req.body.nombre){
+				const respActualizado = await Usuario.findOneAndUpdate(
+					{_id: respID},
+					nuevoResp,
+					{
+						new: true
+					}
+				)
+				
+				res.json({
+					ok: true,
+					respon:respActualizado.nombre
+				})
+			}
+		}
+	} catch (error) {
+		res.status(500).json({
+			ok: false,
+			msg: 'Hable con el administrador'
+		})
+	}
+}
+
 const MostrarResponsablePorId = async (req,res)=>{
 	const usuarioId = req.params.id;
 	const responsable = await Usuario.find({ rol: 'Apoderado' });
@@ -332,6 +372,7 @@ module.exports = {
 	MostrarResponsable,
 	MostrarResponsablePorId,
 	subirFotoPerfil,
-	me
+	me,
+	ActualizarNombreResponsable
 	// CambiarFotoPerfil
 };
