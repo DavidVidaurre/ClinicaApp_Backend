@@ -61,6 +61,10 @@ const HistClinicaSchema = new Schema({
 		type: String,
 		required: false,
 	},
+	ojos:{
+		type: String,
+		required: false,
+	},
 	orofaringe:{
 		type: String,
 		required: false,
