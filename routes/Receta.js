@@ -7,7 +7,8 @@ const {
     MostrarReceta,
     MostrarRecetaIDHistClinica,
     MostrarMedicamentosReceta,
-    MostradDatosParaReceta
+    MostradDatosParaReceta,
+    EliminarReceta
 } = require('../controllers/Receta');
 
 // Create
@@ -17,5 +18,6 @@ router.get("/:id", MostrarReceta);
 router.get("/idHistClinica/:id", MostrarRecetaIDHistClinica)
 router.get("/idHistClinica/receta/:id", MostrarMedicamentosReceta)
 router.get("/datos/:id", MostradDatosParaReceta)
+router.delete("/:id", EliminarReceta)
 
 module.exports = router;

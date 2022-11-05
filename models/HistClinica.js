@@ -20,6 +20,10 @@ const HistClinicaSchema = new Schema({
 		type: String,
 		required: false,
 	},
+	planDiagnosticoTerapeutico:{
+		type: String,
+		required: false,
+	},
 	//ex. fisico
 	peso:{
 		type: Number,
@@ -61,6 +65,10 @@ const HistClinicaSchema = new Schema({
 		type: String,
 		required: false,
 	},
+	ojos:{
+		type: String,
+		required: false,
+	},
 	orofaringe:{
 		type: String,
 		required: false,
@@ -86,6 +94,10 @@ const HistClinicaSchema = new Schema({
 		required: false,
 	},
 	locomotor: {
+		type: String,
+		required: false,
+	},
+	genitales: {
 		type: String,
 		required: false,
 	},

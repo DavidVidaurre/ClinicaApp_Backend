@@ -91,9 +91,30 @@ const MostrarNombreMedicina = async(req, res)=>{
 	}
 }
 
+const MostrarMedicinas = async (req, res) => {
+    const medicinas = await MedicamentoReceta.find()
+
+    return res.json(medicinas)
+}
+
+const EliminarMedicamentoPorIdReceta = async (req, res) => {
+    const idReceta = req.params.id
+	const medicamentosReceta = await MedicamentoReceta.find({id_Receta: idReceta});
+	medicamentosReceta.map(async(medicamento) => await MedicamentoReceta.findByIdAndDelete(medicamento._id))
+
+	if(medicamentosReceta){
+        return res.json({
+            ok: true,
+            msg: 'Medicamentos eliminados'
+        })
+    }
+}
+
 module.exports = {
 	CrearMedicamentoReceta,
 	ActualizarMedicamentoReceta,
 	EliminarMedicamentoReceta,
-	MostrarNombreMedicina
+	MostrarNombreMedicina,
+	MostrarMedicinas,
+	EliminarMedicamentoPorIdReceta
 }
