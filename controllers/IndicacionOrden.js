@@ -80,8 +80,29 @@ const EliminarIndicacionOrden = async (req, res) => {
     }
 }
 
+const MostrarIndicacionesOrden = async (req, res) => {
+    const indicOrden = await IndicacionOrden.find()
+
+    return res.json(indicOrden)
+}
+
+const EliminarIndicacionPorIdOrden = async (req, res) => {
+    const idOrden = req.params.id
+	const indicacionesOrden = await IndicacionOrden.find({id_Receta: idOrden});
+	indicacionesOrden.map(async(indicacion) => await IndicacionOrden.findByIdAndDelete(indicacion._id))
+
+	if(indicacionesOrden){
+        return res.json({
+            ok: true,
+            msg: 'Medicamentos eliminados'
+        })
+    }
+}
+
 module.exports = {
     CrearIndicacionOrden,
     ActualizarIndicacionOrden,
-    EliminarIndicacionOrden
+    EliminarIndicacionOrden,
+    MostrarIndicacionesOrden,
+    EliminarIndicacionPorIdOrden
 }

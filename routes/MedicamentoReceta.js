@@ -5,13 +5,17 @@ const {
     CrearMedicamentoReceta,
     ActualizarMedicamentoReceta,
     EliminarMedicamentoReceta,
-    MostrarNombreMedicina
+    MostrarNombreMedicina,
+    MostrarMedicinas,
+    EliminarMedicamentoPorIdReceta
 } = require('../controllers/MedicamentoReceta');
 
-// Métodos HTTP
+// Create
 router.post("/new", CrearMedicamentoReceta);
 router.put("/:id", ActualizarMedicamentoReceta)
 router.delete("/:id", EliminarMedicamentoReceta)
 router.get('/nombresMedicina', MostrarNombreMedicina)
+router.get('/', MostrarMedicinas)
+router.delete("/idReceta/:id", EliminarMedicamentoPorIdReceta)
 
 module.exports = router;

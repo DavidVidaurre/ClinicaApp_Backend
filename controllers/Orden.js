@@ -59,9 +59,23 @@ const MostradDatosParaOrden = async(req, res) => {
         historia})
 }
 
+const EliminarOrden = async (req, res) => {
+    const idOrden = req.params.id;
+
+    const ordenElim = await Orden.findByIdAndDelete(idOrden)
+
+    if (ordenElim) {
+        return res.json({
+            ok: true,
+            msg: ordenElim,
+        });
+	}
+}
+
 module.exports = {
     CrearOrden,
     MostrarIndicacionesIdOrden,
     MostrarOrdenesIDHistClinica,
-    MostradDatosParaOrden
+    MostradDatosParaOrden,
+    EliminarOrden
 }

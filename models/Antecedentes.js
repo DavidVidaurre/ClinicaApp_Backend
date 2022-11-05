@@ -70,11 +70,11 @@ const AntecedentesSchema = new Schema({
 		required: false,
 	},
 	reaccionAdversaMed: {
-		type: String,
+		type: Boolean,
 		required: false,
 	},
 	sob: {
-		type: String,
+		type: Boolean,
 		required: false,
 	},
 	enfAnteriores: {

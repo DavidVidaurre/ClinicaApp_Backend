@@ -106,11 +106,25 @@ const MostradDatosParaReceta = async(req, res) => {
     })
 }
 
+const EliminarReceta = async (req, res) => {
+    const idReceta = req.params.id;
+
+    const recetaElim = await Receta.findByIdAndDelete(idReceta)
+
+    if (recetaElim) {
+        return res.json({
+            ok: true,
+            msg: recetaElim,
+        });
+	}
+}
+
 module.exports = {
     CrearReceta,
     ActualizarReceta,
     MostrarReceta,
     MostrarRecetaIDHistClinica,
     MostrarMedicamentosReceta,
-    MostradDatosParaReceta
+    MostradDatosParaReceta,
+    EliminarReceta
 }
