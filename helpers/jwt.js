@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 const SECRET_JWT_SEED = "$$$$AhoraTengoMoney$$$$"
 
 const generarJWT = (uid, name) => {
@@ -24,6 +24,6 @@ const generarJWT = (uid, name) => {
 	});
 };
 
-module.exports = {
+export {
 	generarJWT,
 };

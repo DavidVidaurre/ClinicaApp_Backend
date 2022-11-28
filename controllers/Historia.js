@@ -1,9 +1,9 @@
-const Historia = require('../models/Historia');
-// const Usuario = require('../models/Usuario')
-const { validarDNI } = require('../functions/validaciones.js');
-const { validarNombre } = require('../functions/validaciones.js');
-const Usuario = require('../models/Usuario');
-const { response } = require('express');
+import Historia from '../models/Historia.js';
+// const Usuario from '../models/Usuario')
+import { validarDNI } from '../functions/validaciones.js';
+import { validarNombre } from '../functions/validaciones.js';
+import Usuario from '../models/Usuario.js';
+import { response } from 'express';
 
 const CrearHistoria = async (req, res) => {
 	const {
@@ -194,7 +194,7 @@ const MostrarPacientePorUsuario = async (req, res = response) => {
 	// return res.json(usuario);
 };
 
-module.exports = {
+export {
 	CrearHistoria,
 	ActualizarHistoria,
 	MostrarHistoria,

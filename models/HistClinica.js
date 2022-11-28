@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose');
+import pkg from 'mongoose';
+const { Schema, model } = pkg;
 const HistClinicaSchema = new Schema({
 	fecha:{
 		type: Date,
@@ -118,4 +119,4 @@ const HistClinicaSchema = new Schema({
 	// 	required: true
 	// }
 });
-module.exports = model('HistClinica', HistClinicaSchema);
+export default model('HistClinica', HistClinicaSchema);

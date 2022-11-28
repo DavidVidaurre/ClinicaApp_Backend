@@ -1,6 +1,6 @@
-const { response } = require('express');
-const MedicamentoReceta = require('../models/MedicamentoReceta');
-const Receta = require('../models/Receta')
+import { response } from 'express';
+import MedicamentoReceta from '../models/MedicamentoReceta.js';
+import Receta from '../models/Receta.js'
 
 const CrearMedicamentoReceta = async (req, res) => {
         const { cantidad, nombreMedicina, indicaciones, id_Receta } = req.body;
@@ -110,7 +110,7 @@ const EliminarMedicamentoPorIdReceta = async (req, res) => {
     }
 }
 
-module.exports = {
+export {
 	CrearMedicamentoReceta,
 	ActualizarMedicamentoReceta,
 	EliminarMedicamentoReceta,

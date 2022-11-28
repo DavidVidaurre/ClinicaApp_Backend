@@ -1,12 +1,12 @@
-const { Router } = require('express');
+import { Router } from 'express';
 const router = Router();
 
-const { 
+import { 
     CrearAntecedentes, 
     ActualizarAntecedentes, 
     MostrarAntecedentes ,
     AntecedentesId
-} = require('../controllers/Antecedentes');
+} from '../controllers/Antecedentes.js';
 
 // Create
 router.post("/new", CrearAntecedentes);
@@ -15,4 +15,5 @@ router.get("/", MostrarAntecedentes);
 router.get("/:id", AntecedentesId);
 
 
-module.exports = router;
+// export router;
+export default router

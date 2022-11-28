@@ -1,5 +1,5 @@
-const Vacuna = require('../models/Vacuna');
-const Historia = require('../models/Historia');
+import Vacuna from '../models/Vacuna.js';
+import Historia from '../models/Historia.js';
 
 const CrearVacuna = async (req, res) => {
         const { bcg, hepatb, dpt, neumococo, rotavirus, hepatb2, dpt2, neumococo2, rotavirus2, hepatb3, dpt3, neumococo3, rotavirus3,hepatb4, influenza, influenza2, meningococo, spr, varicela, meningococo2, hepata, famarilla, dpt4, spr2, varicela2, hepata2,neumococo4, influenza3, dpt5, spr3, papilomavirus, papilomavirus2, otros, 
@@ -92,7 +92,7 @@ const VacunaId = async (req,res)=>{
 	const v = await Vacuna.find({ id_Historia: req.params.id})
 	return res.json(v)
 }
-module.exports = {
+export {
 	CrearVacuna,
   	ActualizarVacuna,
   	MostrarVacuna,

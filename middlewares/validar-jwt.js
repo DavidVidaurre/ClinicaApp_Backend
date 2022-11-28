@@ -1,5 +1,5 @@
-const { response } = require('express');
-const jwt = require('jsonwebtoken')
+import { response } from 'express';
+import jwt from 'jsonwebtoken'
 
 const validarJWT = (req, res = response, next) => {
 	//x-token headers
@@ -25,4 +25,4 @@ const validarJWT = (req, res = response, next) => {
 	}
 	next();
 };
-module.exports = { validarJWT };
+export { validarJWT };

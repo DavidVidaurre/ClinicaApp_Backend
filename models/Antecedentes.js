@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose');
+import pkg from 'mongoose';
+const { Schema, model } = pkg;
 const AntecedentesSchema = new Schema({
 	//FAMILIARES
 	asmaBronquialFam: {
@@ -89,4 +90,4 @@ const AntecedentesSchema = new Schema({
 	},
 });
 
-module.exports = model('Antecedentes', AntecedentesSchema);
+export default model('Antecedentes', AntecedentesSchema);

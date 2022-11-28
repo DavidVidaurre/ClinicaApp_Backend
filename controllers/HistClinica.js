@@ -1,14 +1,13 @@
-//import moment from 'moment';
-const moment = require('moment');
+import moment from 'moment';
 
-const HistClinica = require('../models/HistClinica');
-const Historia =  require('../models/Historia');
-const Cita = require('../models/Cita');
-const {validarDiagnostico} = require('../functions/validaciones.js');
-const { response } = require('express');
-const Receta = require('../models/Receta');
-const MedicamentoReceta = require('../models/MedicamentoReceta');
-// const Usuario = require('../models/Usuario');
+import HistClinica from '../models/HistClinica.js';
+import Historia from '../models/Historia.js';
+import Cita from '../models/Cita.js';
+import {validarDiagnostico} from '../functions/validaciones.js';
+import { response } from 'express';
+import Receta from '../models/Receta.js';
+import MedicamentoReceta from '../models/MedicamentoReceta.js';
+// const Usuario from '../models/Usuario');
 const CrearHistClinica = async (req, res) => {
         const {fecha, diagnostico, tratamiento, examenesAuxiliares, id_Historia,anamnesis} = req.body;
 		try {
@@ -167,7 +166,7 @@ const MostrarMedicamentoPorIDHistClinica = async(req, res=response) =>{
 	return res.json(medicinas)
 }
 
-module.exports = {
+export {
 	CrearHistClinica,
 	ActualizarHistClinica,
 	EliminarHistClinica,

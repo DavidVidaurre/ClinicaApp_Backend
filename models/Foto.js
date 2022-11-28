@@ -1,4 +1,5 @@
-const { Schema, model, SchemaTypes } = require('mongoose');
+import pkg from 'mongoose';
+const { Schema, model } = pkg;
 const FotoSchema = new Schema({
     nombre: {
 		type: String,
@@ -11,4 +12,4 @@ const FotoSchema = new Schema({
 		// required: true
 	},
 })
-module.exports = model('Foto', FotoSchema);
+export default model('Foto', FotoSchema);

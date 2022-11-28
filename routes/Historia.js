@@ -1,7 +1,7 @@
-const { Router } = require('express');
+import { Router } from 'express';
 const router = Router();
 
-const {
+import {
 	CrearHistoria,
 	ActualizarHistoria,
 	MostrarHistoria,
@@ -9,7 +9,7 @@ const {
 	MostrarPacientePorUsuario,
 	MostrarHistoriaPorDNI,
 	MostrarHistoriaPorID
-} = require('../controllers/Historia');
+} from '../controllers/Historia.js';
 
 // Create
 router.get('/hijos/:id_Usuario', MostrarPacientePorUsuario);
@@ -20,4 +20,4 @@ router.get('/:dni_paciente', MostrarHistoriaPorDNI);
 router.get("/id/:id", MostrarHistoriaPorID);
 router.delete('/:id', EliminarHistoria);
 
-module.exports = router;
+export default router;

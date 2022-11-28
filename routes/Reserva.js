@@ -1,15 +1,15 @@
-const {Router} = require('express');
-const { validarJWT } = require('../middlewares/validar-jwt');
+import {Router} from 'express';
+import { validarJWT } from '../middlewares/validar-jwt.js';
 const router = Router();
 
-const {
+import {
     CrearReserva,
     ActualizarReserva,
     MostrarReservas,
     MostrarReservaPorID,
     EliminarReserva,
     MostrarNombreYFecha
-} = require('../controllers/Reserva');
+} from '../controllers/Reserva.js';
 
 router.post("/new", CrearReserva);
 router.put("/:id", ActualizarReserva);
@@ -18,4 +18,4 @@ router.get("/id/:id", MostrarReservaPorID);
 router.delete("/:id", EliminarReserva)
 router.get("/datos", MostrarNombreYFecha)
 
-module.exports = router;
+export default router;

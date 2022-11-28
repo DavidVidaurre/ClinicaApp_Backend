@@ -1,7 +1,7 @@
-const Orden = require('../models/Orden')
-const IndicacionOrden = require('../models/IndicacionOrden')
-const HistClinica = require('../models/HistClinica')
-const Historia = require('../models/Historia')
+import Orden from '../models/Orden.js'
+import IndicacionOrden from '../models/IndicacionOrden.js'
+import HistClinica from '../models/HistClinica.js'
+import Historia from '../models/Historia.js'
 
 const CrearOrden = async(req, res) => {
     const {id_HistClinica} = req.body
@@ -72,7 +72,7 @@ const EliminarOrden = async (req, res) => {
 	}
 }
 
-module.exports = {
+export {
     CrearOrden,
     MostrarIndicacionesIdOrden,
     MostrarOrdenesIDHistClinica,

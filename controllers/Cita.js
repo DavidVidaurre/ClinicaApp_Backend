@@ -1,8 +1,8 @@
-const Cita = require('../models/Cita');
-const Historia = require('../models/Historia');
-const HistClinica = require('../models/HistClinica');
-const moment = require('moment');
-const { response } = require('express');
+import Cita from '../models/Cita.js';
+import Historia from '../models/Historia.js';
+import HistClinica from '../models/HistClinica.js';
+import moment from 'moment';
+import { response } from 'express';
 const CrearCita = async (req, res) => {
 	const {
 		nombre_paciente,
@@ -226,7 +226,7 @@ const EliminarCita = async (req, res = response) => {
 	}
 };
 
-module.exports = {
+export {
 	CrearCita,
 	ActualizarCita,
 	MostrarCita,

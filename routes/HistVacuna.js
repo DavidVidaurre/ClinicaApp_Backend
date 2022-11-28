@@ -1,7 +1,11 @@
-const { Router } = require('express');
+import { Router } from 'express';
 const router = Router();
 
-const { CrearHistVacuna, ActualizarHistVacuna, MostrarHistVacuna } = require('../controllers/HistVacuna');
+import { 
+    CrearHistVacuna, 
+    ActualizarHistVacuna, 
+    MostrarHistVacuna 
+} from '../controllers/HistVacuna.js';
 
 // Create
 router.post("/new", CrearHistVacuna);
@@ -9,4 +13,4 @@ router.put("/:id", ActualizarHistVacuna)
 router.get("/", MostrarHistVacuna);
 
 
-module.exports = router;
+export default router;

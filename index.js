@@ -1,11 +1,24 @@
-const express = require('express');
-const { dbConnection } = require('./database/database');
-const {PORT} = require('./database/config')
-// const {config} = require("./database/config")
+import express from 'express';
+import { dbConnection } from './database/database.js';
+import { PORT } from './database/config.js'
+import cors from 'cors';
+import { config } from "dotenv"
 
-const cors = require('cors');
-
-require('dotenv').config();
+// RUTAS
+import Antecedentes from './routes/Antecedentes.js'
+import Auth from './routes/auth.js'
+import Cita from './routes/Cita.js'
+import Foto from './routes/Foto.js'
+import HistClinica from './routes/HistClinica.js'
+import Historia from './routes/Historia.js'
+import HistVacuna from './routes/HistVacuna.js'
+import IndicacionOrden from './routes/IndicacionOrden.js'
+import MedicamentoReceta from './routes/MedicamentoReceta.js'
+import Orden from './routes/Orden.js'
+import Receta from './routes/Receta.js'
+import Reserva from './routes/Reserva.js'
+import Vacuna from './routes/Vacuna.js'
+config()
 
 const app = express();
 
@@ -19,19 +32,19 @@ app.use(express.static('album'));
 //lectura y parseo 
 app.use(express.json());
 
-app.use('/api/auth', require('./routes/auth'));
-app.use('/Historia', require('./routes/Historia'));
-app.use('/Cita', require('./routes/Cita'));
-app.use('/Vacuna', require('./routes/Vacuna'));
-app.use('/HistClinica', require('./routes/HistClinica'));
+app.use('/api/auth', Auth);
+app.use('/Historia', Historia);
+app.use('/Cita', Cita);
+app.use('/Vacuna', Vacuna);
+app.use('/HistClinica', HistClinica);
 
-app.use('/Antecedentes', require('./routes/Antecedentes'));
-app.use('/Fotos', require('./routes/Foto'));
-app.use('/Reserva', require('./routes/Reserva'));
-app.use('/Receta', require('./routes/Receta'));
-app.use('/MedicamentoReceta', require('./routes/MedicamentoReceta'))
-app.use('/Orden', require('./routes/Orden'))
-app.use('/IndicacionOrden', require('./routes/IndicacionOrden'))
+app.use('/Antecedentes', Antecedentes);
+app.use('/Fotos', Foto);
+app.use('/Reserva', Reserva);
+app.use('/Receta', Reserva);
+app.use('/MedicamentoReceta', MedicamentoReceta)
+app.use('/Orden', Orden)
+app.use('/IndicacionOrden', IndicacionOrden)
 
 // app.listen(process.env.PORT, () => {
 	// 	console.log(`Servidor corriendo en puerto ${process.env.PORT}`);

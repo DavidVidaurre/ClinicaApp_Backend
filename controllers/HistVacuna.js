@@ -1,5 +1,5 @@
-const HistVacuna = require('../models/HistVacuna');
-const Historia = require('../models/Historia');
+import HistVacuna from '../models/HistVacuna.js';
+import Historia from '../models/Historia.js';
 
 const CrearHistVacuna = async (req, res) => {
         const { fecha, id_Historia } = req.body;
@@ -87,7 +87,7 @@ const MostrarHistVacuna = async (req, res) => {
     return res.json(histVacuna);
 }
     
-module.exports = {
+export {
 	CrearHistVacuna,
   ActualizarHistVacuna,
   MostrarHistVacuna

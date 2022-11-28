@@ -1,7 +1,7 @@
-const Receta = require('../models/Receta')
-const MedicamentoReceta = require('../models/MedicamentoReceta')
-const HistClinica = require('../models/HistClinica')
-const Historia = require('../models/Historia');
+import Receta from '../models/Receta.js'
+import MedicamentoReceta from '../models/MedicamentoReceta.js'
+import HistClinica from '../models/HistClinica.js'
+import Historia from '../models/Historia.js';
 
 const CrearReceta = async (req, res) => {
     const { fecha, fechaProx, id_HistClinica } = req.body;
@@ -119,7 +119,7 @@ const EliminarReceta = async (req, res) => {
 	}
 }
 
-module.exports = {
+export {
     CrearReceta,
     ActualizarReceta,
     MostrarReceta,

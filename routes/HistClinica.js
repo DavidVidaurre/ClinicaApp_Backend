@@ -1,8 +1,8 @@
-const { Router } = require('express');
+import { Router } from 'express';
 const router = Router();
-const { validarJWT } = require('../middlewares/validar-jwt')
+import { validarJWT } from '../middlewares/validar-jwt.js'
 
-const {
+import {
 	CrearHistClinica,
     MostrarHistClinica,
     ActualizarHistClinica,
@@ -12,7 +12,7 @@ const {
     MostrarPesoyEdad,
     MostrarDatosHistoria,
     MostrarMedicamentoPorIDHistClinica
-} = require('../controllers/HistClinica');
+} from '../controllers/HistClinica.js';
 
 // Create routes
 router.post("/new", CrearHistClinica);
@@ -25,4 +25,4 @@ router.get("/idPaciente/:id", MostrarPesoyEdad);
 router.get("/idPaciente/id/:id", MostrarDatosHistoria)
 router.get("/medicamentos/:idHistClinica", MostrarMedicamentoPorIDHistClinica)
 
-module.exports = router;
+export default router;

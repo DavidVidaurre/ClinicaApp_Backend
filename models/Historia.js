@@ -1,4 +1,5 @@
-const { Schema, model, SchemaTypes } = require('mongoose');
+import pkg from 'mongoose';
+const { Schema, model } = pkg;
 const HistoriaSchema = new Schema({
     dni_paciente: {
 		type: String,
@@ -78,4 +79,4 @@ const HistoriaSchema = new Schema({
 		// required: true
 	}
 });
-module.exports = model('Historia', HistoriaSchema);
+export default model('Historia', HistoriaSchema);

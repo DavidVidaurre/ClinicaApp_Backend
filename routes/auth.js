@@ -1,13 +1,13 @@
-const { Router } = require('express');
+import { Router } from 'express';
 /*Valida un campo*/
-const { check } = require('express-validator');
+import { check } from 'express-validator';
 /*Importar */
-const { validarCampos } = require('../middlewares/validar-campos');
-const multer = require('multer');
-const path = require('path')
+import { validarCampos } from '../middlewares/validar-campos.js';
+import multer from 'multer';
+import path from 'path'
 const router = Router();
 
-const {
+import {
 	crearUsuario,
 	loginUsuario,
 	revalidarToken,
@@ -18,10 +18,10 @@ const {
 	me,
 	ActualizarNombreResponsable
 	// CambiarFotoPerfil,
-} = require('../controllers/auth');
+} from '../controllers/auth.js';
 
-const { validarJWT } = require('../middlewares/validar-jwt');
-const { EliminarCita } = require('../controllers/Cita');
+import { validarJWT } from '../middlewares/validar-jwt.js';
+import { EliminarCita } from '../controllers/Cita.js';
 
 router.post(
 	'/new',
@@ -89,4 +89,4 @@ router.get('/uploads/:name', function (req, res, next) {
 
 // router.post('/files', CambiarFotoPerfil)
 
-module.exports = router;
+export default router;

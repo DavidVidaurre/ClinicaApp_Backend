@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose');
+import pkg from 'mongoose';
+const { Schema, model } = pkg;
 const UsuarioSchema = new Schema({
 	nombre: {
 		type: String,
@@ -47,4 +48,4 @@ const UsuarioSchema = new Schema({
 // 	this.foto_perfil = `/api/auth/uploads/${filename}`
 // }
 
-module.exports = model('Usuario', UsuarioSchema);
+export default model('Usuario', UsuarioSchema);

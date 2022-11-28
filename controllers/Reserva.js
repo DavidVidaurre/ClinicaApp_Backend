@@ -1,5 +1,5 @@
-const { response } = require('express');
-const Reserva = require('../models/Reserva');
+import { response } from 'express';
+import Reserva from '../models/Reserva.js';
 
 const CrearReserva = async (req, res) => {
     const {nombre_paciente, fecha} = req.body;
@@ -90,7 +90,7 @@ const MostrarNombreYFecha = async (req, res) => {
     return reserva
 }
 
-module.exports = {
+export {
     CrearReserva,
     ActualizarReserva,
     MostrarReservas,

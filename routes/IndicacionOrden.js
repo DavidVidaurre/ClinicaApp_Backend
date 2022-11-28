@@ -1,14 +1,14 @@
-const { Router} = require('express')
+import { Router} from 'express'
 
 const router = Router()
 
-const {
+import {
     CrearIndicacionOrden,
     ActualizarIndicacionOrden,
     EliminarIndicacionOrden,
     MostrarIndicacionesOrden,
     EliminarIndicacionPorIdOrden
-} = require('../controllers/IndicacionOrden')
+} from '../controllers/IndicacionOrden.js'
 
 //Create
 router.post("/new", CrearIndicacionOrden)
@@ -17,4 +17,4 @@ router.delete("/:id", EliminarIndicacionOrden)
 router.get("/", MostrarIndicacionesOrden)
 router.delete("/idOrden/:id", EliminarIndicacionPorIdOrden)
 
-module.exports = router
+export default router

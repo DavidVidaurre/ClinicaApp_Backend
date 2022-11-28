@@ -1,4 +1,5 @@
-const {Schema, model} = require('mongoose')
+import pkg from 'mongoose';
+const { Schema, model } = pkg;
 
 const OrdenSchema = new Schema({
     fecha: {
@@ -12,4 +13,4 @@ const OrdenSchema = new Schema({
     }
 })
 
-module.exports = model('Orden', OrdenSchema)
+export default model('Orden', OrdenSchema)

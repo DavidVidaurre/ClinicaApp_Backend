@@ -1,6 +1,6 @@
-const { response } = require('express');
-const Foto = require('../models/Foto');
-const Historia = require('../models/Historia');
+import { response } from 'express';
+import Foto from '../models/Foto.js';
+import Historia from '../models/Historia.js';
 
 const crearFoto = async (req, res = response) => {
 	
@@ -29,7 +29,7 @@ const MostrarFotosxHistoria = async(req,res)=>{
 	// const fxh= fotos.filter((item)=> item.id_Historia === hId)
 	return res.json(fotos)
 }
-module.exports = {
+export {
 	crearFoto,
 	MostrarFotos,
 	MostrarFotosxHistoria

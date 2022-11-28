@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose');
+import pkg from 'mongoose';
+const { Schema, model } = pkg;
 const ReservaSchema = new Schema({
     nombre_paciente:{
 		type: String,
@@ -9,4 +10,4 @@ const ReservaSchema = new Schema({
 		required: false,
 	}
 });
-module.exports = model('Reserva', ReservaSchema);
+export default model('Reserva', ReservaSchema);

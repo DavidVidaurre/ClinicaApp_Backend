@@ -1,4 +1,5 @@
-const { Schema, model} = require('mongoose')
+import pkg from 'mongoose';
+const { Schema, model } = pkg;
 
 const IndicacionOrdenSchema = new Schema({
     indicaciones: {
@@ -12,4 +13,4 @@ const IndicacionOrdenSchema = new Schema({
     }
 })
 
-module.exports = model('IndicacionOrden', IndicacionOrdenSchema)
+export default model('IndicacionOrden', IndicacionOrdenSchema)

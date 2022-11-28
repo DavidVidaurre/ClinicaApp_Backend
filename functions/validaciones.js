@@ -65,7 +65,7 @@ const validarEnfermedadActual = (enfermedadActual)=>{
     })
   }
 
-module.exports = {
+export {
       validarDNI,
       validarNombre,
       validarRol,

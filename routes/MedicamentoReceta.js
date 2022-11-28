@@ -1,14 +1,14 @@
-const { Router } = require('express');
+import { Router } from 'express';
 const router = Router();
 
-const {
+import {
     CrearMedicamentoReceta,
     ActualizarMedicamentoReceta,
     EliminarMedicamentoReceta,
     MostrarNombreMedicina,
     MostrarMedicinas,
     EliminarMedicamentoPorIdReceta
-} = require('../controllers/MedicamentoReceta');
+} from '../controllers/MedicamentoReceta.js';
 
 // Create
 router.post("/new", CrearMedicamentoReceta);
@@ -18,4 +18,4 @@ router.get('/nombresMedicina', MostrarNombreMedicina)
 router.get('/', MostrarMedicinas)
 router.delete("/idReceta/:id", EliminarMedicamentoPorIdReceta)
 
-module.exports = router;
+export default router;

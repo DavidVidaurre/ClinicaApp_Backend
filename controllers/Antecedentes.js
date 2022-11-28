@@ -1,5 +1,5 @@
-const Antecedentes = require('../models/Antecedentes');
-const Historia = require('../models/Historia');
+import Antecedentes from '../models/Antecedentes.js';
+import Historia from '../models/Historia.js';
 
 const CrearAntecedentes = async (req, res) => {
 	const {
@@ -98,7 +98,7 @@ const AntecedentesId = async (req,res) =>{
 	 const antecedentes = await Antecedentes.find({id_Historia: req.params.id});
 	 return res.json(antecedentes);
 }
-module.exports = {
+export {
 	CrearAntecedentes,
 	ActualizarAntecedentes,
 	MostrarAntecedentes,

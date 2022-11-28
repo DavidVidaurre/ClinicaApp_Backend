@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose');
+import pkg from 'mongoose';
+const { Schema, model } = pkg;
 const VacunaSchema = new Schema({
     /*nombre_vacuna:{
         type: String,
@@ -331,4 +332,4 @@ const VacunaSchema = new Schema({
 
 });
 
-module.exports = model('Vacuna', VacunaSchema);
+export default model('Vacuna', VacunaSchema);

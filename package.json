@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "16.x"
+  },
+  "type": "module",
   "scripts": {
     "devstart": "nodemon index.js",
     "start": "node index.js",

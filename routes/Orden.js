@@ -1,13 +1,13 @@
-const {Router} = require('express')
+import {Router} from 'express'
 const router = Router()
 
-const {
+import {
     CrearOrden,
     MostrarIndicacionesIdOrden,
     MostrarOrdenesIDHistClinica,
     MostradDatosParaOrden,
     EliminarOrden
-} = require('../controllers/Orden')
+} from '../controllers/Orden.js'
 
 //RUTAS
 router.post("/new", CrearOrden)
@@ -16,4 +16,4 @@ router.get("/id_HistClinica/:id", MostrarOrdenesIDHistClinica)
 router.get("/datos/:id", MostradDatosParaOrden)
 router.delete("/:id", EliminarOrden)
 
-module.exports = router
+export default router

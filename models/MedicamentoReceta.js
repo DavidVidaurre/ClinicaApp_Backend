@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose');
+import pkg from 'mongoose';
+const { Schema, model } = pkg;
 const MedicamentoRecetaSchema = new Schema({
 	cantidad: {
 		type: String,
@@ -19,4 +20,4 @@ const MedicamentoRecetaSchema = new Schema({
     }
 });
 
-module.exports = model('MedicamentoReceta', MedicamentoRecetaSchema);
+export default model('MedicamentoReceta', MedicamentoRecetaSchema);

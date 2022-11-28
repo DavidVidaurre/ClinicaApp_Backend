@@ -1,4 +1,4 @@
-const moment = require('moment');
+import moment from 'moment';
 const isDate = (value, { req, location, path }) => {
 	if (!value) {
 		return false;
@@ -10,6 +10,6 @@ const isDate = (value, { req, location, path }) => {
 		return false;
 	}
 };
-module.exports = {
+export {
 	isDate,
 };

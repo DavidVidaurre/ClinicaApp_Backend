@@ -1,13 +1,13 @@
-const { Router } = require('express');
+import { Router } from 'express';
 const router = Router();
 
-const {
+import {
 	CrearCita,
     ActualizarCita,
     MostrarCita,
     EliminarCita,
     ActualizarIDHistClinicaParaCita
-} = require('../controllers/Cita');
+} from '../controllers/Cita.js';
 
 // Create
 router.post("/new", CrearCita);
@@ -16,4 +16,4 @@ router.get("/", MostrarCita);
 router.delete("/:id", EliminarCita)
 router.get("/fechaCita/:fecha", ActualizarIDHistClinicaParaCita)
 
-module.exports = router;
+export default router;

@@ -1,8 +1,12 @@
-const { Router } = require('express');
+import { Router } from 'express';
 const router = Router();
-const multer = require('multer');
-const path = require('path')
-const { crearFoto, MostrarFotos,MostrarFotosxHistoria } = require('../controllers/Foto');
+import multer from 'multer';
+import path from 'path'
+import { 
+	crearFoto, 
+	MostrarFotos,
+	MostrarFotosxHistoria 
+} from '../controllers/Foto.js';
 
 // Create
 router.post('/new', crearFoto);
@@ -37,4 +41,4 @@ router.get('/album/:name', function (req, res, next) {
 	})
   })
 
-module.exports = router;
+export default router;

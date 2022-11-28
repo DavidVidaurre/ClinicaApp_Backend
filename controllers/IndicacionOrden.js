@@ -1,5 +1,5 @@
-const IndicacionOrden = require('../models/IndicacionOrden')
-const Orden = require('../models/Orden')
+import IndicacionOrden from '../models/IndicacionOrden.js'
+import Orden from '../models/Orden.js'
 
 const CrearIndicacionOrden = async (req, res) => {
     const {indicaciones, id_Orden} = req.body
@@ -99,7 +99,7 @@ const EliminarIndicacionPorIdOrden = async (req, res) => {
     }
 }
 
-module.exports = {
+export {
     CrearIndicacionOrden,
     ActualizarIndicacionOrden,
     EliminarIndicacionOrden,

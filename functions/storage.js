@@ -1,4 +1,4 @@
-const multer = require('multer');
+import multer from 'multer';
 const storage = multer.diskStorage({
 	destination: '../uploads/',
 	filename: function (req, file, cb) {
@@ -12,6 +12,6 @@ const upload = multer({
 const subir = ()=>{
     upload.single('avatar')
 }
-module.exports = {
+export {
     subir
 }

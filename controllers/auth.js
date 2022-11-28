@@ -1,19 +1,17 @@
-const { response } = require('express');
+import { response } from 'express';
 /*Importando modelo */
-const Usuario = require('../models/Usuario');
-const Historia = require('../models/Historia');
-/*bcryptjs*/
-const bcrypt = require('bcryptjs');
-/**JWT */
-const { generarJWT } = require('../helpers/jwt');
+import Usuario from '../models/Usuario.js';
+import Historia from '../models/Historia.js';
+import bcrypt from 'bcryptjs';
+import { generarJWT } from '../helpers/jwt.js';
 
-const { validarDNI } = require('../functions/validaciones.js');
+import { validarDNI } from '../functions/validaciones.js';
 
-const { validarNombre } = require('../functions/validaciones.js');
+import { validarNombre } from '../functions/validaciones.js';
 
-const { validarRol } = require('../functions/validaciones.js');
+import { validarRol } from '../functions/validaciones.js';
 
-const multer = require('multer');
+import multer from 'multer';
 
 const crearUsuario = async (req, res = response) => {
 	const { nombre, dni, email, password, rol, telefono, foto_perfil } =
@@ -364,7 +362,7 @@ const subirFotoPerfil = async (req, res) => {
 	// res.send('todo bien');
 };
 
-module.exports = {
+export {
 	crearUsuario,
 	loginUsuario,
 	revalidarToken,

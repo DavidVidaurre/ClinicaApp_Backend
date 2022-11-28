@@ -1,7 +1,7 @@
-const { Router } = require('express');
+import { Router } from 'express';
 const router = Router();
 
-const {
+import {
     CrearReceta,
     ActualizarReceta,
     MostrarReceta,
@@ -9,7 +9,7 @@ const {
     MostrarMedicamentosReceta,
     MostradDatosParaReceta,
     EliminarReceta
-} = require('../controllers/Receta');
+} from '../controllers/Receta.js';
 
 // Create
 router.post("/new", CrearReceta);
@@ -20,4 +20,4 @@ router.get("/idHistClinica/receta/:id", MostrarMedicamentosReceta)
 router.get("/datos/:id", MostradDatosParaReceta)
 router.delete("/:id", EliminarReceta)
 
-module.exports = router;
+export default router;

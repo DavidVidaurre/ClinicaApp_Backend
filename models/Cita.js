@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose');
+import pkg from 'mongoose';
+const { Schema, model } = pkg;
 const CitaSchema = new Schema({
     nombre_paciente: {
 		type: String,
@@ -54,4 +55,4 @@ const CitaSchema = new Schema({
     }
 });
 
-module.exports = model('Cita', CitaSchema);
+export default model('Cita', CitaSchema);
