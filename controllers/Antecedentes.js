@@ -30,7 +30,7 @@ const CrearAntecedentes = async (req, res) => {
 			});
 		}
 
-		antecedentes = new Antecedentes(req.body);
+		const antecedentes = new Antecedentes(req.body);
 
 		await antecedentes.save();
 
