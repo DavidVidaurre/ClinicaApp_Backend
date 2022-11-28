@@ -5,7 +5,7 @@ import cors from 'cors';
 import Antecedentes from './routes/Antecedentes.js'
 import Auth from './routes/auth.js'
 import Cita from './routes/Cita.js'
-import Foto from './routes/Foto.js'
+// import Foto from './routes/Foto.js'
 import HistClinica from './routes/HistClinica.js'
 import Historia from './routes/Historia.js'
 import HistVacuna from './routes/HistVacuna.js'
@@ -36,7 +36,7 @@ app.use('/HistVacuna', HistVacuna);
 app.use('/HistClinica', HistClinica);
 
 app.use('/Antecedentes', Antecedentes);
-app.use('/Fotos', Foto);
+// app.use('/Fotos', Foto);
 app.use('/Reserva', Reserva);
 app.use('/Receta', Receta);
 app.use('/MedicamentoReceta', MedicamentoReceta)

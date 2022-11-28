@@ -11,7 +11,7 @@ import { validarNombre } from '../functions/validaciones.js';
 
 import { validarRol } from '../functions/validaciones.js';
 
-import multer from 'multer';
+// import multer from 'multer';
 
 const crearUsuario = async (req, res = response) => {
 	const { nombre, dni, email, password, rol, telefono, foto_perfil } =
