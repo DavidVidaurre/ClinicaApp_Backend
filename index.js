@@ -2,7 +2,6 @@ import express from 'express';
 import { dbConnection } from './database/database.js';
 import { PORT } from './database/config.js'
 import cors from 'cors';
-import { config } from "dotenv"
 import Antecedentes from './routes/Antecedentes.js'
 import Auth from './routes/auth.js'
 import Cita from './routes/Cita.js'
@@ -16,8 +15,6 @@ import Orden from './routes/Orden.js'
 import Receta from './routes/Receta.js'
 import Reserva from './routes/Reserva.js'
 import Vacuna from './routes/Vacuna.js'
-
-config()
 
 const app = express();
 
