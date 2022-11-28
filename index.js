@@ -3,8 +3,6 @@ import { dbConnection } from './database/database.js';
 import { PORT } from './database/config.js'
 import cors from 'cors';
 import { config } from "dotenv"
-
-// RUTAS
 import Antecedentes from './routes/Antecedentes.js'
 import Auth from './routes/auth.js'
 import Cita from './routes/Cita.js'
@@ -18,6 +16,7 @@ import Orden from './routes/Orden.js'
 import Receta from './routes/Receta.js'
 import Reserva from './routes/Reserva.js'
 import Vacuna from './routes/Vacuna.js'
+
 config()
 
 const app = express();
@@ -29,25 +28,22 @@ app.use(cors());
 app.use(express.static('public'));
 app.use(express.static('uploads'));
 app.use(express.static('album'));
-//lectura y parseo 
+//lectura y parseo
 app.use(express.json());
 
 app.use('/api/auth', Auth);
 app.use('/Historia', Historia);
 app.use('/Cita', Cita);
 app.use('/Vacuna', Vacuna);
+app.use('/HistVacuna', HistVacuna);
 app.use('/HistClinica', HistClinica);
 
 app.use('/Antecedentes', Antecedentes);
 app.use('/Fotos', Foto);
 app.use('/Reserva', Reserva);
-app.use('/Receta', Reserva);
+app.use('/Receta', Receta);
 app.use('/MedicamentoReceta', MedicamentoReceta)
 app.use('/Orden', Orden)
 app.use('/IndicacionOrden', IndicacionOrden)
-
-// app.listen(process.env.PORT, () => {
-	// 	console.log(`Servidor corriendo en puerto ${process.env.PORT}`);
-	// });
 app.listen(PORT)
 console.log("Server on port", PORT);

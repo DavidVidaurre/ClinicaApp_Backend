@@ -29,6 +29,7 @@ const MostrarFotosxHistoria = async(req,res)=>{
 	// const fxh= fotos.filter((item)=> item.id_Historia === hId)
 	return res.json(fotos)
 }
+
 export {
 	crearFoto,
 	MostrarFotos,

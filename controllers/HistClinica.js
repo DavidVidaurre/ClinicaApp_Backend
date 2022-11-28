@@ -7,7 +7,6 @@ import {validarDiagnostico} from '../functions/validaciones.js';
 import { response } from 'express';
 import Receta from '../models/Receta.js';
 import MedicamentoReceta from '../models/MedicamentoReceta.js';
-// const Usuario from '../models/Usuario');
 const CrearHistClinica = async (req, res) => {
         const {fecha, diagnostico, tratamiento, examenesAuxiliares, id_Historia,anamnesis} = req.body;
 		try {
