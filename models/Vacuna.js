@@ -16,7 +16,7 @@ const VacunaSchema = new Schema({
     
     //RECIEN NACIDO
     bcg:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechabcg:{
@@ -25,7 +25,7 @@ const VacunaSchema = new Schema({
     },
     
     hepatb:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechahepatb:{
@@ -35,7 +35,7 @@ const VacunaSchema = new Schema({
 
     //2 MESES
     dpt:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechadpt:{
@@ -44,7 +44,7 @@ const VacunaSchema = new Schema({
     },
 
     neumococo:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechaneumococo:{
@@ -53,7 +53,7 @@ const VacunaSchema = new Schema({
     },
 
     rotavirus:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fecharotavirus:{
@@ -62,7 +62,7 @@ const VacunaSchema = new Schema({
     },
 
     hepatb2:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechahepatb2:{
@@ -72,7 +72,7 @@ const VacunaSchema = new Schema({
 
     //4 MESES
     dpt2:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechadpt2:{
@@ -81,7 +81,7 @@ const VacunaSchema = new Schema({
     },
 
     neumococo2:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechaneumococo2:{
@@ -90,7 +90,7 @@ const VacunaSchema = new Schema({
     },
 
     rotavirus2:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fecharotavirus2:{
@@ -99,7 +99,7 @@ const VacunaSchema = new Schema({
     },
 
     hepatb3:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechahepatb3:{
@@ -109,7 +109,7 @@ const VacunaSchema = new Schema({
 
     //6 MESES
     dpt3:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechadpt3:{
@@ -118,7 +118,7 @@ const VacunaSchema = new Schema({
     },
 
     neumococo3:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechaneumococo3:{
@@ -127,7 +127,7 @@ const VacunaSchema = new Schema({
     },
 
     rotavirus3:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fecharotavirus3:{
@@ -136,7 +136,7 @@ const VacunaSchema = new Schema({
     },
 
     hepatb4:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechahepatb4:{
@@ -146,7 +146,7 @@ const VacunaSchema = new Schema({
 
     //7 MESES
     influenza:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechainfluenza:{
@@ -156,7 +156,7 @@ const VacunaSchema = new Schema({
 
     //8 MESES
     influenza2:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechainfluenza2:{
@@ -166,7 +166,7 @@ const VacunaSchema = new Schema({
 
     //9 MESES
     meningococo:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechameningococo:{
@@ -176,7 +176,7 @@ const VacunaSchema = new Schema({
 
     //1 AÑO
     spr:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechaspr:{
@@ -185,7 +185,7 @@ const VacunaSchema = new Schema({
     },
 
     varicela:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechavaricela:{
@@ -194,7 +194,7 @@ const VacunaSchema = new Schema({
     },
 
     meningococo2:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechameningococo2:{
@@ -204,7 +204,7 @@ const VacunaSchema = new Schema({
 
     //1 AÑO 1 MES
     hepata:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechahepata:{
@@ -214,7 +214,7 @@ const VacunaSchema = new Schema({
 
     //1 AÑO 3 MESES
     famarilla:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechafamarilla:{
@@ -224,7 +224,7 @@ const VacunaSchema = new Schema({
 
     //1 AÑO 6 MESES
     dpt4:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechadpt4:{
@@ -233,7 +233,7 @@ const VacunaSchema = new Schema({
     },
 
     spr2:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechaspr2:{
@@ -242,7 +242,7 @@ const VacunaSchema = new Schema({
     },
 
     varicela2:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechavaricela2:{
@@ -252,7 +252,7 @@ const VacunaSchema = new Schema({
 
     //1 AÑO 7 MESES
     hepata2:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechahepata2:{
@@ -262,7 +262,7 @@ const VacunaSchema = new Schema({
 
     //2 AÑOS
     neumococo4:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechaneumococo4:{
@@ -271,7 +271,7 @@ const VacunaSchema = new Schema({
     },
 
     influenza3:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechainfluenza3:{
@@ -281,7 +281,7 @@ const VacunaSchema = new Schema({
 
     //4 AÑOS
     dpt5:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechadpt5:{
@@ -290,7 +290,7 @@ const VacunaSchema = new Schema({
     },
 
     spr3:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechaspr3:{
@@ -300,7 +300,7 @@ const VacunaSchema = new Schema({
 
     //9 AÑOS
     papilomavirus:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechapapilomavirus:{
@@ -310,7 +310,7 @@ const VacunaSchema = new Schema({
 
     //9 AÑOS 6 MESES
     papilomavirus2:{
-        type: Number,
+        type: Boolean,
         required: false
     },
     fechapapilomavirus2:{
