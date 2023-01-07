@@ -21,7 +21,7 @@ const CrearVacuna = async (req, res) => {
                 });
             }
             
-            vacuna = new Vacuna(req.body);
+            const vacuna = new Vacuna(req.body);
             
     
             await vacuna.save();
